@@ -1,0 +1,4 @@
+# Nijito
+Old version of the project is https://github.com/Esurielt/Nijito
+
+Current Unity version: 2020.1.11f
