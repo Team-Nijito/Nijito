@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_SG_Databar
-  m_Shader: {fileID: -6465566751694194690, guid: 2398a6c960ad1a242af4a168beb43919,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: 6e5916f25c770c94a8f9f6957ffb75d2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
