@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_SG_Databar
+  m_Shader: {fileID: 4800000, guid: 6e5916f25c770c94a8f9f6957ffb75d2, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_E4D35851:
+        m_Texture: {fileID: 2800000, guid: 05947c793fd4e9a4fbaa9cc49d71c2c6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_27B2E7CC: 8
+    - Vector1_3713D1A9: 0.3
+    - Vector1_6A243453: 3
+    - Vector1_B683118F: 0.3
+    m_Colors:
+    - Vector4_62004688: {r: 0, g: 0, b: 1, a: 0.6}
+  m_BuildTextureStacks: []
