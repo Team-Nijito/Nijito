@@ -17,13 +17,12 @@ namespace Dialogue.VN
 		// TODO: Allow movement curve?
 		// https://answers.unity.com/questions/1207389/can-animation-curves-be-used-to-control-variables.html
 
-		public RawImage imageRenderer;
+		public Image imageRenderer;
 		public float movementSpeed = 5f;
+		public Facing initialFacing = Facing.Left;
 
 		// TODO This should be deleted and we should use characters instead.
 		public Texture[] textures;
-
-		private Facing defaultFacing = Facing.Left;
 
 		private RectTransform rTransform;
 		private float targetHorizontalPos;
@@ -71,14 +70,19 @@ namespace Dialogue.VN
 
 		public void SetFacing(Facing newFacing)
 		{
+			Vector3 s = rTransform.localScale;
+			s.x = (newFacing == initialFacing ? 1 : -1);
+			rTransform.localScale = s;
+			/*
 			Rect uvRect = imageRenderer.uvRect;
 			uvRect.width = (newFacing == defaultFacing ? 1 : -1);
 			imageRenderer.uvRect = uvRect;
+			*/
 		}
 
 		public void SetTexture(int index)
 		{
-			imageRenderer.texture = textures[index];
+			//imageRenderer.texture = textures[index];
 		}
 
 		private void SetPosition(float newHorizontalPos)
