@@ -468,6 +468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CutsceneDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 5419077282072163331, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
+      propertyPath: yarnScripts.Array.data[0]
+      value: 
+      objectReference: {fileID: 2480198943629176163, guid: 1c1036e823926824ca43ecaf5b1b7c0e, type: 3}
     - target: {fileID: 5422214250475956004, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -1,0 +1,37 @@
+﻿title: Start
+---
+
+: TestScript3
+
+<<background “Backstage” and wait>>
+<<outfit-all VR>>
+
+The roar of the crowd fades into muttering, and the band sweeps backstage.
+
+<<emote Ai Laugh>> <<move Ai to Middle from Offleft and wait>> 
+AI: Sounds like we totally nailed it!
+
+<<move Ai to Right from Middle and wait>> <<turn Ai Left>>
+<<emote Nimura Neutral>> <<move Nimura to Middle from Offleft and wait>> 
+NIMURA: Hell yeah! Good job, team!
+
+<<emote Ai Smile>>
+    AI: I’m not on again for a bit, right, Ami?
+
+<<emote Ami ShiftyBrows>> <<fade in Ami left and wait>> 
+<<turn Nimura Left and wait>>
+Ami raises her eyebrow quizzically.
+
+    AMI: You are the one who put together the set list… Did you for--
+
+<<emote Ami SmileA>>
+AMI: Never mind. You won’t be back on until the finale.
+
+<<emote Ai Laugh>>
+AI: Got it, thanks! I’m a bit parched, so I’m gonna log out for a bit to get a drink.
+
+<<emote Ami Neutral>>
+AMI: Just make sure--
+
+
+===

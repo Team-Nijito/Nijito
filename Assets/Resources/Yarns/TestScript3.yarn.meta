@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 1c1036e823926824ca43ecaf5b1b7c0e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs: []
+  compilationStatus: 0
+  isSuccesfullyCompiled: 0
+  compilationErrorMessage: 'Error on line 35 at position 1:
+
+    missing ''===''
+    at ''<EOF>''
+
+    
+
+'
+  baseLanguage: {instanceID: 0}
+  localizations: []
