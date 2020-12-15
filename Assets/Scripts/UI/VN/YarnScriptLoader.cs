@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
@@ -10,9 +11,10 @@ public class YarnScriptLoader : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(script.GetProgram().Nodes.First().Key);
         runner.Add(script);
         //runner.StartDialogue(script.GetProgram().Name);
-        runner.StartDialogue();
+        runner.StartDialogue(script.GetProgram().Nodes.First().Key);
     }
 
 }
