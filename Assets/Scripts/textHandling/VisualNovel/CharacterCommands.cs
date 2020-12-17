@@ -75,7 +75,7 @@ namespace Dialogue.VN
 
 		[FormerlySerializedAs("positions")]
 		[SerializeField]
-		private RectTransform[] puppetPoints;
+		private StagePoint[] puppetPoints;
 
 		private void Awake()
 		{
@@ -527,7 +527,7 @@ namespace Dialogue.VN
 			charPuppet.SetTexture(index);
 		}
 
-		private RectTransform GetNamedPoint(string posName)
+		private StagePoint GetNamedPoint(string posName)
 		{
 			return puppetPoints.FirstOrDefault(
 				(rt) => posName.Equals(rt.name, System.StringComparison.OrdinalIgnoreCase)

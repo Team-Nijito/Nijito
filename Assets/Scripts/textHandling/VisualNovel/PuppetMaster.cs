@@ -11,7 +11,7 @@ namespace Dialogue.VN
 		//public GameObject puppetPrefab;
 		public GameObject defaultPuppetPrefab;
 		public GameObject[] puppetPrefabs;
-		public RectTransform puppetSpawnPoint;
+		public StagePoint puppetSpawnPoint;
 
 		Dictionary<string, Puppet> activePuppets;
 

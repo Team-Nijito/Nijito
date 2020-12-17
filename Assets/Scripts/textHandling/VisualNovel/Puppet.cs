@@ -28,45 +28,23 @@ namespace Dialogue.VN
 		private float targetHorizontalPos;
 
 
-
 		/// <summary>
 		/// Sets a new destination where we want to slide to.
 		/// </summary>
-		/// <param name="moveDestination">Position, with 0 being left edge and 1 being right edge.</param>
-		public void SetMovementDestination(float moveDestination)
-		{
-			targetHorizontalPos = moveDestination;
-		}
+		/// <param name="point">Point to move to.</param>
+		public void SetMovementDestination(StagePoint point) {
+			targetHorizontalPos = point.position.x;
 
-		/// <summary>
-		/// Sets a new destination where we want to slide to.
-		/// </summary>
-		/// <param name="rt">Transform to use as a reference, where the average of the min/max anchors' x values are used.</param>
-		public void SetMovementDestination(RectTransform rt)
-		{
-			SetMovementDestination((rt.anchorMin.x + rt.anchorMax.x)/2);
-		}
+        }
 
 		/// <summary>
 		/// Snap to the given position.
 		/// This also cancels out any movement.
 		/// </summary>
-		/// <param name="newHorizontalPos">Position, with 0 being left edge and 1 being right edge.</param>
-		public void Warp(float newHorizontalPos)
-		{
-			SetPosition(newHorizontalPos);
-			SetMovementDestination(newHorizontalPos);
-		}
-
-		/// <summary>
-		/// Snap to the given position.
-		/// This also cancels out any movement.
-		/// </summary>
-		/// <param name="rt">Transform to use as a reference, where the average of the min/max anchors' x values are used.</param>
-		public void Warp(RectTransform rt)
-		{
-			Warp((rt.anchorMin.x + rt.anchorMax.x)/2);
-		}
+		public void Warp(StagePoint point) {
+			SetPosition(point.position.x);
+			SetMovementDestination(point);
+        }
 
 		public void SetFacing(Facing newFacing)
 		{
