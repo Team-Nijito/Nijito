@@ -55,6 +55,10 @@ namespace Dialogue.VN {
 				result = Center;
 			}
 			else {
+				// Logic is somewhat complex here... math works out though.
+				// Essentially, we slice our width such that each inhabitant
+				// gets a piece. Then we need to move each inhabitant so they
+				// are in the middle of their slice.
 				float slice = width / inhabitants.Count;
 				float offset = slice * (index + 0.5f);
 				result = StartPoint + new Vector2(offset, 0);
