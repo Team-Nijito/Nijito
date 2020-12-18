@@ -25,7 +25,18 @@ namespace Dialogue.VN
 		public Texture[] textures;
 
 		private RectTransform rTransform;
-		private float targetHorizontalPos;
+
+		private StagePoint _point;
+		private StagePoint Point {
+			get {
+				return _point;
+			}
+			set {
+				_point?.RemoveInhabitant(gameObject);
+				_point = value;
+				_point?.AddInhabitant(gameObject);
+			}
+		}
 
 
 		/// <summary>
@@ -33,8 +44,7 @@ namespace Dialogue.VN
 		/// </summary>
 		/// <param name="point">Point to move to.</param>
 		public void SetMovementDestination(StagePoint point) {
-			targetHorizontalPos = point.position.x;
-
+			this.Point = point;
         }
 
 		/// <summary>
@@ -42,8 +52,8 @@ namespace Dialogue.VN
 		/// This also cancels out any movement.
 		/// </summary>
 		public void Warp(StagePoint point) {
-			SetPosition(point.position.x);
 			SetMovementDestination(point);
+			SetPosition(Point.GetPosition(gameObject).x);
         }
 
 		public void SetFacing(Facing newFacing)
@@ -79,10 +89,13 @@ namespace Dialogue.VN
 
 		private void Update()
 		{
-			if(!Mathf.Approximately(rTransform.anchorMin.x, targetHorizontalPos))
-			{
-				float newHorizontalPos = Mathf.Lerp(rTransform.anchorMin.x, targetHorizontalPos, movementSpeed * Time.deltaTime);
-				SetPosition(newHorizontalPos);
+			if (Point != null) {
+				float horizontalPosition = Point.GetPosition(gameObject).x;
+
+				if (!Mathf.Approximately(rTransform.anchorMin.x, horizontalPosition)) {
+					horizontalPosition = Mathf.Lerp(rTransform.anchorMin.x, horizontalPosition, movementSpeed * Time.deltaTime);
+					SetPosition(horizontalPosition);
+				}
 			}
 		}
 
