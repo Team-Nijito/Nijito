@@ -34,10 +34,13 @@ namespace Dialogue.VN
 			set {
 				_point?.RemoveInhabitant(gameObject);
 				_point = value;
-				_point?.AddInhabitant(gameObject);
+				_point?.AddInhabitant(gameObject, CurrentPosition);
 			}
 		}
 
+		private Vector2 CurrentPosition {
+			get => rTransform.anchorMin;
+		}
 
 		/// <summary>
 		/// Sets a new destination where we want to slide to.
@@ -92,9 +95,13 @@ namespace Dialogue.VN
 			if (Point != null) {
 				float horizontalPosition = Point.GetPosition(gameObject).x;
 
-				if (!Mathf.Approximately(rTransform.anchorMin.x, horizontalPosition)) {
-					horizontalPosition = Mathf.Lerp(rTransform.anchorMin.x, horizontalPosition, movementSpeed * Time.deltaTime);
-					SetPosition(horizontalPosition);
+				if (!Mathf.Approximately(CurrentPosition.x, horizontalPosition)) {
+
+					SetPosition( Mathf.Lerp(
+						CurrentPosition.x,
+						horizontalPosition,
+						movementSpeed * Time.deltaTime
+					) );
 				}
 			}
 		}

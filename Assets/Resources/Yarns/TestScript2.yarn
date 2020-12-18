@@ -16,8 +16,16 @@ Right Ibuki: Just a second!
 
 <<turn rIbuki left>>
 <<move rIbuki right from offright>>
-
 Right Ibuki: sup?
+<<move Ami2 right from offRight>>
+Ami2: 2
+<<move Ami3 right from offRight>>
+Ami3: 3
+<<move Ami4 right from offRight>>
+Ami4: 4
+<<move Ami5 right from offRight>>
+Ami5: 5
+
 
 <<turn lIbuki left>>
 
@@ -44,6 +52,5 @@ Right Ibuki: Wait, if you're over there, and I'm over here...
 Right Ibuki: Am I even Right Ibuki anymore?
 
 Left Ibuki: You're overthinking things lol
-
 
 ===
