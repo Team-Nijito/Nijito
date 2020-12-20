@@ -3,20 +3,17 @@ title: Start
 
 : TestScript2
 
-<<setTextureIndex lIbuki 0>>
-<<setTextureIndex rIbuki 1>>
+<<turn Ami0 right>>
+<<move Ami0 left from offleft>>
 
-<<turn lIbuki right>>
-<<move lIbuki left from offleft>>
+Ami0: Hi! I'm on the left side of the screen!
+Ami0: Hey, right me, I need to show you something!
 
-Left Ibuki: Hi! I'm on the left side of the screen!
-Left Ibuki: Hey, right me, I need to show you something!
+Ami1: Just a second!
 
-Right Ibuki: Just a second!
-
-<<turn rIbuki left>>
-<<move rIbuki right from offright>>
-Right Ibuki: sup?
+<<turn Ami1 left>>
+<<move Ami1 right from offright>>
+Ami1: sup?
 <<move Ami2 right from offRight>>
 Ami2: 2
 <<move Ami3 right from offRight>>
@@ -27,30 +24,30 @@ Ami4: 4
 Ami5: 5
 
 
-<<turn lIbuki left>>
+<<turn Ami0 left>>
 
-Left Ibuki: nvm lawl
+Ami0: nvm lawl
 
-<<move lIbuki offleft>>
+<<move Ami0 offleft>>
 
-Right Ibuki: Hey!
+Ami1: Hey!
 
-<<move rIbuki middle>>
+<<move Ami1 middle>>
 
-Right Ibuki: Get back here!
+Ami1: Get back here!
 
-<<face lIbuki left>>
-<<move lIbuki right from offRight>>
+<<face Ami0 left>>
+<<move Ami0 right from offRight>>
 
-Left Ibuki: Boo!
+Ami0: Boo!
 
-<<face rIbuki right>>
-<<move rIbuki left>>
+<<face Ami1 right>>
+<<move Ami1 left>>
 
-Right Ibuki: Ack!
-Right Ibuki: Wait, if you're over there, and I'm over here...
-Right Ibuki: Am I even Right Ibuki anymore?
+Ami1: Ack!
+Ami1: Wait, if you're over there, and I'm over here...
+Ami1: Am I even Ami1 anymore?
 
-Left Ibuki: You're overthinking things lol
+Ami0: You're overthinking things lol
 
 ===

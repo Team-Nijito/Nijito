@@ -71,6 +71,12 @@ namespace Dialogue.VN
 			*/
 		}
 
+		public void FocusSelf() {
+			int siblingCount = transform.parent.childCount;
+			transform.SetSiblingIndex(siblingCount - 1);
+		}
+
+
 		public void SetTexture(int index)
 		{
 			//imageRenderer.texture = textures[index];
