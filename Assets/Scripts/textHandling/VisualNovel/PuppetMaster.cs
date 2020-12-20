@@ -54,6 +54,7 @@ namespace Dialogue.VN
             }
 
 			GameObject newPuppetObj = Instantiate( prefab, transform );
+			newPuppetObj.name = characterName;
 
 			Puppet newPuppet = newPuppetObj.GetComponent<Puppet>();
 			newPuppet.Warp(puppetSpawnPoint);

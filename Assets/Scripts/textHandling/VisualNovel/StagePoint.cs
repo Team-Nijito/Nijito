@@ -5,7 +5,11 @@ using UnityEngine;
 namespace Dialogue.VN {
 	public class StagePoint : MonoBehaviour {
 
-		public float width;
+		[Tooltip("This is percentage of the screen width")]
+		[Range(0, 1)]
+		public float width = 0.3f;
+		[Range(0, 1)]
+		public float alignment = 0.5f;
 		
 		private List<GameObject> inhabitants;
 		private RectTransform rt;
@@ -13,6 +17,20 @@ namespace Dialogue.VN {
 		private void Awake() {
 			inhabitants = new List<GameObject>();
 			rt = GetComponent<RectTransform>();
+		}
+
+		/// <summary>
+		/// The center point. This never changes.
+		/// </summary>
+		public Vector2 Center {
+			get => (rt.anchorMax + rt.anchorMin) / 2;
+		}
+
+		/// <summary>
+		/// This is one of the most extreme positions a inhabiting object may take.
+		/// </summary>
+		private Vector2 StartPoint {
+			get => Center - new Vector2(width / 2, 0);
 		}
 
 		/// <summary>
@@ -26,7 +44,10 @@ namespace Dialogue.VN {
 			inhabitants.Remove(obj);
 
 			// TODO account for source's position.
-			inhabitants.Add(obj);
+			if (Center.x > objPosition.x)
+				inhabitants.Insert(0, obj);
+			else
+				inhabitants.Add(obj);
 		}
 
 		/// <summary>
@@ -60,23 +81,13 @@ namespace Dialogue.VN {
 				// gets a piece. Then we need to move each inhabitant so they
 				// are in the middle of their slice.
 				float slice = width / inhabitants.Count;
-				float offset = slice * (index + 0.5f);
+				float offset = slice * (index + alignment);
 				result = StartPoint + new Vector2(offset, 0);
 			}
 
 			return result;
 		}
 
-		/// <summary>
-		/// The center point. This never changes.
-		/// </summary>
-		public Vector2 Center {
-			get => (rt.anchorMax + rt.anchorMin) / 2;
-		}
-
-		private Vector2 StartPoint {
-			get => Center - new Vector2(width / 2, 0);
-		}
 
 
 

@@ -514,6 +514,9 @@ namespace Dialogue.VN
 			charPuppet.SetFacing(newFacing);
 		}
 
+		public void Focus(string name) {
+			puppetMaster.GetPuppet(name).FocusSelf();
+		}
 
 		private void SetTexture(string[] args)
 		{
