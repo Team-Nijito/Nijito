@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -17,9 +18,9 @@ public class Tween_VN : MonoBehaviour
     [SerializeField]
     private Transform dialoguebox;
     //[SerializeField]
-    private GameObject namebar;
+    public GameObject namebar;
     //[SerializeField]
-    private GameObject autoskip;
+    public GameObject autoskip;
     // tweener storage 
     private Tween rotator;
 
@@ -27,6 +28,7 @@ public class Tween_VN : MonoBehaviour
     void Start()
     {
         //Setup Dialogue box
+        /*
         namebar = GameObject.Find("namebar");
         autoskip = GameObject.Find("Auto&Skip");
         if (namebar == null || autoskip == null)
@@ -35,6 +37,11 @@ public class Tween_VN : MonoBehaviour
             return;
 
         }
+        */
+
+        Assert.IsNotNull(namebar);
+        Assert.IsNotNull(autoskip);
+        
         OpenDialogueBox();
 
         //Setup autoplay circle
