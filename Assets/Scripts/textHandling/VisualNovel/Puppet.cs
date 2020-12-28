@@ -25,48 +25,39 @@ namespace Dialogue.VN
 		public Texture[] textures;
 
 		private RectTransform rTransform;
-		private float targetHorizontalPos;
 
+		private StagePoint _point;
+		private StagePoint Point {
+			get {
+				return _point;
+			}
+			set {
+				_point?.RemoveInhabitant(gameObject);
+				_point = value;
+				_point?.AddInhabitant(gameObject, CurrentPosition);
+			}
+		}
 
-
-		/// <summary>
-		/// Sets a new destination where we want to slide to.
-		/// </summary>
-		/// <param name="moveDestination">Position, with 0 being left edge and 1 being right edge.</param>
-		public void SetMovementDestination(float moveDestination)
-		{
-			targetHorizontalPos = moveDestination;
+		private Vector2 CurrentPosition {
+			get => rTransform.anchorMin;
 		}
 
 		/// <summary>
 		/// Sets a new destination where we want to slide to.
 		/// </summary>
-		/// <param name="rt">Transform to use as a reference, where the average of the min/max anchors' x values are used.</param>
-		public void SetMovementDestination(RectTransform rt)
-		{
-			SetMovementDestination((rt.anchorMin.x + rt.anchorMax.x)/2);
-		}
+		/// <param name="point">Point to move to.</param>
+		public void SetMovementDestination(StagePoint point) {
+			this.Point = point;
+        }
 
 		/// <summary>
 		/// Snap to the given position.
 		/// This also cancels out any movement.
 		/// </summary>
-		/// <param name="newHorizontalPos">Position, with 0 being left edge and 1 being right edge.</param>
-		public void Warp(float newHorizontalPos)
-		{
-			SetPosition(newHorizontalPos);
-			SetMovementDestination(newHorizontalPos);
-		}
-
-		/// <summary>
-		/// Snap to the given position.
-		/// This also cancels out any movement.
-		/// </summary>
-		/// <param name="rt">Transform to use as a reference, where the average of the min/max anchors' x values are used.</param>
-		public void Warp(RectTransform rt)
-		{
-			Warp((rt.anchorMin.x + rt.anchorMax.x)/2);
-		}
+		public void Warp(StagePoint point) {
+			SetMovementDestination(point);
+			SetPosition(Point.GetPosition(gameObject).x);
+        }
 
 		public void SetFacing(Facing newFacing)
 		{
@@ -79,6 +70,12 @@ namespace Dialogue.VN
 			imageRenderer.uvRect = uvRect;
 			*/
 		}
+
+		public void FocusSelf() {
+			int siblingCount = transform.parent.childCount;
+			transform.SetSiblingIndex(siblingCount - 1);
+		}
+
 
 		public void SetTexture(int index)
 		{
@@ -101,10 +98,17 @@ namespace Dialogue.VN
 
 		private void Update()
 		{
-			if(!Mathf.Approximately(rTransform.anchorMin.x, targetHorizontalPos))
-			{
-				float newHorizontalPos = Mathf.Lerp(rTransform.anchorMin.x, targetHorizontalPos, movementSpeed * Time.deltaTime);
-				SetPosition(newHorizontalPos);
+			if (Point != null) {
+				float horizontalPosition = Point.GetPosition(gameObject).x;
+
+				if (!Mathf.Approximately(CurrentPosition.x, horizontalPosition)) {
+
+					SetPosition( Mathf.Lerp(
+						CurrentPosition.x,
+						horizontalPosition,
+						movementSpeed * Time.deltaTime
+					) );
+				}
 			}
 		}
 

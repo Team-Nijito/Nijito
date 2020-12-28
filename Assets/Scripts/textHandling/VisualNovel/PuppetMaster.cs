@@ -11,7 +11,7 @@ namespace Dialogue.VN
 		//public GameObject puppetPrefab;
 		public GameObject defaultPuppetPrefab;
 		public GameObject[] puppetPrefabs;
-		public RectTransform puppetSpawnPoint;
+		public StagePoint puppetSpawnPoint;
 
 		Dictionary<string, Puppet> activePuppets;
 
@@ -54,6 +54,7 @@ namespace Dialogue.VN
             }
 
 			GameObject newPuppetObj = Instantiate( prefab, transform );
+			newPuppetObj.name = characterName;
 
 			Puppet newPuppet = newPuppetObj.GetComponent<Puppet>();
 			newPuppet.Warp(puppetSpawnPoint);
