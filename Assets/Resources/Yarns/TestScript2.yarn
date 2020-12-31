@@ -16,7 +16,7 @@ Ami1: Just a second!
 Ami1: sup?
 <<move Ami2 right from offRight>>
 Ami2: 2
-<<move Ami3 right from offRight>>
+<<move Ami3 middle from offRight and push Ami1 to offLeft and pull Ami2 to Left>>
 Ami3: 3
 <<move Ami4 right from offRight>>
 Ami4: 4

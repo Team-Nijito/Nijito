@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 5419077282072163331}
-  puppetMaster: {fileID: 365843312990714483}
+  puppetmaster: {fileID: 365843312990714483}
   puppetPoints:
   - {fileID: 26188182993938064}
   - {fileID: 4180588110294073349}
