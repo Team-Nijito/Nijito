@@ -211,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageRenderer: {fileID: 4203847163069240265}
   movementSpeed: 5
+  stoppingDistance: 0.001
   initialFacing: 1
   textures:
   - {fileID: 2800000, guid: d3dbbe7090fcf5e4d8e6c0cdd9cd696a, type: 3}

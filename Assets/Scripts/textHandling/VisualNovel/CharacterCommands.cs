@@ -69,7 +69,7 @@ namespace Dialogue.VN
 		[SerializeField]
 		private DialogueRunner dialogueRunner;
 		[SerializeField]
-		private PuppetMaster puppetMaster;
+		private PuppetMaster puppetmaster;
 
 		[Header("Design config")]
 
@@ -79,7 +79,7 @@ namespace Dialogue.VN
 
 		private void Awake()
 		{
-			Assert.IsNotNull(puppetMaster);
+			Assert.IsNotNull(puppetmaster);
 			Assert.IsNotNull(dialogueRunner);
 
 			dialogueRunner.AddCommandHandler("move", Move);
@@ -297,7 +297,7 @@ namespace Dialogue.VN
 		/// If **pull** or **push** is given, then every TARGET gets
 		/// pulled/pushed by CHARACTER. It's possible to push/pull 
 		/// several targets at a time, separating their names with
-		/// spaces.
+		/// commas.
 		///
 		/// By default, each TARGET ends up on the same spot as
 		/// CHARACTER. However, if TARGET_POSITION is also specified,
@@ -344,9 +344,13 @@ namespace Dialogue.VN
 
 			#region Argument handling
 			Assert.IsTrue(args.Length >= 2);
-			string charName = args[0];
-			string destName = "";
-			string fromName = "";
+			//string charName = args[0];
+			Puppet character = puppetmaster.GetPuppet(args[0]);
+			//string destName = "";
+			//string fromName = "";
+			StagePoint endpoint = null;
+			StagePoint startpoint = null;
+			List<Puppet.MoveBatch> batches = new List<Puppet.MoveBatch>();
 
 			for(int i = 1; i < args.Length; i++)
 			{
@@ -354,18 +358,20 @@ namespace Dialogue.VN
 				{
 					case "to":
 						i++;
-						destName = args[i];
+						//destName = args[i];
+						endpoint = GetNamedPoint(args[i]);
 						break;
 
 					case "from":
 						i++;
-						fromName = args[i];
+						//fromName = args[i];
+						startpoint = GetNamedPoint(args[i]);
 						break;
 
 					case "and":
-						i++;
-						Assert.AreEqual(args[i], "wait");
+						break;
 
+					case "wait":
 						// TODO Implement 'move ... and wait'
 						Debug.LogWarning("'move ... and wait' isn't supported yet!");
 						break;
@@ -377,12 +383,55 @@ namespace Dialogue.VN
 						Debug.LogWarning("'now' isn't supported yet!");
 						break;
 
+					case "push":
+					case "pull":
+						// [and pull|push TARGET1 [, TARGET2, TARGET3, ...] [to TARGET_POSITION]]
+						StagePoint batchDestination = null;
+						Puppet.MoveBatch.BatchMode mode =
+							args[i].Equals("push")
+								? Puppet.MoveBatch.BatchMode.Push
+								: Puppet.MoveBatch.BatchMode.Pull;
+						i++;
+
+						List<Puppet> targets = new List<Puppet>();
+						bool finished = false;
+						while(!finished) {
+							bool trailingComma = (args[i].EndsWith(","));
+							string nextTargetName =
+								trailingComma
+									? (args[i].Substring(0, args[i].Length - 1))
+									: (args[i]);
+							Puppet nextTarget = puppetmaster.GetPuppet(nextTargetName);
+							i++;
+
+							if(!trailingComma) {
+								// There was no comma immediately following the last name. We will check for one by itself.
+								if (args[i].Equals(",")) {
+									i++;
+								}
+								else {
+									finished = true;
+									if (args[i].Equals("to")) {
+										i++;
+										batchDestination = GetNamedPoint(args[i]);
+									}
+								}
+
+							}
+
+							targets.Add(nextTarget);
+
+						}
+
+						batches.Add(new Puppet.MoveBatch(targets.ToArray(), batchDestination, Puppet.Speed.Normal, mode));
+						break;
+
 					default:
 						// Only take an unlabeled parameter if we don't
 						// already have a destination.
-						if(string.IsNullOrEmpty(destName))
+						if(endpoint == null)
 						{
-							destName = args[i];
+							endpoint = GetNamedPoint(args[i]);
 						}
 						else
 						{
@@ -393,14 +442,13 @@ namespace Dialogue.VN
 			}
 			#endregion
 
-			Puppet charPuppet = puppetMaster.GetPuppet(charName);
 
-			if(!string.IsNullOrEmpty(fromName))
+			if(startpoint != null)
 			{
-				charPuppet.Warp(GetNamedPoint(fromName));
+				character.Warp(startpoint);
 			}
 
-			charPuppet.SetMovementDestination(GetNamedPoint(destName));
+			character.SetMovementDestination(endpoint, batches);
 		}
 
 		/// <summary>
@@ -494,7 +542,7 @@ namespace Dialogue.VN
 			string facingName = args[1];
 			#endregion
 
-			Puppet charPuppet = puppetMaster.GetPuppet(charName);
+			Puppet charPuppet = puppetmaster.GetPuppet(charName);
 			Puppet.Facing newFacing;
 			if(facingName.Equals("left", StringComparison.InvariantCultureIgnoreCase))
 			{
@@ -515,7 +563,7 @@ namespace Dialogue.VN
 		}
 
 		public void Focus(string name) {
-			puppetMaster.GetPuppet(name).FocusSelf();
+			puppetmaster.GetPuppet(name).FocusSelf();
 		}
 
 		private void SetTexture(string[] args)
@@ -524,7 +572,7 @@ namespace Dialogue.VN
 			string charName = args[0];
 			string indexName = args[1];
 
-			Puppet charPuppet = puppetMaster.GetPuppet(charName);
+			Puppet charPuppet = puppetmaster.GetPuppet(charName);
 			int index = int.Parse(indexName);
 
 			charPuppet.SetTexture(index);

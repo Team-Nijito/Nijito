@@ -3,15 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using System;
 
 namespace Dialogue.VN
 {
 	public class Puppet : MonoBehaviour
 	{
-		public enum Facing
-		{
-			Left,
-			Right
+		public enum Facing { Left, Right }
+		public enum Speed { Normal, Now, Quick, Slow }
+
+		/// <summary>
+		/// This is a group of puppets which will be moved by this puppet.
+		/// </summary>
+		public struct MoveBatch {
+
+			public enum BatchMode { Push, Pull };
+
+			public Speed moveSpeed 
+				{ get; private set; }
+			public StagePoint destination
+				{ get; private set; }
+			public BatchMode mode
+				{ get; private set; }
+
+			private List<Puppet> _targets;
+			public Puppet[] targets {
+				get         => _targets.ToArray();
+				private set => _targets = new List<Puppet>(value);
+			}
+
+			public MoveBatch(Puppet[] targets, StagePoint destination, Speed moveSpeed, BatchMode mode) {
+
+				this.moveSpeed = moveSpeed;
+				this.destination = destination ?? throw new ArgumentNullException(nameof(destination));
+				this.mode = mode;
+
+				// Necessary? Yes. Stupid? Definitely.
+				_targets = null;
+
+				// This must come after all fields are initialized; otherwise, VS complains.
+				this.targets = targets ?? throw new ArgumentNullException(nameof(targets));
+			}
+
+			public void RemoveTarget(Puppet target) {
+				_targets.Remove(target);
+			}
+
+			public override bool Equals(object obj) {
+				return base.Equals(obj);
+			}
+
+			public override int GetHashCode() {
+				return base.GetHashCode();
+			}
+
+			public override string ToString() {
+				string result = "(";
+
+				foreach(Puppet target in targets) {
+					result += target.name;
+				}
+
+				result += ") going to " + destination.name;
+				return result;
+			}
 		}
 
 		// TODO: Allow movement curve?
@@ -19,6 +74,10 @@ namespace Dialogue.VN
 
 		public Image imageRenderer;
 		public float movementSpeed = 5f;
+		public float stoppingDistance = 0.01f;
+		[Tooltip("Range used for pushing and pulling.")]
+		[Range(0f, 1f)]
+		public float width = 0.1f;
 		public Facing initialFacing = Facing.Left;
 
 		// TODO This should be deleted and we should use characters instead.
@@ -26,17 +85,24 @@ namespace Dialogue.VN
 
 		private RectTransform rTransform;
 
-		private StagePoint _point;
-		private StagePoint Point {
+		private StagePoint _destPoint;
+		private StagePoint DestinationPoint {
 			get {
-				return _point;
+				return _destPoint;
 			}
 			set {
-				_point?.RemoveInhabitant(gameObject);
-				_point = value;
-				_point?.AddInhabitant(gameObject, CurrentPosition);
+				_destPoint?.RemoveInhabitant(gameObject);
+				_destPoint = value;
+				_destPoint?.AddInhabitant(gameObject, CurrentPosition);
 			}
 		}
+
+		/// <summary>
+		/// Currently active movement batches, used currently for pushing and pulling.
+		/// 
+		/// Never make this null; make it an empty list.
+		/// </summary>
+		private List<MoveBatch> currentBatches = new List<MoveBatch>();
 
 		private Vector2 CurrentPosition {
 			get => rTransform.anchorMin;
@@ -46,8 +112,23 @@ namespace Dialogue.VN
 		/// Sets a new destination where we want to slide to.
 		/// </summary>
 		/// <param name="point">Point to move to.</param>
-		public void SetMovementDestination(StagePoint point) {
-			this.Point = point;
+		public void SetMovementDestination(StagePoint point, List<MoveBatch> batches = null) {
+			this.DestinationPoint = point;
+
+			if(batches != null) {
+				string output = "batch:";
+				foreach(MoveBatch batch in batches) {
+					output += "\n" + batch.ToString();
+				}
+				Debug.Log(output);
+			}
+
+			if (batches != null) {
+				currentBatches = batches;
+			}
+			else {
+				currentBatches.Clear();
+			}
         }
 
 		/// <summary>
@@ -56,7 +137,7 @@ namespace Dialogue.VN
 		/// </summary>
 		public void Warp(StagePoint point) {
 			SetMovementDestination(point);
-			SetPosition(Point.GetPosition(gameObject).x);
+			SetPosition(DestinationPoint.GetPosition(gameObject).x);
         }
 
 		public void SetFacing(Facing newFacing)
@@ -98,16 +179,60 @@ namespace Dialogue.VN
 
 		private void Update()
 		{
-			if (Point != null) {
-				float horizontalPosition = Point.GetPosition(gameObject).x;
+			if (DestinationPoint != null) {
+				float horizontalPosition = DestinationPoint.GetPosition(gameObject).x;
 
-				if (!Mathf.Approximately(CurrentPosition.x, horizontalPosition)) {
+				//if (!Mathf.Approximately(CurrentPosition.x, horizontalPosition)) {
+				if (Mathf.Abs(CurrentPosition.x - horizontalPosition) > stoppingDistance) {
+
+					Vector2 oldPosition = CurrentPosition;
 
 					SetPosition( Mathf.Lerp(
 						CurrentPosition.x,
 						horizontalPosition,
 						movementSpeed * Time.deltaTime
 					) );
+
+					Vector2 deltaPosition = CurrentPosition - oldPosition;
+					float direction = Mathf.Sign(deltaPosition.x);
+					float pushPoint = CurrentPosition.x + direction * width; // Front
+					float pullPoint = CurrentPosition.x - direction * width; // Back
+
+					foreach(MoveBatch batch in currentBatches) {
+						float threshold = CurrentPosition.x;
+						switch (batch.mode) {
+							case MoveBatch.BatchMode.Push:
+								threshold = pushPoint;
+								break;
+							case MoveBatch.BatchMode.Pull:
+								threshold = pullPoint;
+								break;
+							default:
+								Debug.LogWarning("Unhandled case");
+								break;
+						}
+
+						// Save this because we'll be changing the source
+						Puppet[] batchTargets = batch.targets;
+						foreach(Puppet target in batchTargets) {
+							bool passedThreshold =
+								direction > 0 // Heading towards the right?
+									? target.CurrentPosition.x < threshold  // Check if passed to the left
+									: target.CurrentPosition.x > threshold; // Check if passed to the right
+
+							if(passedThreshold) {
+								// TODO check how this works when destination is same as current one
+								//      i.e. batch destination is null
+								target.SetMovementDestination(batch.destination);
+								batch.RemoveTarget(target);
+							}
+						}
+					}
+
+					Debug.Log(CurrentPosition.x + " " + deltaPosition.x);
+				}
+				else {
+					currentBatches.Clear();
 				}
 			}
 		}
