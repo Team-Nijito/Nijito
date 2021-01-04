@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['textspeed',['textSpeed',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a8b40e1bc19c88aae1e066e137598e6e5',1,'Dialogue::NijitoDialogueUI']]],
-  ['textures',['textures',['../class_dialogue_1_1_v_n_1_1_puppet.html#a842ce4f2f753b2b57af25246b4361f46',1,'Dialogue::VN::Puppet']]]
+  ['puppetprefabs',['puppetPrefabs',['../class_dialogue_1_1_v_n_1_1_puppet_master.html#a7c93322162792a19e9201fcc8235625e',1,'Dialogue::VN::PuppetMaster']]],
+  ['puppetspawnpoint',['puppetSpawnPoint',['../class_dialogue_1_1_v_n_1_1_puppet_master.html#a3f1125585ab631c7231d51239f42488b',1,'Dialogue::VN::PuppetMaster']]]
 ];

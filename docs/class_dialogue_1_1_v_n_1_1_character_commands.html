@@ -135,6 +135,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae1ddd4918c925a2c7eebb428247de81d"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;turn CHARACTER DIRECTION&gt;&gt;<br />
  <a href="#ae1ddd4918c925a2c7eebb428247de81d">More...</a><br /></td></tr>
 <tr class="separator:ae1ddd4918c925a2c7eebb428247de81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96050efd6565411545061d4d9438074a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a96050efd6565411545061d4d9438074a">Focus</a> (string name)</td></tr>
+<tr class="separator:a96050efd6565411545061d4d9438074a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements several character commands for the Yarn scripts to use. </p>
@@ -149,6 +151,7 @@ Public Member Functions</h2></td></tr>
 <p>For commands with <b>wait</b> or <b>and wait</b> options, those will cause the dialogue system to pause until the command finishes being carried out. This does nothing if <b>now</b> is also used. Also be careful of combining this with <b>slowly</b> too often; that might make things draggy.</p>
 <h2>Changelog</h2>
 <ul>
+<li>1/3/2021: Implemented stacking, pushing, and pulling for <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a7827eebf38141d9607c7091c95f37e04">move</a>.</li>
 <li>9/13/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a6e7aff6aafe23dfbd34b23763d78f200">fade</a>. Added quickly/slowly options. Moved now/quickly/slowly and wait explanations to the class header.</li>
 <li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a757de5ce3d57df6a4091a7329d16ec54">addon</a>.</li>
 </ul>
@@ -300,6 +303,24 @@ NIMURA: Gotta run!
 
 </div>
 </div>
+<a id="a96050efd6565411545061d4d9438074a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96050efd6565411545061d4d9438074a">&#9670;&nbsp;</a></span>Focus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.CharacterCommands.Focus </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7827eebf38141d9607c7091c95f37e04"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7827eebf38141d9607c7091c95f37e04">&#9670;&nbsp;</a></span>Move()</h2>
 
@@ -326,7 +347,7 @@ NIMURA: Gotta run!
 <h3>Pushing and Pulling</h3>
 <pre class="fragment">&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]
        [and pull|push TARGET1 [, TARGET2, TARGET3, ...] [to TARGET_POSITION]]&gt;&gt;
-</pre><p>If <b>pull</b> or <b>push</b> is given, then every TARGET gets pulled/pushed by CHARACTER. It's possible to push/pull several targets at a time, separating their names with spaces.</p>
+</pre><p>If <b>pull</b> or <b>push</b> is given, then every TARGET gets pulled/pushed by CHARACTER. It's possible to push/pull several targets at a time, separating their names with commas.</p>
 <p>By default, each TARGET ends up on the same spot as CHARACTER. However, if TARGET_POSITION is also specified, then all TARGETs end up there.</p>
 <p>The assumption is that CHARACTER will move past every TARGET. Any TARGETs which CHARACTER does not go past won't be pushed. (This is subject to change?)</p>
 <h2>Examples</h2>
@@ -340,7 +361,7 @@ NIMURA: Gotta run!
  When Ibuki reaches Ami, Ami will be forced off the left edge. </p><pre class="fragment">&lt;&lt;move Ibuki to Middle and push Nimura, Ami to Left&gt;&gt;
 </pre><p> Move Ibuki to the middle.<br />
  When Ibuki reaches Nimura and/or Ami, they will both be to the Left position.</p>
-<dl class="section warning"><dt>Warning</dt><dd>Implementation in progress </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Pushing, pulling, and stacking all work. However, all three of these things still need some tuning. Movement speed parameters still need to be implemented. </dd></dl>
 
 </div>
 </div>
