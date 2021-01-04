@@ -406,7 +406,11 @@ namespace Dialogue.VN
 
 							if(!trailingComma) {
 								// There was no comma immediately following the last name. We will check for one by itself.
-								if (args[i].Equals(",")) {
+								// But first we must make sure that we are staying in bounds.
+								if(i >= args.Length) {
+									finished = true;
+								}
+								else if (args[i].Equals(",")) {
 									i++;
 								}
 								else {

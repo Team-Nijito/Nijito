@@ -3,6 +3,12 @@ title: Start
 
 : TestScript2
 
+<<turn Ami1 left>>
+<<move Ami1 right from offright>>
+Ami1: sup?
+<<move Ami2 middle from offRight and push Ami1>>
+Ami2: 2
+
 <<turn Ami0 right>>
 <<move Ami0 left from offleft>>
 
@@ -10,12 +16,6 @@ Ami0: Hi! I'm on the left side of the screen!
 Ami0: Hey, right me, I need to show you something!
 
 Ami1: Just a second!
-
-<<turn Ami1 left>>
-<<move Ami1 right from offright>>
-Ami1: sup?
-<<move Ami2 right from offRight>>
-Ami2: 2
 <<move Ami3 middle from offRight and push Ami1 to offLeft and pull Ami2 to Left>>
 Ami3: 3
 <<move Ami4 right from offRight>>

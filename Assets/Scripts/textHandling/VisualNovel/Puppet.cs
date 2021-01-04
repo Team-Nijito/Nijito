@@ -35,7 +35,7 @@ namespace Dialogue.VN
 			public MoveBatch(Puppet[] targets, StagePoint destination, Speed moveSpeed, BatchMode mode) {
 
 				this.moveSpeed = moveSpeed;
-				this.destination = destination ?? throw new ArgumentNullException(nameof(destination));
+				this.destination = destination;
 				this.mode = mode;
 
 				// Necessary? Yes. Stupid? Definitely.
@@ -64,7 +64,7 @@ namespace Dialogue.VN
 					result += target.name;
 				}
 
-				result += ") going to " + destination.name;
+				result += ") going to " + destination?.name;
 				return result;
 			}
 		}
@@ -180,16 +180,16 @@ namespace Dialogue.VN
 		private void Update()
 		{
 			if (DestinationPoint != null) {
-				float horizontalPosition = DestinationPoint.GetPosition(gameObject).x;
+				float destinationPosition = DestinationPoint.GetPosition(gameObject).x;
 
 				//if (!Mathf.Approximately(CurrentPosition.x, horizontalPosition)) {
-				if (Mathf.Abs(CurrentPosition.x - horizontalPosition) > stoppingDistance) {
+				if (Mathf.Abs(CurrentPosition.x - destinationPosition) > stoppingDistance) {
 
 					Vector2 oldPosition = CurrentPosition;
 
 					SetPosition( Mathf.Lerp(
 						CurrentPosition.x,
-						horizontalPosition,
+						destinationPosition,
 						movementSpeed * Time.deltaTime
 					) );
 
@@ -223,13 +223,12 @@ namespace Dialogue.VN
 							if(passedThreshold) {
 								// TODO check how this works when destination is same as current one
 								//      i.e. batch destination is null
-								target.SetMovementDestination(batch.destination);
+								target.SetMovementDestination(batch.destination ?? DestinationPoint);
 								batch.RemoveTarget(target);
 							}
 						}
 					}
 
-					Debug.Log(CurrentPosition.x + " " + deltaPosition.x);
 				}
 				else {
 					currentBatches.Clear();
