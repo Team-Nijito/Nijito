@@ -53,6 +53,10 @@ namespace Dialogue.VN
 	/// too often; that might make things draggy.
 	///
 	/// ## Changelog
+	///  * 1/3/2021:
+	///    Implemented stacking, pushing, and pulling for
+	///    [move](@ref Dialogue.VN.CharacterCommands.Move).
+	/// 
 	///  * 9/13/2020: Added
 	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade).
 	///    Added quickly/slowly options.
@@ -338,7 +342,9 @@ namespace Dialogue.VN
 		/// 
 		/// 
 		/// </example>
-		/// \warning Implementation in progress
+		/// \warning Pushing, pulling, and stacking all work.
+		///          However, all three of these things still need some tuning.
+		///          Movement speed parameters still need to be implemented.
 		public void Move(string[] args)
 		{
 

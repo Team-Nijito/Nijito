@@ -112,6 +112,7 @@ namespace Dialogue.VN
 		/// Sets a new destination where we want to slide to.
 		/// </summary>
 		/// <param name="point">Point to move to.</param>
+		/// <param name="batches">Set of movement batches for this next move. (Used for pushing and pulling, mostly.)</param>
 		public void SetMovementDestination(StagePoint point, List<MoveBatch> batches = null) {
 			this.DestinationPoint = point;
 
