@@ -11,7 +11,7 @@ public class YarnScriptLoader : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(script.GetProgram().Nodes.First().Key);
+        //Debug.Log(script.GetProgram().Nodes.First().Key);
         runner.Add(script);
         //runner.StartDialogue(script.GetProgram().Name);
         runner.StartDialogue(script.GetProgram().Nodes.First().Key);

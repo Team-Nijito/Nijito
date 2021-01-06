@@ -88,6 +88,7 @@ namespace Dialogue.VN
 
 			dialogueRunner.AddCommandHandler("move", Move);
 			dialogueRunner.AddCommandHandler("turn", Turn);
+			dialogueRunner.AddCommandHandler("animate", Animate);
 			//dialogueRunner.AddCommandHandler("face", Turn);
 
 			// TODO Delete this
@@ -183,10 +184,25 @@ namespace Dialogue.VN
 		/// Stop whatever animation Ibuki is playing, if any.
 		///
 		/// </example>
-		/// \warning Not implemented yet.
+		/// \warning Wait not implemented yet.
 		public void Animate(string[] args)
 		{
-			Debug.LogWarning("Not implemented yet: Animate");
+			#region Argument handling
+			Assert.IsTrue(args.Length >= 2 && args.Length <= 4);
+			Puppet character = puppetmaster.GetPuppet(args[0]);
+			string animationName = args[1];
+			bool wait = false;
+
+			if(args.Length > 2) {
+				wait = args[args.Length - 1].Equals("wait", StringComparison.OrdinalIgnoreCase);
+			}
+			#endregion
+
+			if (wait) {
+				Debug.LogWarning("Not implemented yet: animate ... and wait");
+			}
+
+			character.PlayAnim(animationName);
 		}
 
 		/// <summary>
@@ -554,11 +570,11 @@ namespace Dialogue.VN
 
 			Puppet charPuppet = puppetmaster.GetPuppet(charName);
 			Puppet.Facing newFacing;
-			if(facingName.Equals("left", StringComparison.InvariantCultureIgnoreCase))
+			if(facingName.Equals("left", StringComparison.OrdinalIgnoreCase))
 			{
 				newFacing = Puppet.Facing.Left;
 			}
-			else if(facingName.Equals("right", StringComparison.InvariantCultureIgnoreCase))
+			else if(facingName.Equals("right", StringComparison.OrdinalIgnoreCase))
 			{
 				newFacing = Puppet.Facing.Right;
 			}

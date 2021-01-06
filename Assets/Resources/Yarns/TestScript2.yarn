@@ -7,8 +7,10 @@ title: Start
 <<move Ami right from offright>>
 Ami: sup?
 <<move Yuto middle from offRight and push Ami>>
+<<animate Yuto FadeIn>>
 Yuto: 2
 
+<<animate Yuto FadeOut>>
 <<move Yuto right>>
 Yuto: ???
 

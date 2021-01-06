@@ -80,6 +80,12 @@ namespace Dialogue.VN
 		public float width = 0.1f;
 		public Facing initialFacing = Facing.Left;
 
+		[Header("Animations")]
+		public Animator animController;
+		public string initialAnim = "None";
+		public string fadeInAnim = "FadeIn";
+		public string fadeOutAnim = "FadeOut";
+
 		// TODO This should be deleted and we should use characters instead.
 		public Texture[] textures;
 
@@ -164,6 +170,15 @@ namespace Dialogue.VN
 			//imageRenderer.texture = textures[index];
 		}
 
+		public void PlayAnim(string name) {
+			if (name == "") {
+				animController.Play(initialAnim);
+			}
+			else {
+				animController.Play(name);
+			}
+		}
+
 		private void SetPosition(float newHorizontalPos)
 		{
 			rTransform.anchorMin = new Vector2(newHorizontalPos, rTransform.anchorMin.y);
@@ -175,7 +190,7 @@ namespace Dialogue.VN
 			rTransform = GetComponent<RectTransform>();
 			Assert.IsNotNull(rTransform, "Puppets should be part of the UI, not in the scene itself!");
 			Assert.IsNotNull(imageRenderer, "Puppets must have a RawImage!");
-			
+			Assert.IsNotNull(animController, "Puppet needs an animator");
 		}
 
 		private void Update()
