@@ -49,7 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultPuppetPrefab: {fileID: 7160089756853054314, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
-  puppetPrefabs: []
+  puppetPrefabs:
+  - {fileID: 8556045896170563756, guid: b586f87f2d364094a9fb8907953f62b5, type: 3}
+  - {fileID: 8556045896170563756, guid: 20ef87353df9b8a46b10019f1c26b4e2, type: 3}
   puppetSpawnPoint: {fileID: 26188182993938064}
 --- !u!1 &2387446241812477856
 GameObject:
