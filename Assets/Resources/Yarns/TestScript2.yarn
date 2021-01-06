@@ -9,6 +9,9 @@ Ami: sup?
 <<move Yuto middle from offRight and push Ami>>
 Yuto: 2
 
+<<move Yuto right>>
+Yuto: ???
+
 <<turn Ami0 right>>
 <<move Ami0 left from offleft>>
 

@@ -6,14 +6,23 @@ using UnityEngine.Assertions;
 
 namespace Dialogue.VN
 {
+
+	/// <summary>
+	/// This is in charge of creating and supplying puppets for the command system.
+	/// Though puppets are fairly self-sufficient, they are not able to create themselves.
+	///
+	/// This looks for puppets in the Resources/Puppets folder.
+	/// </summary>
 	public class PuppetMaster : MonoBehaviour
 	{
+		public const string PuppetPrefabPath = "Puppets";
+
 		//public GameObject puppetPrefab;
 		public GameObject defaultPuppetPrefab;
-		public GameObject[] puppetPrefabs;
 		public StagePoint puppetSpawnPoint;
 
-		Dictionary<string, Puppet> activePuppets;
+		private GameObject[] puppetPrefabs;
+		private Dictionary<string, Puppet> activePuppets;
 
 		private void Awake()
 		{
@@ -23,6 +32,8 @@ namespace Dialogue.VN
                 defaultPuppetPrefab.GetComponent<Puppet>(),
                 "Puppet prefab (" + defaultPuppetPrefab.name + ") must have the Dialogue.VN.Puppet component attached to it!"
             );
+
+			puppetPrefabs = Resources.LoadAll<GameObject>(PuppetPrefabPath);
             foreach (GameObject prefab in puppetPrefabs) {
 				Assert.IsNotNull(
 					prefab.GetComponent<Puppet>(),
@@ -31,6 +42,17 @@ namespace Dialogue.VN
 			}
 		}
 
+		/// <summary>
+		/// Gets the puppet which matches the given name.
+		/// 
+		/// If the puppet does not exist, it will be created using whatever preset seems to
+		/// best match based on the name. If it can't figure out which puppet to use,
+		/// it will create a generic one. This generic puppet will still behave correctly,
+		/// but it will not look correct. When generic puppet is used,
+		/// a warning is printed in the debug console.
+		/// </summary>
+		/// <param name="characterName">Name of the character we are making a profit for. This is case sensitive.</param>
+		/// <returns>The puppet, whether newly created or previously existing.</returns>
 		public Puppet GetPuppet(string characterName)
 		{
 			Puppet result;
