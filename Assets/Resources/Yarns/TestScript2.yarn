@@ -3,11 +3,11 @@ title: Start
 
 : TestScript2
 
-<<turn Ami1 left>>
-<<move Ami1 right from offright>>
-Ami1: sup?
-<<move Ami2 middle from offRight and push Ami1>>
-Ami2: 2
+<<turn Ami left>>
+<<move Ami right from offright>>
+Ami: sup?
+<<move Yuto middle from offRight and push Ami>>
+Yuto: 2
 
 <<turn Ami0 right>>
 <<move Ami0 left from offleft>>
@@ -15,8 +15,8 @@ Ami2: 2
 Ami0: Hi! I'm on the left side of the screen!
 Ami0: Hey, right me, I need to show you something!
 
-Ami1: Just a second!
-<<move Ami3 middle from offRight and push Ami1 to offLeft and pull Ami2 to Left>>
+Ami: Just a second!
+<<move Ami3 middle from offRight and push Ami to offLeft and pull Yuto to Left>>
 Ami3: 3
 <<move Ami4 right from offRight>>
 Ami4: 4
@@ -30,23 +30,23 @@ Ami0: nvm lawl
 
 <<move Ami0 offleft>>
 
-Ami1: Hey!
+Ami: Hey!
 
-<<move Ami1 middle>>
+<<move Ami middle>>
 
-Ami1: Get back here!
+Ami: Get back here!
 
 <<face Ami0 left>>
 <<move Ami0 right from offRight>>
 
 Ami0: Boo!
 
-<<face Ami1 right>>
-<<move Ami1 left>>
+<<face Ami right>>
+<<move Ami left>>
 
-Ami1: Ack!
-Ami1: Wait, if you're over there, and I'm over here...
-Ami1: Am I even Ami1 anymore?
+Ami: Ack!
+Ami: Wait, if you're over there, and I'm over here...
+Ami: Am I even Ami anymore?
 
 Ami0: You're overthinking things lol
 

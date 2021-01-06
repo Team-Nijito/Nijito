@@ -121,7 +121,7 @@ namespace Dialogue.VN
 				foreach(MoveBatch batch in batches) {
 					output += "\n" + batch.ToString();
 				}
-				Debug.Log(output);
+				//Debug.Log(output);
 			}
 
 			if (batches != null) {
