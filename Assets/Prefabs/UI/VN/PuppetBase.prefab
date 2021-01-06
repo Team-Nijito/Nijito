@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 162930228521157580}
   - component: {fileID: 4863327465634391788}
   - component: {fileID: 7556325322088288644}
+  - component: {fileID: 1819797564428479593}
   m_Layer: 5
   m_Name: PuppetBase
   m_TagString: Untagged
@@ -214,4 +215,27 @@ MonoBehaviour:
   stoppingDistance: 0.001
   width: 0.199
   initialFacing: 1
+  animController: {fileID: 1819797564428479593}
+  initialAnim: None
+  fadeInAnim: FadeIn
+  fadeOutAnim: FadeOut
   textures: []
+--- !u!95 &1819797564428479593
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7160089756853054314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 086568374805b814c97989ee395b6ade, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
