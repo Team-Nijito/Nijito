@@ -215,10 +215,14 @@ MonoBehaviour:
   stoppingDistance: 0.001
   width: 0.199
   initialFacing: 1
-  animController: {fileID: 1819797564428479593}
+  animationController: {fileID: 1819797564428479593}
   initialAnim: None
   fadeInAnim: FadeIn
   fadeOutAnim: FadeOut
+  speedControl: speed
+  normalAnimationSpeed: 1
+  quickAnimationSpeed: 1.5
+  slowAnimationSpeed: 0.5
   textures: []
 --- !u!95 &1819797564428479593
 Animator:

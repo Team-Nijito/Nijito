@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "Dialogue.VN.CommandProcessing", "class_dialogue_1_1_v_n_1_1_command_processing.html", null ],
     [ "DialogueUIBehaviour", null, [
       [ "Dialogue.NijitoDialogueUI", "class_dialogue_1_1_nijito_dialogue_u_i.html", null ]
     ] ],

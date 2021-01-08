@@ -107,7 +107,7 @@ Public Member Functions</h2></td></tr>
  <a href="#a757de5ce3d57df6a4091a7329d16ec54">More...</a><br /></td></tr>
 <tr class="separator:a757de5ce3d57df6a4091a7329d16ec54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35e47c36cc2b5499b0b325fbc04cd834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a35e47c36cc2b5499b0b325fbc04cd834">Animate</a> (string[] args)</td></tr>
-<tr class="memdesc:a35e47c36cc2b5499b0b325fbc04cd834"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;<br />
+<tr class="memdesc:a35e47c36cc2b5499b0b325fbc04cd834"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;animate CHARACTER ANIMATION [now|quickly|slowly] [and wait]&gt;&gt;<br />
  <a href="#a35e47c36cc2b5499b0b325fbc04cd834">More...</a><br /></td></tr>
 <tr class="separator:a35e47c36cc2b5499b0b325fbc04cd834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad37d3266e3eee104932103f4310acdc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#ad37d3266e3eee104932103f4310acdc6">Emote</a> (string[] args)</td></tr>
@@ -151,6 +151,8 @@ Public Member Functions</h2></td></tr>
 <p>For commands with <b>wait</b> or <b>and wait</b> options, those will cause the dialogue system to pause until the command finishes being carried out. This does nothing if <b>now</b> is also used. Also be careful of combining this with <b>slowly</b> too often; that might make things draggy.</p>
 <h2>Changelog</h2>
 <ul>
+<li>1/7/2021: <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a35e47c36cc2b5499b0b325fbc04cd834">animate</a> now has speed controls.</li>
+<li>1/6/2021: Implemented <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a35e47c36cc2b5499b0b325fbc04cd834">animate</a>, though still needs 'wait.'</li>
 <li>1/3/2021: Implemented stacking, pushing, and pulling for <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a7827eebf38141d9607c7091c95f37e04">move</a>.</li>
 <li>9/13/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a6e7aff6aafe23dfbd34b23763d78f200">fade</a>. Added quickly/slowly options. Moved now/quickly/slowly and wait explanations to the class header.</li>
 <li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a757de5ce3d57df6a4091a7329d16ec54">addon</a>.</li>
@@ -216,17 +218,17 @@ AMI: Ai, he’s joking, but he has a point.
       </table>
 </div><div class="memdoc">
 
-<p>&lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;<br />
+<p>&lt;&lt;animate CHARACTER ANIMATION [now|quickly|slowly] [and wait]&gt;&gt;<br />
 </p>
 <p>Make CHARACTER play ANIMATION, where ANIMATION is the case-insensitive name of a character animation that has been created in Unity. These animations can either be one-off or looping; it depends on the animation.</p>
 <p>The <b>None</b> animation can be used to stop all current animations. If an invalid animation is given, Unity throws an error and treats it like <b>None</b> was used instead.</p>
 <p>If <b>and wait</b> is given for a looping animation, the animation is allowed to play once before the dialogue runner continues.</p>
 <h2>Examples</h2>
-<pre class="fragment">&lt;&lt;animate Ibuki Shake&gt;&gt; 
-</pre><p> Make Ibuki play the "Shake" animation. </p><pre class="fragment">&lt;&lt;animate Ibuki Shake and wait&gt;&gt; 
-</pre><p> Make Ibuki play the "Shake" animation, and prevent any more dialogue boxes from playing until Ibuki finishes with the animation. </p><pre class="fragment">&lt;&lt;animate Ibuki None&gt;&gt; 
+<pre class="fragment">&lt;&lt;animate Ibuki Jump&gt;&gt; 
+</pre><p> Make Ibuki play the "Jump" animation. (This animation may or may not exist.) </p><pre class="fragment">&lt;&lt;animate Ibuki Jump and wait&gt;&gt; 
+</pre><p> Make Ibuki play the "Jump" animation, and prevent any more dialogue boxes from playing until Ibuki finishes with the animation. </p><pre class="fragment">&lt;&lt;animate Ibuki None&gt;&gt; 
 </pre><p> Stop whatever animation Ibuki is playing, if any.</p>
-<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Wait not implemented yet. </dd></dl>
 
 </div>
 </div>
@@ -299,7 +301,7 @@ NIMURA: I just faded in.
 </pre><p> Fades Nimura in at the right position. Dialogue doesn't print until the fade finishes. </p><pre class="fragment">&lt;&lt;fade out Nimura quickly&gt;&gt;
 NIMURA: Gotta run!
 </pre><p> Fades Nimura out quickly. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Wait not implemented yet. </dd></dl>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['imagerenderer',['imageRenderer',['../class_dialogue_1_1_v_n_1_1_puppet.html#a97481d7ad130c09aaa7c7ca24450e2f9',1,'Dialogue::VN::Puppet']]],
-  ['initialfacing',['initialFacing',['../class_dialogue_1_1_v_n_1_1_puppet.html#a416b2a1ce1de1b9f67f05d8a58d2662f',1,'Dialogue::VN::Puppet']]]
+  ['fadeinanim',['fadeInAnim',['../class_dialogue_1_1_v_n_1_1_puppet.html#a8245ffc477aad8069cbf3e4ab0aa5533',1,'Dialogue::VN::Puppet']]],
+  ['fadeoutanim',['fadeOutAnim',['../class_dialogue_1_1_v_n_1_1_puppet.html#a7906f4562c7e66a33f668965489aefbc',1,'Dialogue::VN::Puppet']]]
 ];
