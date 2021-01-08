@@ -5,12 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.Assertions;
 using System;
 
-namespace Dialogue.VN
-{
+namespace Dialogue.VN {
 	public class Puppet : MonoBehaviour
 	{
 		public enum Facing { Left, Right }
-		public enum Speed { Normal, Now, Quick, Slow }
 
 		/// <summary>
 		/// This is a group of puppets which will be moved by this puppet.
@@ -81,10 +79,17 @@ namespace Dialogue.VN
 		public Facing initialFacing = Facing.Left;
 
 		[Header("Animations")]
-		public Animator animController;
+		public Animator animationController;
 		public string initialAnim = "None";
 		public string fadeInAnim = "FadeIn";
 		public string fadeOutAnim = "FadeOut";
+
+		public string speedControl = "speed";
+		public float normalAnimationSpeed = 1f;
+		public float quickAnimationSpeed = 2f;
+		public float slowAnimationSpeed = 0.5f;
+		public float nowAnimationSpeed = 1000f;
+
 
 		// TODO This should be deleted and we should use characters instead.
 		public Texture[] textures;
@@ -170,13 +175,35 @@ namespace Dialogue.VN
 			//imageRenderer.texture = textures[index];
 		}
 
-		public void PlayAnim(string name) {
+		public void PlayAnim(string name, Speed speed) {
 			if (name == "") {
-				animController.Play(initialAnim);
+				animationController.Play(initialAnim);
 			}
 			else {
-				animController.Play(name);
+				float speedScale;
+				switch (speed) {
+					default:
+						Debug.LogWarning("Unsupported animation speed: " + speed);
+						goto case Speed.Normal;
+					case Speed.Normal: speedScale = normalAnimationSpeed; break;
+					case Speed.Quick:  speedScale = quickAnimationSpeed;  break;
+					case Speed.Slow:   speedScale = slowAnimationSpeed;   break;
+					case Speed.Now:    speedScale = nowAnimationSpeed;    break;
+				}
+				animationController.SetFloat(speedControl, speedScale);
+
+				animationController.Play(name);
+				//animationController.SetFloat(speedControl, ((int)speed) / 100f);
+
 			}
+		}
+
+		public void FadeIn(Speed speed) {
+			PlayAnim(fadeInAnim, speed);
+		}
+
+		public void FadeOut(Speed speed) {
+			PlayAnim(fadeOutAnim, speed);
 		}
 
 		private void SetPosition(float newHorizontalPos)
@@ -190,7 +217,7 @@ namespace Dialogue.VN
 			rTransform = GetComponent<RectTransform>();
 			Assert.IsNotNull(rTransform, "Puppets should be part of the UI, not in the scene itself!");
 			Assert.IsNotNull(imageRenderer, "Puppets must have a RawImage!");
-			Assert.IsNotNull(animController, "Puppet needs an animator");
+			Assert.IsNotNull(animationController, "Puppet needs an animator");
 		}
 
 		private void Update()

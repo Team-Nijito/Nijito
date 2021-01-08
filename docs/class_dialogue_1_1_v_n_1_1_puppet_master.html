@@ -88,6 +88,9 @@ $(document).ready(function(){initNavTree('class_dialogue_1_1_v_n_1_1_puppet_mast
 <div class="title">Dialogue.VN.PuppetMaster Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is in charge of creating and supplying puppets for the command system.  
+ <a href="class_dialogue_1_1_v_n_1_1_puppet_master.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Dialogue.VN.PuppetMaster:</div>
 <div class="dyncontent">
@@ -100,18 +103,23 @@ Inheritance diagram for Dialogue.VN.PuppetMaster:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad793847366cb63297a3c51dd5604bb09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_dialogue_1_1_v_n_1_1_puppet.html">Puppet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_puppet_master.html#ad793847366cb63297a3c51dd5604bb09">GetPuppet</a> (string characterName)</td></tr>
+<tr class="memdesc:ad793847366cb63297a3c51dd5604bb09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the puppet which matches the given name.  <a href="#ad793847366cb63297a3c51dd5604bb09">More...</a><br /></td></tr>
 <tr class="separator:ad793847366cb63297a3c51dd5604bb09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:ac19113cceae6927dbe6c4514fe8a5240"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_puppet_master.html#ac19113cceae6927dbe6c4514fe8a5240">PuppetPrefabPath</a> = &quot;Puppets&quot;</td></tr>
+<tr class="separator:ac19113cceae6927dbe6c4514fe8a5240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac70fda1b458487a648956aeb3cd2c789"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_puppet_master.html#ac70fda1b458487a648956aeb3cd2c789">defaultPuppetPrefab</a></td></tr>
 <tr class="separator:ac70fda1b458487a648956aeb3cd2c789"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c93322162792a19e9201fcc8235625e"><td class="memItemLeft" align="right" valign="top">GameObject []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_puppet_master.html#a7c93322162792a19e9201fcc8235625e">puppetPrefabs</a></td></tr>
-<tr class="separator:a7c93322162792a19e9201fcc8235625e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f1125585ab631c7231d51239f42488b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_point.html">StagePoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_puppet_master.html#a3f1125585ab631c7231d51239f42488b">puppetSpawnPoint</a></td></tr>
 <tr class="separator:a3f1125585ab631c7231d51239f42488b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is in charge of creating and supplying puppets for the command system. </p>
+<p>Though puppets are fairly self-sufficient, they are not able to create themselves.</p>
+<p>This looks for puppets in the Resources/Puppets folder. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad793847366cb63297a3c51dd5604bb09"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad793847366cb63297a3c51dd5604bb09">&#9670;&nbsp;</a></span>GetPuppet()</h2>
 
@@ -127,6 +135,16 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the puppet which matches the given name. </p>
+<p>If the puppet does not exist, it will be created using whatever preset seems to best match based on the name. If it can't figure out which puppet to use, it will create a generic one. This generic puppet will still behave correctly, but it will not look correct. When generic puppet is used, a warning is printed in the debug console. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">characterName</td><td>Name of the character we are making a profit for. This is case sensitive.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The puppet, whether newly created or previously existing.</dd></dl>
 
 </div>
 </div>
@@ -145,14 +163,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a7c93322162792a19e9201fcc8235625e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c93322162792a19e9201fcc8235625e">&#9670;&nbsp;</a></span>puppetPrefabs</h2>
+<a id="ac19113cceae6927dbe6c4514fe8a5240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19113cceae6927dbe6c4514fe8a5240">&#9670;&nbsp;</a></span>PuppetPrefabPath</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">GameObject [] Dialogue.VN.PuppetMaster.puppetPrefabs</td>
+          <td class="memname">const string Dialogue.VN.PuppetMaster.PuppetPrefabPath = &quot;Puppets&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wait',['Wait',['../class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304',1,'Dialogue::VN::StageCommands']]],
-  ['warp',['Warp',['../class_dialogue_1_1_v_n_1_1_puppet.html#ab4a91080051024f70a23a74dd9af8cf2',1,'Dialogue::VN::Puppet']]]
+  ['tostring',['ToString',['../struct_dialogue_1_1_v_n_1_1_puppet_1_1_move_batch.html#aafb6674e19c3020dd36f423c9761d1cb',1,'Dialogue::VN::Puppet::MoveBatch']]],
+  ['turn',['Turn',['../class_dialogue_1_1_v_n_1_1_character_commands.html#ae1ddd4918c925a2c7eebb428247de81d',1,'Dialogue::VN::CharacterCommands']]]
 ];

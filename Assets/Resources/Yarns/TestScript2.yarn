@@ -4,8 +4,27 @@ title: Start
 : TestScript2
 
 <<turn Ami left>>
-<<move Ami right from offright>>
-Ami: sup?
+<<move Yuto middle from offright>>
+<<move Ami middle from offleft>>
+No fade
+
+<<animate Yuto FadeOut>>
+<<fade out Ami now>>
+Fade Out
+
+<<animate Yuto FadeIn>>
+<<fade in Ami Right>>
+Normal
+
+<<animate Ami FadeOut>>
+<<animate Yuto FadeOut now>>
+Quickly
+
+<<animate Yuto FadeIn>>
+<<animate Ami FadeIn slowly>>
+Slowly
+
+
 <<move Yuto middle from offRight and push Ami>>
 <<animate Yuto FadeIn>>
 Yuto: 2

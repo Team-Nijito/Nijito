@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['selectoption',['SelectOption',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ae78f059d13bd97b955c3e17002a71293',1,'Dialogue::NijitoDialogueUI']]],
-  ['setfacing',['SetFacing',['../class_dialogue_1_1_v_n_1_1_puppet.html#a804fe5b53fff9cc208ad28e0e49cc16c',1,'Dialogue::VN::Puppet']]],
-  ['setmovementdestination',['SetMovementDestination',['../class_dialogue_1_1_v_n_1_1_puppet.html#a7b749c83898ae56ef74b419c3568a7e5',1,'Dialogue::VN::Puppet']]],
-  ['settexture',['SetTexture',['../class_dialogue_1_1_v_n_1_1_puppet.html#a74e73135c1e2715bdaf2ccd53dea3b53',1,'Dialogue::VN::Puppet']]],
-  ['sound',['Sound',['../class_dialogue_1_1_v_n_1_1_stage_commands.html#a5b7e49b0b287164414cc3e535899a4d3',1,'Dialogue::VN::StageCommands']]],
-  ['stagefade',['StageFade',['../class_dialogue_1_1_v_n_1_1_stage_commands.html#a79bb1ee082a536efac9097b3fd1ee18b',1,'Dialogue::VN::StageCommands']]]
+  ['readspeedargument',['ReadSpeedArgument',['../class_dialogue_1_1_v_n_1_1_command_processing.html#add3e09ee71b3497dfa7f34a960064616',1,'Dialogue::VN::CommandProcessing']]],
+  ['readwaitargument',['ReadWaitArgument',['../class_dialogue_1_1_v_n_1_1_command_processing.html#a8ef34d73b32821a4bc7add2601501b4a',1,'Dialogue::VN::CommandProcessing']]],
+  ['removeinhabitant',['RemoveInhabitant',['../class_dialogue_1_1_v_n_1_1_stage_point.html#a7363a05234586012f980b4c36bde9f0c',1,'Dialogue::VN::StagePoint']]],
+  ['removetarget',['RemoveTarget',['../struct_dialogue_1_1_v_n_1_1_puppet_1_1_move_batch.html#a32e14d3beb2036c1ddae605b26feb79e',1,'Dialogue::VN::Puppet::MoveBatch']]],
+  ['runcommand',['RunCommand',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ae2bd16c9e477b459784421a3c8ef0c81',1,'Dialogue::NijitoDialogueUI']]],
+  ['runline',['RunLine',['../class_dialogue_1_1_nijito_dialogue_u_i.html#aef846e69907e91e2dc9008625b4847dc',1,'Dialogue::NijitoDialogueUI']]],
+  ['runoptions',['RunOptions',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a6e41973abf619fa5f19b54eb3feeb85a',1,'Dialogue::NijitoDialogueUI']]]
 ];

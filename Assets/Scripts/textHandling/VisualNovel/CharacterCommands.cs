@@ -53,6 +53,12 @@ namespace Dialogue.VN
 	/// too often; that might make things draggy.
 	///
 	/// ## Changelog
+	///  * 1/7/2021:
+	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate) now has speed controls.
+	///  
+	///  * 1/6/2021: Implemented 
+	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate), though still needs 'wait.'
+	/// 
 	///  * 1/3/2021:
 	///    Implemented stacking, pushing, and pulling for
 	///    [move](@ref Dialogue.VN.CharacterCommands.Move).
@@ -89,11 +95,15 @@ namespace Dialogue.VN
 			dialogueRunner.AddCommandHandler("move", Move);
 			dialogueRunner.AddCommandHandler("turn", Turn);
 			dialogueRunner.AddCommandHandler("animate", Animate);
+			dialogueRunner.AddCommandHandler("fade", Fade);
 			//dialogueRunner.AddCommandHandler("face", Turn);
 
 			// TODO Delete this
 			dialogueRunner.AddCommandHandler("setTextureIndex", SetTexture);
 		}
+
+
+		//private 
 
 
 		/// <summary>
@@ -152,7 +162,7 @@ namespace Dialogue.VN
 		}
 
 		/// <summary>
-		/// &lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;\n 
+		/// &lt;&lt;animate CHARACTER ANIMATION [now|quickly|slowly] [and wait]&gt;&gt;\n 
 		///
 		/// Make CHARACTER play ANIMATION, where ANIMATION is the
 		/// case-insensitive name of a character animation that has
@@ -172,11 +182,12 @@ namespace Dialogue.VN
 		///
 		/// ## Examples
 		///
-		///     <<animate Ibuki Shake>> 
-		/// Make Ibuki play the "Shake" animation.
+		///     <<animate Ibuki Jump>> 
+		/// Make Ibuki play the "Jump" animation.
+		/// (This animation may or may not exist.)
 		///
-		///     <<animate Ibuki Shake and wait>> 
-		/// Make Ibuki play the "Shake" animation, and prevent
+		///     <<animate Ibuki Jump and wait>> 
+		/// Make Ibuki play the "Jump" animation, and prevent
 		/// any more dialogue boxes from playing until Ibuki
 		/// finishes with the animation.
 		/// 
@@ -188,21 +199,24 @@ namespace Dialogue.VN
 		public void Animate(string[] args)
 		{
 			#region Argument handling
-			Assert.IsTrue(args.Length >= 2 && args.Length <= 4);
+			Assert.IsTrue(args.Length >= 2);
 			Puppet character = puppetmaster.GetPuppet(args[0]);
 			string animationName = args[1];
+
+			int i = 2; // Index we were last using
+
+			Speed speed = default(Speed);
 			bool wait = false;
 
-			if(args.Length > 2) {
-				wait = args[args.Length - 1].Equals("wait", StringComparison.OrdinalIgnoreCase);
-			}
+			CommandProcessing.ReadSpeedArgument(args, ref i, ref speed);
+			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
 			#endregion
 
 			if (wait) {
 				Debug.LogWarning("Not implemented yet: animate ... and wait");
 			}
 
-			character.PlayAnim(animationName);
+			character.PlayAnim(animationName, speed);
 		}
 
 		/// <summary>
@@ -276,10 +290,50 @@ namespace Dialogue.VN
 		///     NIMURA: Gotta run!
 		/// Fades Nimura out quickly.
 		/// </example>
-		/// \warning Not implemented yet.
+		/// \warning Wait not implemented yet.
 		public void Fade(string[] args)
 		{
-			Debug.LogWarning("Not implemented yet: fade");
+			#region Argument handling
+			string fadeMode = args[0];
+			Puppet character = puppetmaster.GetPuppet(args[1]);
+
+			int i = 2; // Index we were last using
+
+			StagePoint fadeDest = null;
+			if(fadeMode.Equals("in", StringComparison.OrdinalIgnoreCase)) {
+				fadeDest = GetNamedPoint(args[2]);
+				++i;
+			}
+
+			Speed speed = default(Speed);
+			bool wait = false;
+
+			CommandProcessing.ReadSpeedArgument(args, ref i, ref speed);
+			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
+			#endregion
+
+			if (wait) {
+				Debug.LogWarning("Not implemented yet: animate ... and wait");
+			}
+
+			//character.PlayAnim(animationName, speed);
+
+			Debug.Log(fadeMode);
+
+			switch(fadeMode.ToLower()) {
+				case "in":
+					character.Warp(fadeDest);
+					character.FadeIn(speed);
+					break;
+
+				case "out":
+					character.FadeOut(speed);
+					break;
+
+				default:
+					Debug.LogError("Bad fade mode: " + fadeMode);
+					break;
+			}
 		}
 
 		/// <summary>
@@ -449,7 +503,7 @@ namespace Dialogue.VN
 
 						}
 
-						batches.Add(new Puppet.MoveBatch(targets.ToArray(), batchDestination, Puppet.Speed.Normal, mode));
+						batches.Add(new Puppet.MoveBatch(targets.ToArray(), batchDestination, Speed.Normal, mode));
 						break;
 
 					default:

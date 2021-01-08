@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['movementspeed',['movementSpeed',['../class_dialogue_1_1_v_n_1_1_puppet.html#a398a038d89d57524a747ec2c37b6eb52',1,'Dialogue::VN::Puppet']]]
+  ['imagerenderer',['imageRenderer',['../class_dialogue_1_1_v_n_1_1_puppet.html#a97481d7ad130c09aaa7c7ca24450e2f9',1,'Dialogue::VN::Puppet']]],
+  ['initialanim',['initialAnim',['../class_dialogue_1_1_v_n_1_1_puppet.html#a623501fe679a7faee74707342a3c2654',1,'Dialogue::VN::Puppet']]],
+  ['initialfacing',['initialFacing',['../class_dialogue_1_1_v_n_1_1_puppet.html#a416b2a1ce1de1b9f67f05d8a58d2662f',1,'Dialogue::VN::Puppet']]]
 ];
