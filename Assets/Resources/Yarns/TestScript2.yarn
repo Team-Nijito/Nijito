@@ -8,11 +8,11 @@ title: Start
 <<move Ami middle from offleft>>
 No fade
 
-<<animate Yuto FadeOut>>
-<<fade out Ami now>>
+<<fade out Yuto>>
+<<fade out Ami and wait>>
 Fade Out
 
-<<animate Yuto FadeIn>>
+<<animate Yuto FadeIn slowly and wait>>
 <<fade in Ami Right>>
 Normal
 

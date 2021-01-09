@@ -5,10 +5,10 @@ var class_dialogue_1_1_v_n_1_1_puppet =
       [ "Left", "class_dialogue_1_1_v_n_1_1_puppet.html#ade7fe626ab770839a6cde69ddc0ee5b0a945d5e233cf7d6240f6b783b36a374ff", null ],
       [ "Right", "class_dialogue_1_1_v_n_1_1_puppet.html#ade7fe626ab770839a6cde69ddc0ee5b0a92b09c7c48c520c3c55e497875da437c", null ]
     ] ],
-    [ "FadeIn", "class_dialogue_1_1_v_n_1_1_puppet.html#a5b5eb5b1732c914082df1680c80e75cd", null ],
-    [ "FadeOut", "class_dialogue_1_1_v_n_1_1_puppet.html#a8696a05761bdf861d6ca0aa20664d59e", null ],
+    [ "FadeIn", "class_dialogue_1_1_v_n_1_1_puppet.html#adaf1461e981ab74ccec11c1110e1e3bb", null ],
+    [ "FadeOut", "class_dialogue_1_1_v_n_1_1_puppet.html#a91550f4d30dbc47738d27997b9046ebb", null ],
     [ "FocusSelf", "class_dialogue_1_1_v_n_1_1_puppet.html#a2435d771eb0dc6a396a35928439b4d16", null ],
-    [ "PlayAnim", "class_dialogue_1_1_v_n_1_1_puppet.html#a395810e62b3a526ffa993f0d38f3a91b", null ],
+    [ "PlayAnim", "class_dialogue_1_1_v_n_1_1_puppet.html#aacfc737bbec49a7ea565c2eb77dfc2d8", null ],
     [ "SetFacing", "class_dialogue_1_1_v_n_1_1_puppet.html#a804fe5b53fff9cc208ad28e0e49cc16c", null ],
     [ "SetMovementDestination", "class_dialogue_1_1_v_n_1_1_puppet.html#a7b749c83898ae56ef74b419c3568a7e5", null ],
     [ "SetTexture", "class_dialogue_1_1_v_n_1_1_puppet.html#a74e73135c1e2715bdaf2ccd53dea3b53", null ],
