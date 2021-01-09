@@ -205,7 +205,6 @@ namespace Dialogue.VN {
 		}
 
 		public void FadeOut(Speed speed, Action onComplete = null) {
-			// TODO remove from point
 			PlayAnim(fadeOutAnim, speed, onComplete + (() => DestinationPoint = null));
 		}
 

@@ -12,7 +12,7 @@ No fade
 <<fade out Ami and wait>>
 Fade Out
 
-<<animate Yuto _FadeIn slowly and wait>>
+<<fade in Yuto Middle wait>>
 <<fade in Ami Right>>
 Normal
 
