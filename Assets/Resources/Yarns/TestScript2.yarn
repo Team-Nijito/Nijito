@@ -12,24 +12,24 @@ No fade
 <<fade out Ami and wait>>
 Fade Out
 
-<<animate Yuto FadeIn slowly and wait>>
+<<animate Yuto _FadeIn slowly and wait>>
 <<fade in Ami Right>>
 Normal
 
-<<animate Ami FadeOut>>
-<<animate Yuto FadeOut now>>
+<<animate Ami _FadeOut>>
+<<animate Yuto _FadeOut now>>
 Quickly
 
-<<animate Yuto FadeIn>>
-<<animate Ami FadeIn slowly>>
+<<animate Yuto _FadeIn>>
+<<animate Ami _FadeIn slowly>>
 Slowly
 
 
 <<move Yuto middle from offRight and push Ami>>
-<<animate Yuto FadeIn>>
+<<animate Yuto _FadeIn>>
 Yuto: 2
 
-<<animate Yuto FadeOut>>
+<<animate Yuto _FadeOut>>
 <<move Yuto right>>
 Yuto: ???
 

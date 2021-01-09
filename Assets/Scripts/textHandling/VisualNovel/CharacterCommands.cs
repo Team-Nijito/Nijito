@@ -172,18 +172,22 @@ namespace Dialogue.VN
 		/// &lt;&lt;animate CHARACTER ANIMATION [now|quickly|slowly] [and wait]&gt;&gt;\n 
 		///
 		/// Make CHARACTER play ANIMATION, where ANIMATION is the
-		/// case-insensitive name of a character animation that has
+		/// case-sensitive name of a character animation that has
 		/// been created in Unity. These animations can either be
 		/// one-off or looping; it depends on the animation.
 		///
 		/// The **None** animation can be used to stop all current
 		/// animations. If an invalid animation is given, Unity
-		/// throws an error and treats it like **None** was used
-		/// instead.
+		/// throws a warning and continues on.
 		///
 		/// If **and wait** is given for a looping animation,
 		/// the animation is allowed to play once before the
-		/// dialogue runner continues.
+		/// dialogue continues.
+		///
+		/// The current list of animations follows. Note that this
+		/// list is manually updated, so it may be out of date!
+		///   * None
+		///   * (Various internal animations)
 		///
 		/// </summary> <example>
 		///
@@ -201,7 +205,21 @@ namespace Dialogue.VN
 		///     <<animate Ibuki None>> 
 		/// Stop whatever animation Ibuki is playing, if any.
 		///
-		/// </example>
+		/// </example> 
+		///
+		/// \note Animations are kept in the `PuppetBase` prefab,
+		///	      found in `Assets/Prefabs/UI/VN`. All animations
+		///	      in its animation controller are valid.
+		///	      Those with underscores are meant to be
+		///	      internal-only, and should not be referenced with
+		///	      this command.
+		///	      (TODO: Make a video about this.)
+		///	 
+		/// \note Hypothetically some characters could have unique
+		///       animations. However, this should not be a common
+		///       occurrance and might be a pain to set up.
+		///       Generally, all animations will be available on
+		///       all characters.
 		public void Animate(string[] args, Action onComplete)
 		{
 			#region Argument handling

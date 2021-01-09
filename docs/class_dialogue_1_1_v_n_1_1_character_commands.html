@@ -232,14 +232,21 @@ AMI: Ai, he’s joking, but he has a point.
 
 <p>&lt;&lt;animate CHARACTER ANIMATION [now|quickly|slowly] [and wait]&gt;&gt;<br />
 </p>
-<p>Make CHARACTER play ANIMATION, where ANIMATION is the case-insensitive name of a character animation that has been created in Unity. These animations can either be one-off or looping; it depends on the animation.</p>
-<p>The <b>None</b> animation can be used to stop all current animations. If an invalid animation is given, Unity throws an error and treats it like <b>None</b> was used instead.</p>
-<p>If <b>and wait</b> is given for a looping animation, the animation is allowed to play once before the dialogue runner continues.</p>
+<p>Make CHARACTER play ANIMATION, where ANIMATION is the case-sensitive name of a character animation that has been created in Unity. These animations can either be one-off or looping; it depends on the animation.</p>
+<p>The <b>None</b> animation can be used to stop all current animations. If an invalid animation is given, Unity throws a warning and continues on.</p>
+<p>If <b>and wait</b> is given for a looping animation, the animation is allowed to play once before the dialogue continues.</p>
+<p>The current list of animations follows. Note that this list is manually updated, so it may be out of date!</p><ul>
+<li>None</li>
+<li>(Various internal animations)</li>
+</ul>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;animate Ibuki Jump&gt;&gt; 
 </pre><p> Make Ibuki play the "Jump" animation. (This animation may or may not exist.) </p><pre class="fragment">&lt;&lt;animate Ibuki Jump and wait&gt;&gt; 
 </pre><p> Make Ibuki play the "Jump" animation, and prevent any more dialogue boxes from playing until Ibuki finishes with the animation. </p><pre class="fragment">&lt;&lt;animate Ibuki None&gt;&gt; 
 </pre><p> Stop whatever animation Ibuki is playing, if any.</p>
+<dl class="section note"><dt>Note</dt><dd>Animations are kept in the <code>PuppetBase</code> prefab, found in <code>Assets/Prefabs/UI/VN</code>. All animations in its animation controller are valid. Those with underscores are meant to be internal-only, and should not be referenced with this command. (TODO: Make a video about this.)</dd>
+<dd>
+Hypothetically some characters could have unique animations. However, this should not be a common occurrance and might be a pain to set up. Generally, all animations will be available on all characters. </dd></dl>
 
 </div>
 </div>

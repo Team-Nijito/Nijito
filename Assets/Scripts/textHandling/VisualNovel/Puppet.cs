@@ -190,12 +190,10 @@ namespace Dialogue.VN {
 					case Speed.Slow:   speedScale = slowAnimationSpeed;   break;
 					case Speed.Now:    speedScale = nowAnimationSpeed;    break;
 				}
+
 				animationController.SetFloat(speedControl, speedScale);
-
 				animationController.Play(name);
-				//animationController.SetFloat(speedControl, ((int)speed) / 100f);
 
-				// TODO Make sure this works for loops
 				if(onComplete != null) {
 					StartCoroutine(WaitForAnim(onComplete));
 				}
@@ -212,6 +210,8 @@ namespace Dialogue.VN {
 		}
 
 		private IEnumerator WaitForAnim(System.Action onComplete) {
+			// This works even for loops; the time counts on from 1 even after first loop
+
 			yield return new WaitForEndOfFrame(); // Wait for the animation to start playing
 			yield return new WaitUntil(() =>
 				animationController.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1
