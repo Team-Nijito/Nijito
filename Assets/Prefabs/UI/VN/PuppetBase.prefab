@@ -217,12 +217,13 @@ MonoBehaviour:
   initialFacing: 1
   animationController: {fileID: 1819797564428479593}
   initialAnim: None
-  fadeInAnim: FadeIn
-  fadeOutAnim: FadeOut
+  fadeInAnim: _FadeIn
+  fadeOutAnim: _FadeOut
   speedControl: speed
   normalAnimationSpeed: 1
   quickAnimationSpeed: 1.5
   slowAnimationSpeed: 0.5
+  nowAnimationSpeed: 1000
   textures: []
 --- !u!95 &1819797564428479593
 Animator:
