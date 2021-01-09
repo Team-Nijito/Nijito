@@ -54,7 +54,14 @@ namespace Dialogue.VN
 	///
 	/// ## Changelog
 	///  * 1/7/2021:
+	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate) and
+	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade) now have wait.
+	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade) out now correctly removes puppets.
+	///    Updated example for [fade](@ref Dialogue.VN.CharacterCommands.Fade).
+	///  
+	///  * 1/7/2021:
 	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate) now has speed controls.
+	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade) has been partially implemented.
 	///  
 	///  * 1/6/2021: Implemented 
 	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate), though still needs 'wait.'
@@ -195,8 +202,7 @@ namespace Dialogue.VN
 		/// Stop whatever animation Ibuki is playing, if any.
 		///
 		/// </example>
-		/// \warning Wait not implemented yet.
-		public void Animate(string[] args)
+		public void Animate(string[] args, Action onComplete)
 		{
 			#region Argument handling
 			Assert.IsTrue(args.Length >= 2);
@@ -213,10 +219,13 @@ namespace Dialogue.VN
 			#endregion
 
 			if (wait) {
-				Debug.LogWarning("Not implemented yet: animate ... and wait");
+				character.PlayAnim(animationName, speed, onComplete);
+			}
+			else {
+				character.PlayAnim(animationName, speed);
+				onComplete();
 			}
 
-			character.PlayAnim(animationName, speed);
 		}
 
 		/// <summary>
@@ -270,6 +279,8 @@ namespace Dialogue.VN
 		/// at POSITION.
 		/// 
 		/// In the second form, causes CHARACTER to fade out of view.
+		/// For the purpose of stacking,
+		/// this removes CHARACTER after they finish fading.
 		///
 		/// </summary> <example>
 		///
@@ -281,17 +292,19 @@ namespace Dialogue.VN
 		/// %Dialogue starts printing as the fade goes on.
 		/// "slowly" is optional, and makes her linger longer.
 		///
+		///     <<fade in Ami Left>>
 		///     <<fade in Nimura Right and wait>>
-		///     NIMURA: I just faded in.
-		/// Fades Nimura in at the right position.
+		///     NIMURA: We just faded in.
+		/// Fades in Ami and Nimura at the same time and wait for them.
+		/// Note that only the last one to get faded in needs the wait argument.
 		/// %Dialogue doesn't print until the fade finishes.
 		///
 		///     <<fade out Nimura quickly>>
 		///     NIMURA: Gotta run!
 		/// Fades Nimura out quickly.
+		///
 		/// </example>
-		/// \warning Wait not implemented yet.
-		public void Fade(string[] args)
+		public void Fade(string[] args, Action onComplete)
 		{
 			#region Argument handling
 			string fadeMode = args[0];
@@ -312,22 +325,25 @@ namespace Dialogue.VN
 			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
 			#endregion
 
-			if (wait) {
-				Debug.LogWarning("Not implemented yet: animate ... and wait");
+			if (!wait) {
+				// If we're not waiting, let 'em know.
+				// Then we can just null this out and hide the body.
+				onComplete();
+				onComplete = null;
 			}
 
 			//character.PlayAnim(animationName, speed);
 
-			Debug.Log(fadeMode);
+			//Debug.Log(fadeMode);
 
 			switch(fadeMode.ToLower()) {
 				case "in":
 					character.Warp(fadeDest);
-					character.FadeIn(speed);
+					character.FadeIn(speed, onComplete);
 					break;
 
 				case "out":
-					character.FadeOut(speed);
+					character.FadeOut(speed, onComplete);
 					break;
 
 				default:
@@ -642,6 +658,10 @@ namespace Dialogue.VN
 			charPuppet.SetFacing(newFacing);
 		}
 
+		/// <summary>
+		/// Internal use only; this doesn't implement a command.
+		/// </summary>
+		/// <param name="name"></param>
 		public void Focus(string name) {
 			puppetmaster.GetPuppet(name).FocusSelf();
 		}

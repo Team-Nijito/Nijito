@@ -175,7 +175,7 @@ namespace Dialogue.VN {
 			//imageRenderer.texture = textures[index];
 		}
 
-		public void PlayAnim(string name, Speed speed) {
+		public void PlayAnim(string name, Speed speed, Action onComplete = null) {
 			if (name == "") {
 				animationController.Play(initialAnim);
 			}
@@ -183,7 +183,7 @@ namespace Dialogue.VN {
 				float speedScale;
 				switch (speed) {
 					default:
-						Debug.LogWarning("Unsupported animation speed: " + speed);
+						Debug.LogWarning("Unsupported animation speed: " + speed); 
 						goto case Speed.Normal;
 					case Speed.Normal: speedScale = normalAnimationSpeed; break;
 					case Speed.Quick:  speedScale = quickAnimationSpeed;  break;
@@ -195,15 +195,28 @@ namespace Dialogue.VN {
 				animationController.Play(name);
 				//animationController.SetFloat(speedControl, ((int)speed) / 100f);
 
+				// TODO Make sure this works for loops
+				if(onComplete != null) {
+					StartCoroutine(WaitForAnim(onComplete));
+				}
 			}
 		}
 
-		public void FadeIn(Speed speed) {
-			PlayAnim(fadeInAnim, speed);
+		public void FadeIn(Speed speed, Action onComplete = null) {
+			PlayAnim(fadeInAnim, speed, onComplete);
 		}
 
-		public void FadeOut(Speed speed) {
-			PlayAnim(fadeOutAnim, speed);
+		public void FadeOut(Speed speed, Action onComplete = null) {
+			// TODO remove from point
+			PlayAnim(fadeOutAnim, speed, onComplete + (() => DestinationPoint = null));
+		}
+
+		private IEnumerator WaitForAnim(System.Action onComplete) {
+			yield return new WaitForEndOfFrame(); // Wait for the animation to start playing
+			yield return new WaitUntil(() =>
+				animationController.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1
+			);
+			onComplete();
 		}
 
 		private void SetPosition(float newHorizontalPos)
@@ -215,7 +228,9 @@ namespace Dialogue.VN {
 		private void Awake()
 		{
 			rTransform = GetComponent<RectTransform>();
-			Assert.IsNotNull(rTransform, "Puppets should be part of the UI, not in the scene itself!");
+			Assert.IsNotNull(rTransform,
+				"Puppets should be part of the UI, not in the scene itself!"
+			);
 			Assert.IsNotNull(imageRenderer, "Puppets must have a RawImage!");
 			Assert.IsNotNull(animationController, "Puppet needs an animator");
 		}
