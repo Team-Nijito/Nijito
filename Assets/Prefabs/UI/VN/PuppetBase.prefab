@@ -215,7 +215,7 @@ MonoBehaviour:
   stoppingDistance: 0.001
   width: 0.199
   initialFacing: 1
-  animationController: {fileID: 1819797564428479593}
+  animator: {fileID: 1819797564428479593}
   initialAnim: None
   fadeInAnim: _FadeIn
   fadeOutAnim: _FadeOut

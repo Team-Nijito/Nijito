@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
@@ -79,7 +80,7 @@ namespace Dialogue.VN {
 		public Facing initialFacing = Facing.Left;
 
 		[Header("Animations")]
-		public Animator animationController;
+		public Animator animator;
 		public string initialAnim = "None";
 		public string fadeInAnim = "FadeIn";
 		public string fadeOutAnim = "FadeOut";
@@ -118,6 +119,13 @@ namespace Dialogue.VN {
 		private Vector2 CurrentPosition {
 			get => rTransform.anchorMin;
 		}
+
+		/// <summary>
+		/// This is all of the available animations.
+		/// We could just use the Play method,
+		/// but this allows us to do things in a case-insensitve way.
+		/// </summary>
+		private string[] animationNames;
 
 		/// <summary>
 		/// Sets a new destination where we want to slide to.
@@ -175,28 +183,33 @@ namespace Dialogue.VN {
 			//imageRenderer.texture = textures[index];
 		}
 
-		public void PlayAnim(string name, Speed speed, Action onComplete = null) {
-			if (name == "") {
-				animationController.Play(initialAnim);
+		public void PlayAnim(string name, Speed speed = Speed.Normal, Action onComplete = null) {
+
+			string stateName = string.IsNullOrEmpty(name)
+				? initialAnim
+				: animationNames.FirstOrDefault(n => name.Equals(n, StringComparison.OrdinalIgnoreCase));
+
+			if (stateName == default(string)) {
+				Debug.LogWarning("Could not find animation named " + name);
+				stateName = initialAnim;
 			}
-			else {
-				float speedScale;
-				switch (speed) {
-					default:
-						Debug.LogWarning("Unsupported animation speed: " + speed); 
-						goto case Speed.Normal;
-					case Speed.Normal: speedScale = normalAnimationSpeed; break;
-					case Speed.Quick:  speedScale = quickAnimationSpeed;  break;
-					case Speed.Slow:   speedScale = slowAnimationSpeed;   break;
-					case Speed.Now:    speedScale = nowAnimationSpeed;    break;
-				}
 
-				animationController.SetFloat(speedControl, speedScale);
-				animationController.Play(name);
+			float speedScale;
+			switch (speed) {
+				default:
+					Debug.LogWarning("Unsupported animation speed: " + speed);
+					goto case Speed.Normal;
+				case Speed.Normal: speedScale = normalAnimationSpeed; break;
+				case Speed.Quick:  speedScale = quickAnimationSpeed; break;
+				case Speed.Slow:   speedScale = slowAnimationSpeed; break;
+				case Speed.Now:    speedScale = nowAnimationSpeed; break;
+			}
 
-				if(onComplete != null) {
-					StartCoroutine(WaitForAnim(onComplete));
-				}
+			animator.SetFloat(speedControl, speedScale);
+			animator.Play(stateName);
+
+			if (onComplete != null) {
+				StartCoroutine(WaitForAnim(onComplete));
 			}
 		}
 
@@ -213,7 +226,7 @@ namespace Dialogue.VN {
 
 			yield return new WaitForEndOfFrame(); // Wait for the animation to start playing
 			yield return new WaitUntil(() =>
-				animationController.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1
+				animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1
 			);
 			onComplete();
 		}
@@ -226,12 +239,14 @@ namespace Dialogue.VN {
 
 		private void Awake()
 		{
+			animationNames = animator.runtimeAnimatorController.animationClips.Select(c => c.name).ToArray();
+
 			rTransform = GetComponent<RectTransform>();
 			Assert.IsNotNull(rTransform,
 				"Puppets should be part of the UI, not in the scene itself!"
 			);
 			Assert.IsNotNull(imageRenderer, "Puppets must have a RawImage!");
-			Assert.IsNotNull(animationController, "Puppet needs an animator");
+			Assert.IsNotNull(animator, "Puppet needs an animator");
 		}
 
 		private void Update()
