@@ -51,7 +51,7 @@ namespace Dialogue.VN
 		/// but it will not look correct. When generic puppet is used,
 		/// a warning is printed in the debug console.
 		/// </summary>
-		/// <param name="characterName">Name of the character we are making a profit for. This is case sensitive.</param>
+		/// <param name="characterName">Name of the character we are making a puppit for. This is case insensitive.</param>
 		/// <returns>The puppet, whether newly created or previously existing.</returns>
 		public Puppet GetPuppet(string characterName)
 		{
