@@ -1,4 +1,5 @@
 Weclome to Nijito's documenation!
+You may also be interested in [the Youtube videos](https://youtube.com/playlist?list=PLP0-2ozLHYqm0sCnDsw0av7OIC4VGVxvx).
 
 If You're a Writer
 ------------------
