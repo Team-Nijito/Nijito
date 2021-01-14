@@ -53,6 +53,10 @@ namespace Dialogue.VN
 	/// too often; that might make things draggy.
 	///
 	/// ## Changelog
+	///  * 1/14/2021:
+	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate) is now case-sensitive.
+	///    This simplifies the code and simplifies the process of making animations.
+	/// 
 	///  * 1/7/2021:
 	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate) and
 	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade) now have wait.
@@ -256,14 +260,8 @@ namespace Dialogue.VN
 		/// special emotions, and others might be missing some of the common
 		/// ones. The list is configured in Unity.
 		/// 
-		/// Here's the list of common emotions:<br>
-		/// * Anger
-		/// * Concern
-		/// * Laugh
-		/// * Sad
-		/// * Serious
-		/// * Smile
-		/// * Surprised
+		/// This is the [list of emotions](https://docs.google.com/spreadsheets/d/1ugqnIXU1dLzg1uZWS6AMjp6IRk512xfytWhVZ9CEmfM/edit?usp=sharing)
+		/// but this doesn't necessarily reflect the ones available in-game yet.
 		///  
 		/// Finally, there's one special emotion: **None**. This clears all
 		/// emotions, resetting the character back to their default, neutral
