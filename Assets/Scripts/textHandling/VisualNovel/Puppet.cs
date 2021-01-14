@@ -85,6 +85,7 @@ namespace Dialogue.VN {
 		public string fadeInAnim = "FadeIn";
 		public string fadeOutAnim = "FadeOut";
 
+		[Space(10)]
 		public string speedControl = "speed";
 		public float normalAnimationSpeed = 1f;
 		public float quickAnimationSpeed = 2f;
@@ -125,6 +126,7 @@ namespace Dialogue.VN {
 		/// We could just use the Play method,
 		/// but this allows us to do things in a case-insensitve way.
 		/// </summary>
+		[Obsolete]
 		private string[] animationNames;
 
 		/// <summary>
@@ -185,6 +187,7 @@ namespace Dialogue.VN {
 
 		public void PlayAnim(string name, Speed speed = Speed.Normal, Action onComplete = null) {
 
+			/*
 			string stateName = string.IsNullOrEmpty(name)
 				? initialAnim
 				: animationNames.FirstOrDefault(n => name.Equals(n, StringComparison.OrdinalIgnoreCase));
@@ -193,6 +196,7 @@ namespace Dialogue.VN {
 				Debug.LogWarning("Could not find animation named " + name);
 				stateName = initialAnim;
 			}
+			*/
 
 			float speedScale;
 			switch (speed) {
@@ -206,7 +210,7 @@ namespace Dialogue.VN {
 			}
 
 			animator.SetFloat(speedControl, speedScale);
-			animator.Play(stateName);
+			animator.Play(name);
 
 			if (onComplete != null) {
 				StartCoroutine(WaitForAnim(onComplete));
@@ -239,7 +243,7 @@ namespace Dialogue.VN {
 
 		private void Awake()
 		{
-			animationNames = animator.runtimeAnimatorController.animationClips.Select(c => c.name).ToArray();
+			//animationNames = animator.runtimeAnimatorController.animationClips.Select(c => c.name).ToArray();
 
 			rTransform = GetComponent<RectTransform>();
 			Assert.IsNotNull(rTransform,
