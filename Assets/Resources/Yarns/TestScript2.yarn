@@ -3,9 +3,6 @@ title: Start
 
 : TestScript2
 
-<<fade in AmiClone Left>>
-AmiClone: "I'm actually Yuto."
-
 <<turn Ami left>>
 <<move Yuto middle from offright>>
 <<move Ami middle from offleft>>
