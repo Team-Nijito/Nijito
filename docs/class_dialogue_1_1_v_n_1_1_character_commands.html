@@ -152,6 +152,7 @@ Public Member Functions</h2></td></tr>
 <p>For commands with <b>wait</b> or <b>and wait</b> options, those will cause the dialogue system to pause until the command finishes being carried out. This does nothing if <b>now</b> is also used. Also be careful of combining this with <b>slowly</b> too often; that might make things draggy.</p>
 <h2>Changelog</h2>
 <ul>
+<li>1/14/2021: <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#af8f994ae298509f4907506b93a331afc">animate</a> is now case-sensitive. This simplifies the code and simplifies the process of making animations.</li>
 <li>1/7/2021: <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#af8f994ae298509f4907506b93a331afc">animate</a> and <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#ab12f9a83c8b4770a73f3f30563f564f2">fade</a> now have wait. <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#ab12f9a83c8b4770a73f3f30563f564f2">fade</a> out now correctly removes puppets. Updated example for <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#ab12f9a83c8b4770a73f3f30563f564f2">fade</a>.</li>
 <li>1/7/2021: <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#af8f994ae298509f4907506b93a331afc">animate</a> now has speed controls. <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#ab12f9a83c8b4770a73f3f30563f564f2">fade</a> has been partially implemented.</li>
 <li>1/6/2021: Implemented <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#af8f994ae298509f4907506b93a331afc">animate</a>, though still needs 'wait.'</li>
@@ -270,16 +271,7 @@ Hypothetically some characters could have unique animations. However, this shoul
 </p>
 <p>Changes CHARACTER's face to show EMOTION, where EMOTION is the (case-insensitive) name of one of the character's emotions.</p>
 <p>Each character has their own range of emotions; some may have special emotions, and others might be missing some of the common ones. The list is configured in Unity.</p>
-<p>Here's the list of common emotions:<br />
-</p><ul>
-<li>Anger</li>
-<li>Concern</li>
-<li>Laugh</li>
-<li>Sad</li>
-<li>Serious</li>
-<li>Smile</li>
-<li>Surprised</li>
-</ul>
+<p>This is the <a href="https://docs.google.com/spreadsheets/d/1ugqnIXU1dLzg1uZWS6AMjp6IRk512xfytWhVZ9CEmfM/edit?usp=sharing">list of emotions</a> but this doesn't necessarily reflect the ones available in-game yet.</p>
 <p>Finally, there's one special emotion: <b>None</b>. This clears all emotions, resetting the character back to their default, neutral face that they use when they first come onto the stage. The <b>None</b> emotion will always be available.</p>
 <p>Using an invalid emotion will print an error in the debug console and then act as though you had used <b>None</b> instead. </p>
 <h2>Examples</h2>

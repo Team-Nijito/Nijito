@@ -9,4 +9,5 @@ Rather than using transitions or triggers, this script just plays animations
 directly via the Play function. This is based on *state names*, not animation
 names. These do not have to match!
 
-Also keep in mind that these names are case-sensitive!
+Also keep in mind that the names of the states is case-sensitive,
+but they do not need to match the names of the emanations.
