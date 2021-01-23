@@ -78,7 +78,9 @@ namespace Dialogue.VN {
 		[Range(0, 2)] public float maxSpeed = 0.6f;
 		[Range(0, 2)] public float minSpeed = 0.05f;
 		[Range(0, 2)] public float accelerationDistance = 0.2f;
+		public AnimationCurve accelerationCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 		[Range(0, 2)] public float decelerationDistance = 0.2f;
+		public AnimationCurve decelerationCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 		public float stoppingThreshold = 0.001f;
 		[Tooltip("Range used for pushing and pulling.")]
 		[Range(0f, 1f)]
@@ -288,7 +290,8 @@ namespace Dialogue.VN {
 						CalculateSpeed(
 							PreviousPosition.x, destinationPosition, CurrentPosition.x,
 							maxSpeed, minSpeed,
-							accelerationDistance, decelerationDistance
+							accelerationDistance, accelerationCurve,
+							decelerationDistance, decelerationCurve
 						) * Time.deltaTime
 					));
 
@@ -337,7 +340,12 @@ namespace Dialogue.VN {
 			}
 		}
 
-		private static float CalculateSpeed(float startpoint, float endpoint, float position, float maxSpeed, float minSpeed, float accelerationDistance, float decelerationDistance) {
+		private static float CalculateSpeed(
+			float startpoint, float endpoint, float position,
+			float maxSpeed, float minSpeed,
+			float accelerationDistance, AnimationCurve accelerationCurve,
+			float decelerationDistance, AnimationCurve decelerationCurve
+		) {
 
 			// Velocity line is in shape of
 			//
@@ -366,53 +374,36 @@ namespace Dialogue.VN {
 			// Caller must determine direction.
 
 			float maxDeltaSpeed = maxSpeed - minSpeed;
-			float acceleration = maxDeltaSpeed / accelerationDistance;
-			float deceleration = maxDeltaSpeed / decelerationDistance;
 
 			bool startedOnLeft = startpoint < endpoint;
 
-			// TODO Condense this logic down into a single if-else
-
-			float leftPoint, leftSlope, rightPoint, rightSlope;
+			//float leftPoint, leftSlope, rightPoint, rightSlope;
+			float leftPoint, rightPoint, leftDist, rightDist;
+			AnimationCurve leftCurve, rightCurve;
 			if(startedOnLeft) {
 				leftPoint = startpoint;
-				rightPoint = endpoint;
+				leftDist = accelerationDistance;
+				leftCurve = accelerationCurve;
 
-				leftSlope = acceleration;
-				rightSlope = deceleration;
+				rightPoint = endpoint;
+				rightDist = decelerationDistance;
+				rightCurve = decelerationCurve;
 			}
 			else {
 				leftPoint = endpoint;
-				rightPoint = startpoint;
+				leftDist = decelerationDistance;
+				leftCurve = decelerationCurve;
 
-				leftSlope = deceleration;
-				rightSlope = acceleration;
+				rightPoint = startpoint;
+				rightDist = accelerationDistance;
+				rightCurve = accelerationCurve;
 			}
 
-			float leftRampSpeed  =   leftSlope * (position - leftPoint);
-			float rightRampSpeed = -rightSlope * (position - rightPoint);
+			float leftRampSpeed =  Mathf.Clamp( leftCurve.Evaluate( (position - leftPoint) /leftDist),  minSpeed, maxSpeed);
+			float rightRampSpeed = Mathf.Clamp(rightCurve.Evaluate(-(position - rightPoint)/rightDist), minSpeed, maxSpeed);
 
-			//float rampVelocity;
-			//float leftRampVelocity = ()
-
-			/*
-			float leftDistance = Mathf.Abs(leftPoint - position);
-			float rightDistance = Mathf.Abs(rightPoint - position);
-
-			float rampVelocity = acceleration *
-				(leftDistance < rightDistance
-					? (position - leftPoint)
-					: -(position - rightPoint)
-				)
-				+ minSpeed;
-			*/
-
-			float rampSpeed = Mathf.Min(leftRampSpeed, rightRampSpeed) + minSpeed;
-
-			float clampedSpeed = Mathf.Max(
-				minSpeed,
-				Mathf.Min(maxSpeed, rampSpeed)
-			);
+			float rampSpeed = Mathf.Min(leftRampSpeed, rightRampSpeed);
+			float clampedSpeed = Mathf.Clamp( rampSpeed, minSpeed, maxSpeed );
 
 			Debug.Log(startedOnLeft + " " + rampSpeed + " " + clampedSpeed);
 
