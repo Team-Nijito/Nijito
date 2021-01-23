@@ -3,6 +3,15 @@ title: Start
 
 : TestScript2
 
+
+
+<<fade in Ami left and wait>>
+<<move Ami right and wait>>
+Words
+
+<<move Ami left and wait>>
+Done
+
 <<turn Ami left>>
 <<move Yuto middle from offright>>
 <<move Ami middle from offleft>>

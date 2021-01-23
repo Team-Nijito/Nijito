@@ -72,12 +72,17 @@ namespace Dialogue.VN {
 		// https://answers.unity.com/questions/1207389/can-animation-curves-be-used-to-control-variables.html
 
 		public Image imageRenderer;
-		public float movementSpeed = 5f;
-		public float stoppingDistance = 0.01f;
+		public Facing initialFacing = Facing.Left;
+
+		[Header("Movement")]
+		[Range(0, 2)] public float maxSpeed = 0.6f;
+		[Range(0, 2)] public float minSpeed = 0.05f;
+		[Range(0, 2)] public float accelerationDistance = 0.2f;
+		[Range(0, 2)] public float decelerationDistance = 0.2f;
+		public float stoppingThreshold = 0.001f;
 		[Tooltip("Range used for pushing and pulling.")]
 		[Range(0f, 1f)]
 		public float width = 0.1f;
-		public Facing initialFacing = Facing.Left;
 
 		[Header("Animations")]
 		public Animator animator;
@@ -117,6 +122,9 @@ namespace Dialogue.VN {
 		/// </summary>
 		private List<MoveBatch> currentBatches = new List<MoveBatch>();
 
+		private Vector2 PreviousPosition {
+			get; set;
+		}
 		private Vector2 CurrentPosition {
 			get => rTransform.anchorMin;
 		}
@@ -136,6 +144,7 @@ namespace Dialogue.VN {
 		/// <param name="batches">Set of movement batches for this next move. (Used for pushing and pulling, mostly.)</param>
 		public void SetMovementDestination(StagePoint point, List<MoveBatch> batches = null) {
 			this.DestinationPoint = point;
+			PreviousPosition = CurrentPosition;
 
 			if(batches != null) {
 				string output = "batch:";
@@ -160,6 +169,8 @@ namespace Dialogue.VN {
 		public void Warp(StagePoint point) {
 			SetMovementDestination(point);
 			SetPosition(DestinationPoint.GetPosition(gameObject).x);
+			
+			PreviousPosition = CurrentPosition;
         }
 
 		public void SetFacing(Facing newFacing)
@@ -259,15 +270,29 @@ namespace Dialogue.VN {
 				float destinationPosition = DestinationPoint.GetPosition(gameObject).x;
 
 				//if (!Mathf.Approximately(CurrentPosition.x, horizontalPosition)) {
-				if (Mathf.Abs(CurrentPosition.x - destinationPosition) > stoppingDistance) {
+				if (Mathf.Abs(CurrentPosition.x - destinationPosition) > stoppingThreshold) {
 
 					Vector2 oldPosition = CurrentPosition;
 
+					/*
 					SetPosition( Mathf.Lerp(
 						CurrentPosition.x,
 						destinationPosition,
 						movementSpeed * Time.deltaTime
 					) );
+					*/
+
+					SetPosition(Mathf.MoveTowards(
+						CurrentPosition.x,
+						destinationPosition,
+						CalculateSpeed(
+							PreviousPosition.x, destinationPosition, CurrentPosition.x,
+							maxSpeed, minSpeed,
+							accelerationDistance, decelerationDistance
+						) * Time.deltaTime
+					));
+
+
 
 					Vector2 deltaPosition = CurrentPosition - oldPosition;
 					float direction = Mathf.Sign(deltaPosition.x);
@@ -310,6 +335,88 @@ namespace Dialogue.VN {
 					currentBatches.Clear();
 				}
 			}
+		}
+
+		private static float CalculateSpeed(float startpoint, float endpoint, float position, float maxSpeed, float minSpeed, float accelerationDistance, float decelerationDistance) {
+
+			// Velocity line is in shape of
+			//
+			// maxSpeed       ________
+			//               /        \
+			//              /          \
+			// minSpeed ___/            \___
+			//           left         right
+			//
+			// If start and end are sufficiently close,
+			// then the slanted lines intersect,
+			// and there is no plateau.
+			//
+			// All this means we have 4 possible velocities:
+			//  1. maxSpeed
+			//  2. leftRampSpeed
+			//  3. rightRampSpeed
+			//  4. minSpeed
+			//
+			// We'll pick it in this order:
+			//  1. Calculate each ramp speed, pick the lesser
+			//  2. If that's more than maxSpeed, use maxSpeed
+			//  3. If that's less than minSpeed, use minSpeed
+			//
+			// These are speeds, no velocities.
+			// Caller must determine direction.
+
+			float maxDeltaSpeed = maxSpeed - minSpeed;
+			float acceleration = maxDeltaSpeed / accelerationDistance;
+			float deceleration = maxDeltaSpeed / decelerationDistance;
+
+			bool startedOnLeft = startpoint < endpoint;
+
+			// TODO Condense this logic down into a single if-else
+
+			float leftPoint, leftSlope, rightPoint, rightSlope;
+			if(startedOnLeft) {
+				leftPoint = startpoint;
+				rightPoint = endpoint;
+
+				leftSlope = acceleration;
+				rightSlope = deceleration;
+			}
+			else {
+				leftPoint = endpoint;
+				rightPoint = startpoint;
+
+				leftSlope = deceleration;
+				rightSlope = acceleration;
+			}
+
+			float leftRampSpeed  =   leftSlope * (position - leftPoint);
+			float rightRampSpeed = -rightSlope * (position - rightPoint);
+
+			//float rampVelocity;
+			//float leftRampVelocity = ()
+
+			/*
+			float leftDistance = Mathf.Abs(leftPoint - position);
+			float rightDistance = Mathf.Abs(rightPoint - position);
+
+			float rampVelocity = acceleration *
+				(leftDistance < rightDistance
+					? (position - leftPoint)
+					: -(position - rightPoint)
+				)
+				+ minSpeed;
+			*/
+
+			float rampSpeed = Mathf.Min(leftRampSpeed, rightRampSpeed) + minSpeed;
+
+			float clampedSpeed = Mathf.Max(
+				minSpeed,
+				Mathf.Min(maxSpeed, rampSpeed)
+			);
+
+			Debug.Log(startedOnLeft + " " + rampSpeed + " " + clampedSpeed);
+
+			return clampedSpeed;
 		}
 
 
