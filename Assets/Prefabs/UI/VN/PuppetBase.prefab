@@ -211,10 +211,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageRenderer: {fileID: 4203847163069240265}
-  movementSpeed: 5
-  stoppingDistance: 0.001
-  width: 0.199
   initialFacing: 1
+  maxSpeed: 1.18
+  minSpeed: 0.01
+  accelerationDistance: 0.11
+  decelerationDistance: 0.3
+  stoppingThreshold: 0.001
+  width: 0.199
   animator: {fileID: 1819797564428479593}
   initialAnim: None
   fadeInAnim: _FadeIn
