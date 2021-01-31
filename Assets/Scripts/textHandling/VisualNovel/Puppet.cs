@@ -77,10 +77,21 @@ namespace Dialogue.VN {
 		[Header("Movement")]
 		[Range(0, 2)] public float maxSpeed = 0.6f;
 		[Range(0, 2)] public float minSpeed = 0.05f;
+
+		[Space(10)]
+		
 		[Range(0, 2)] public float accelerationDistance = 0.2f;
+		[Tooltip("Make sure this starts at 0 (slowest) and ends at 1 (fastest)!")]
 		public AnimationCurve accelerationCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+		[Space(10)]
+
 		[Range(0, 2)] public float decelerationDistance = 0.2f;
+		[Tooltip("Make sure this starts at 0 (fastest) and ends at 1 (slowest)!")]
 		public AnimationCurve decelerationCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+		[Space(10)]
+
 		public float stoppingThreshold = 0.001f;
 		[Tooltip("Range used for pushing and pulling.")]
 		[Range(0f, 1f)]
@@ -399,13 +410,11 @@ namespace Dialogue.VN {
 				rightCurve = accelerationCurve;
 			}
 
-			float leftRampSpeed =  Mathf.Clamp( leftCurve.Evaluate( (position - leftPoint) /leftDist),  minSpeed, maxSpeed);
-			float rightRampSpeed = Mathf.Clamp(rightCurve.Evaluate(-(position - rightPoint)/rightDist), minSpeed, maxSpeed);
+			float leftRampSpeed = Mathf.Lerp(minSpeed, maxSpeed, leftCurve.Evaluate((position - leftPoint) / leftDist));
+			float rightRampSpeed = Mathf.Lerp(minSpeed, maxSpeed, rightCurve.Evaluate(-(position - rightPoint)/rightDist));
 
 			float rampSpeed = Mathf.Min(leftRampSpeed, rightRampSpeed);
 			float clampedSpeed = Mathf.Clamp( rampSpeed, minSpeed, maxSpeed );
-
-			Debug.Log(startedOnLeft + " " + rampSpeed + " " + clampedSpeed);
 
 			return clampedSpeed;
 		}
