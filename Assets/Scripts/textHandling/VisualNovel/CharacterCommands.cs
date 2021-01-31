@@ -447,7 +447,7 @@ namespace Dialogue.VN
 		/// \warning Pushing, pulling, and stacking all work.
 		///          However, all three of these things still need some tuning.
 		///          Movement speed parameters still need to be implemented.
-		public void Move(string[] args)
+		public void Move(string[] args, Action onComplete)
 		{
 
 			#region Argument handling
@@ -458,6 +458,7 @@ namespace Dialogue.VN
 			//string fromName = "";
 			StagePoint endpoint = null;
 			StagePoint startpoint = null;
+			bool wait = false;
 			List<Puppet.MoveBatch> batches = new List<Puppet.MoveBatch>();
 
 			for(int i = 1; i < args.Length; i++)
@@ -480,8 +481,7 @@ namespace Dialogue.VN
 						break;
 
 					case "wait":
-						// TODO Implement 'move ... and wait'
-						Debug.LogWarning("'move ... and wait' isn't supported yet!");
+						wait = true;
 						break;
 
 					case "now":
@@ -560,7 +560,12 @@ namespace Dialogue.VN
 				character.Warp(startpoint);
 			}
 
-			character.SetMovementDestination(endpoint, batches);
+			if(!wait) {
+				onComplete.Invoke();
+				onComplete = null;
+			}
+
+			character.SetMovementDestination(endpoint, batches, onComplete);
 		}
 
 		/// <summary>
