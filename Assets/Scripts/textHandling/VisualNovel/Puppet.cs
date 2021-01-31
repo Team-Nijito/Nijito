@@ -134,6 +134,7 @@ namespace Dialogue.VN {
 		/// Never make this null; make it an empty list.
 		/// </summary>
 		private List<MoveBatch> currentBatches = new List<MoveBatch>();
+		private System.Action onMoveComplete = null;
 
 		private Vector2 PreviousPosition {
 			get; set;
@@ -155,7 +156,7 @@ namespace Dialogue.VN {
 		/// </summary>
 		/// <param name="point">Point to move to.</param>
 		/// <param name="batches">Set of movement batches for this next move. (Used for pushing and pulling, mostly.)</param>
-		public void SetMovementDestination(StagePoint point, List<MoveBatch> batches = null) {
+		public void SetMovementDestination(StagePoint point, List<MoveBatch> batches = null, System.Action onComplete = null) {
 			this.DestinationPoint = point;
 			PreviousPosition = CurrentPosition;
 
@@ -173,6 +174,8 @@ namespace Dialogue.VN {
 			else {
 				currentBatches.Clear();
 			}
+
+			onMoveComplete = onComplete;
         }
 
 		/// <summary>
@@ -347,6 +350,11 @@ namespace Dialogue.VN {
 				}
 				else {
 					currentBatches.Clear();
+
+					if(onMoveComplete != null) {
+						onMoveComplete.Invoke();
+						onMoveComplete = null;
+					}
 				}
 			}
 		}
