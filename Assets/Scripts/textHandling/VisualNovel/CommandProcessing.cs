@@ -82,6 +82,7 @@ namespace Dialogue.VN {
 					case "wait":
 						++i;
 						result = true;
+						success = true;
 						break;
 				}
 			}
