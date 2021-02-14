@@ -68,10 +68,32 @@ namespace Dialogue.VN {
 			}
 		}
 
-		// TODO: Allow movement curve?
-		// https://answers.unity.com/questions/1207389/can-animation-curves-be-used-to-control-variables.html
+		[System.Serializable]
+		public struct Emote : IEquatable<Emote> {
+			public Sprite image;
+			public string name;
 
-		public Image imageRenderer;
+			public override bool Equals(object obj) {
+				return obj is Emote emote && Equals(emote);
+			}
+
+			public bool Equals(Emote other) {
+				return EqualityComparer<Sprite>.Default.Equals(image, other.image) &&
+					   name == other.name;
+			}
+
+			public static bool operator ==(Emote left, Emote right) {
+				return left.Equals(right);
+			}
+
+			public static bool operator !=(Emote left, Emote right) {
+				return !(left == right);
+			}
+		}
+
+		//public Image imageRenderer;
+		public GameObject rendererParent;
+		//public Image 
 		public Facing initialFacing = Facing.Left;
 
 		[Header("Movement")]
@@ -96,6 +118,11 @@ namespace Dialogue.VN {
 		[Tooltip("Range used for pushing and pulling.")]
 		[Range(0f, 1f)]
 		public float width = 0.1f;
+
+		[Header("Emotes")]
+		public Image faceRenderer;
+		[Tooltip("The first face is default, and will be used as a fallback.")]
+		public Emote[] emotes;
 
 		[Header("Animations")]
 		public Animator animator;
@@ -193,16 +220,29 @@ namespace Dialogue.VN {
 			PreviousPosition = CurrentPosition;
         }
 
-		public void SetFacing(Facing newFacing)
-		{
+		public void SetEmote(string emoteName) {
+
+			Emote target;
+
+			if (emoteName.Equals("None", StringComparison.OrdinalIgnoreCase)) {
+				target = emotes[0];
+			}
+			else {
+				target = emotes.FirstOrDefault((e) => e.name.Equals(emoteName, StringComparison.OrdinalIgnoreCase));
+
+				if (target == default(Emote)) {
+					Debug.LogWarning(name + " desn't have an emote called " + emoteName + "; falling back to default");
+					target = emotes[0];
+				}
+			}
+
+			faceRenderer.sprite = target.image;
+		}
+
+		public void SetFacing(Facing newFacing) {
 			Vector3 s = rTransform.localScale;
 			s.x = (newFacing == initialFacing ? 1 : -1);
 			rTransform.localScale = s;
-			/*
-			Rect uvRect = imageRenderer.uvRect;
-			uvRect.width = (newFacing == defaultFacing ? 1 : -1);
-			imageRenderer.uvRect = uvRect;
-			*/
 		}
 
 		public void FocusSelf() {
@@ -210,11 +250,6 @@ namespace Dialogue.VN {
 			transform.SetSiblingIndex(siblingCount - 1);
 		}
 
-
-		public void SetTexture(int index)
-		{
-			//imageRenderer.texture = textures[index];
-		}
 
 		public void PlayAnim(string name, Speed speed = Speed.Normal, Action onComplete = null) {
 
@@ -269,8 +304,11 @@ namespace Dialogue.VN {
 			Assert.IsNotNull(rTransform,
 				"Puppets should be part of the UI, not in the scene itself!"
 			);
-			Assert.IsNotNull(imageRenderer, "Puppets must have a RawImage!");
 			Assert.IsNotNull(animator, "Puppet needs an animator");
+
+			if(faceRenderer == null) {
+				Debug.LogWarning(gameObject.name + " is missing a face!\n...must be hard for them... :(");
+			}
 		}
 
 		private void Update()

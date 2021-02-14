@@ -3,9 +3,27 @@ title: Start
 
 : TestScript2
 
+<<fade in Ami left slowly>>
+Default
 
+<<emote Ami Smug>>
+Smug
 
-<<fade in Ami left and wait>>
+<<emote Ami None>>
+None
+
+<<emote Ami Smirk>>
+Smirk
+
+<<emote Ami Invalid>>
+Something invalid (this should just get us default)
+
+<<emote Ami SmileA>>
+SmileA
+
+<<emote Ami SmileB>>
+SmileB
+
 <<move Ami right>>
 Words
 

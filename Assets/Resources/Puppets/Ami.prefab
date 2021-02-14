@@ -626,12 +626,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4774194560346373590, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -940
+      value: -415
       objectReference: {fileID: 0}
     - target: {fileID: 7160089756853054314, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
       propertyPath: m_Name
       value: Ami
       objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: faceRenderer
+      value: 
+      objectReference: {fileID: 324481187998095726}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: initialFacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[0].name
+      value: Default
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[1].name
+      value: Annoyed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[2].name
+      value: SmileA
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[3].name
+      value: Smug
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[4].name
+      value: SmileB
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[5].name
+      value: ShiftyBrows
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[6].name
+      value: Concerned
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[7].name
+      value: Smirk
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: af074ed675f3f78439ce9425ab9cfe5c, type: 3}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[1].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 364f3133d0c410940b03b350244b2cbe, type: 3}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[2].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 387afbb45e3337847936d8d3ba35460b, type: 3}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[3].image
+      value: 
+      objectReference: {fileID: 21300000, guid: ceacd65c942ecea4eac953301870978b, type: 3}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[5].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 516a27c80f7f9ab45892abcf1a38481f, type: 3}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[6].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 29fbae4870bf5ba4aa5ab64c8af4ac30, type: 3}
+    - target: {fileID: 7556325322088288644, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
+      propertyPath: emotes.Array.data[7].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b20c2bf032a8ec4d8ceb192c68fc255, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
 --- !u!224 &6314549652536491536 stripped
