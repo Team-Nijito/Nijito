@@ -49,10 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultPuppetPrefab: {fileID: 7160089756853054314, guid: 87ff7fa29ae86f6419b9fc551be60350, type: 3}
-  puppetPrefabs:
-  - {fileID: 8556045896170563756, guid: b586f87f2d364094a9fb8907953f62b5, type: 3}
-  - {fileID: 8556045896170563756, guid: 20ef87353df9b8a46b10019f1c26b4e2, type: 3}
   puppetSpawnPoint: {fileID: 26188182993938064}
+  deleteChildrenOnStart: 1
 --- !u!1 &2387446241812477856
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,8 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yarnScripts:
-  - {fileID: 2480198943629176163, guid: 3ec2a307c8d91874093c0aeea13035fc, type: 3}
+  yarnScripts: []
   textLanguage: 
   variableStorage: {fileID: 5419077282072163333}
   dialogueUI: {fileID: 5419077282072163332}

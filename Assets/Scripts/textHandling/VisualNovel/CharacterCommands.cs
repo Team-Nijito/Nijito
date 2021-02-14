@@ -107,10 +107,8 @@ namespace Dialogue.VN
 			dialogueRunner.AddCommandHandler("turn", Turn);
 			dialogueRunner.AddCommandHandler("animate", Animate);
 			dialogueRunner.AddCommandHandler("fade", Fade);
+			dialogueRunner.AddCommandHandler("emote", Emote);
 			//dialogueRunner.AddCommandHandler("face", Turn);
-
-			// TODO Delete this
-			dialogueRunner.AddCommandHandler("setTextureIndex", SetTexture);
 		}
 
 
@@ -284,7 +282,13 @@ namespace Dialogue.VN
 		/// \warning Not implemented yet.
 		public void Emote(string[] args)
 		{
-			Debug.LogWarning("Not implemented yet: emote");
+			#region Argument handling
+			Assert.IsTrue(args.Length == 2);
+			Puppet character = puppetmaster.GetPuppet(args[0]);
+			string emoteName = args[1];
+			#endregion
+
+			character.SetEmote(emoteName);
 		}
 
 		/// <summary>
@@ -683,18 +687,6 @@ namespace Dialogue.VN
 		/// <param name="name"></param>
 		public void Focus(string name) {
 			puppetmaster.GetPuppet(name).FocusSelf();
-		}
-
-		private void SetTexture(string[] args)
-		{
-			Assert.IsTrue(args.Length >= 2);
-			string charName = args[0];
-			string indexName = args[1];
-
-			Puppet charPuppet = puppetmaster.GetPuppet(charName);
-			int index = int.Parse(indexName);
-
-			charPuppet.SetTexture(index);
 		}
 
 		private StagePoint GetNamedPoint(string posName)

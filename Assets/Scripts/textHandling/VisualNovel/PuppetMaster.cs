@@ -20,6 +20,7 @@ namespace Dialogue.VN
 		//public GameObject puppetPrefab;
 		public GameObject defaultPuppetPrefab;
 		public StagePoint puppetSpawnPoint;
+		public bool deleteChildrenOnStart = true;
 
 		private GameObject[] puppetPrefabs;
 		private Dictionary<string, Puppet> activePuppets;
@@ -39,6 +40,14 @@ namespace Dialogue.VN
 					prefab.GetComponent<Puppet>(),
 					"Puppet prefab (" + prefab.name + ") must have the Dialogue.VN.Puppet component attached to it!"
 				);
+			}
+		}
+
+		private void Start() {
+			if(deleteChildrenOnStart) {
+				foreach(Transform child in transform) {
+					Destroy(child.gameObject);
+				}
 			}
 		}
 
