@@ -134,7 +134,8 @@ namespace Dialogue.VN {
 		/// Never make this null; make it an empty list.
 		/// </summary>
 		private List<MoveBatch> currentBatches = new List<MoveBatch>();
-		private System.Action onMoveComplete = null;
+		private Action onMoveComplete = null;
+		private Speed moveSpeed = Speed.Normal;
 
 		private Vector2 PreviousPosition {
 			get; set;
@@ -143,20 +144,22 @@ namespace Dialogue.VN {
 			get => rTransform.anchorMin;
 		}
 
-		/// <summary>
-		/// This is all of the available animations.
-		/// We could just use the Play method,
-		/// but this allows us to do things in a case-insensitve way.
-		/// </summary>
-		[Obsolete]
-		private string[] animationNames;
+		private float SpeedToScale(Speed speed) {
+			switch (speed) {
+				default:           goto case Speed.Normal;
+				case Speed.Normal: return normalAnimationSpeed;
+				case Speed.Quick:  return quickAnimationSpeed;
+				case Speed.Slow:   return slowAnimationSpeed;
+				case Speed.Now:    return nowAnimationSpeed;
+			}
+		}
 
 		/// <summary>
 		/// Sets a new destination where we want to slide to.
 		/// </summary>
 		/// <param name="point">Point to move to.</param>
 		/// <param name="batches">Set of movement batches for this next move. (Used for pushing and pulling, mostly.)</param>
-		public void SetMovementDestination(StagePoint point, List<MoveBatch> batches = null, System.Action onComplete = null) {
+		public void SetMovementDestination(StagePoint point, List<MoveBatch> batches = null, Action onComplete = null, Speed speed = Speed.Normal) {
 			this.DestinationPoint = point;
 			PreviousPosition = CurrentPosition;
 
@@ -175,6 +178,7 @@ namespace Dialogue.VN {
 				currentBatches.Clear();
 			}
 
+			moveSpeed = Speed.Normal;
 			onMoveComplete = onComplete;
         }
 
@@ -225,18 +229,7 @@ namespace Dialogue.VN {
 			}
 			*/
 
-			float speedScale;
-			switch (speed) {
-				default:
-					Debug.LogWarning("Unsupported animation speed: " + speed);
-					goto case Speed.Normal;
-				case Speed.Normal: speedScale = normalAnimationSpeed; break;
-				case Speed.Quick:  speedScale = quickAnimationSpeed; break;
-				case Speed.Slow:   speedScale = slowAnimationSpeed; break;
-				case Speed.Now:    speedScale = nowAnimationSpeed; break;
-			}
-
-			animator.SetFloat(speedControl, speedScale);
+			animator.SetFloat(speedControl, SpeedToScale(speed));
 			animator.Play(name);
 
 			if (onComplete != null) {
@@ -303,7 +296,7 @@ namespace Dialogue.VN {
 						destinationPosition,
 						CalculateSpeed(
 							PreviousPosition.x, destinationPosition, CurrentPosition.x,
-							maxSpeed, minSpeed,
+							maxSpeed * SpeedToScale(moveSpeed), minSpeed,
 							accelerationDistance, accelerationCurve,
 							decelerationDistance, decelerationCurve
 						) * Time.deltaTime

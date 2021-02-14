@@ -9,7 +9,7 @@ title: Start
 <<move Ami right>>
 Words
 
-<<move Ami left and wait>>
+<<move Ami left quickly and wait>>
 Done
 
 <<turn Ami left>>

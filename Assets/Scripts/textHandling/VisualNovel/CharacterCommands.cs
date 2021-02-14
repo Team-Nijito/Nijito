@@ -459,6 +459,7 @@ namespace Dialogue.VN
 			StagePoint endpoint = null;
 			StagePoint startpoint = null;
 			bool wait = false;
+			Speed moveSpeed = Speed.Normal;
 			List<Puppet.MoveBatch> batches = new List<Puppet.MoveBatch>();
 
 			for(int i = 1; i < args.Length; i++)
@@ -475,20 +476,6 @@ namespace Dialogue.VN
 						i++;
 						//fromName = args[i];
 						startpoint = GetNamedPoint(args[i]);
-						break;
-
-					case "and":
-						break;
-
-					case "wait":
-						wait = true;
-						break;
-
-					case "now":
-						// TODO Implement 'now'
-						// TODO Implement 'slowly'
-						// TODO Implement 'quickly'
-						Debug.LogWarning("'now' isn't supported yet!");
 						break;
 
 					case "push":
@@ -535,19 +522,30 @@ namespace Dialogue.VN
 
 						}
 
+						// TODO Handle speeds
+
 						batches.Add(new Puppet.MoveBatch(targets.ToArray(), batchDestination, Speed.Normal, mode));
 						break;
 
 					default:
-						// Only take an unlabeled parameter if we don't
-						// already have a destination.
-						if(endpoint == null)
-						{
-							endpoint = GetNamedPoint(args[i]);
+						if (CommandProcessing.ReadWaitArgument(args, ref i, ref wait) ||
+							CommandProcessing.ReadSpeedArgument(args, ref i, ref moveSpeed)
+						) {
+							// The functions above increment i upon a successful read,
+							// but the for loop does this for us. Thus, we must decrement i
+							// in order to prevent any skips.
+							i--;
 						}
-						else
-						{
-							ReportInvalidArgument("move", args[i]);
+						else {
+
+							// Only take an unlabeled parameter if we don't
+							// already have a destination.
+							if (endpoint == null) {
+								endpoint = GetNamedPoint(args[i]);
+							}
+							else {
+								ReportInvalidArgument("move", args[i]);
+							}
 						}
 						break;
 				}
@@ -565,7 +563,7 @@ namespace Dialogue.VN
 				onComplete = null;
 			}
 
-			character.SetMovementDestination(endpoint, batches, onComplete);
+			character.SetMovementDestination(endpoint, batches, onComplete, moveSpeed);
 		}
 
 		/// <summary>
