@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2911966728324020271, guid: b586f87f2d364094a9fb8907953f62b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8556045896170563756, guid: b586f87f2d364094a9fb8907953f62b5, type: 3}
       propertyPath: m_Name
       value: Ami
@@ -625,6 +629,10 @@ PrefabInstance:
     - target: {fileID: 2387446241812477856, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
       propertyPath: m_Name
       value: CutsceneDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5422214250266033279, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7726179263012975814, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
       propertyPath: m_RootOrder
