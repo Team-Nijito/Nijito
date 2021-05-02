@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_SG_Databar
-  m_Shader: {fileID: 4800000, guid: 6e5916f25c770c94a8f9f6957ffb75d2, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: c85baca473ba982408593e1451175085, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,14 +19,33 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_486FEE86:
+        m_Texture: {fileID: 2800000, guid: f580f2e6f1e844948a0516c978a4e8c2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_E4D35851:
         m_Texture: {fileID: 2800000, guid: 05947c793fd4e9a4fbaa9cc49d71c2c6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_21962E48: 10
     - Vector1_27B2E7CC: 8
     - Vector1_3713D1A9: 0.3
     - Vector1_6A243453: 3
+    - Vector1_6B788E5F: 0.3
+    - Vector1_83713AA6: 12
     - Vector1_B683118F: 0.3
     m_Colors:
     - Vector4_62004688: {r: 0, g: 0, b: 1, a: 0.6}
