@@ -147,9 +147,9 @@ public class Tween_VN : MonoBehaviour
     }
 
     void CloseDialogueUtilBar() {
-
-        namebar.SetActive(false);
-        autoskip.SetActive(false);
+		// TODO Fix this
+        //namebar.SetActive(false);
+        //autoskip.SetActive(false);
     }
 
     public void CloseDialogueBox() 
