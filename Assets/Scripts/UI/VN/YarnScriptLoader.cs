@@ -12,7 +12,7 @@ namespace Dialogue.VN {
 		void Start() {
 			//ScriptSelector.FromName("TestScript"); // TODO Remove
 
-			YarnProgram script = ScriptSelector.selectedYP ?? defaultScript;
+			YarnProgram script = ScriptSelector.selectedYarn ?? defaultScript;
 
 			runner.Add(script);
 			runner.StartDialogue(script.GetProgram().Nodes.First().Key);
