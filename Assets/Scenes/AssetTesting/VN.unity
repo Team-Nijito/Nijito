@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19124317fe4f1c94bb41464218897fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overrideScript: {fileID: 2480198943629176163, guid: 3ec2a307c8d91874093c0aeea13035fc, type: 3}
+  defaultScript: {fileID: 2480198943629176163, guid: 3ec2a307c8d91874093c0aeea13035fc, type: 3}
   runner: {fileID: 782346460}
 --- !u!4 &53635551
 Transform:
