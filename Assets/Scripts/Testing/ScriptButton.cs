@@ -17,8 +17,12 @@ namespace Dialogue.Testing {
 		}
 
 		public void LoadScript() {
-			ScriptSelector.selectedYarn = yarn;
-			ScriptSelector.returnSceneIndex = SceneManager.GetActiveScene().buildIndex;
+			Settings.selectedYarn = yarn;
+			//Settings.returnSceneIndex = SceneManager.GetActiveScene().buildIndex;
+			Settings.onFinish = () => {
+				Settings.selectedYarn = null;
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			};
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}

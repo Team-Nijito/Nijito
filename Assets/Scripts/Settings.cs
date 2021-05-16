@@ -8,7 +8,7 @@ namespace Dialogue {
 	/// <summary>
 	/// This class is used to track which script to load for the VN system.
 	/// </summary>
-	public static class ScriptSelector
+	public static class Settings
 	{
 		/// <summary>
 		/// Location yarns are stored. This path is checked when looking
@@ -26,10 +26,9 @@ namespace Dialogue {
 		public static YarnProgram selectedYarn { get; set; }
 
 		/// <summary>
-		/// When the VN script concludes, this is the index of the scene
-		/// that gets loaded.
+		/// When the VN script concludes, this method gets called.
 		/// </summary>
-		public static int returnSceneIndex { get; set; }
+		public static System.Action onFinish { get; set; }
 
 		/// <summary>
 		/// Sets a Yarn based on is name.

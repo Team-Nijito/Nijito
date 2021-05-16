@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 namespace Dialogue {
 	public class ScriptConcluder : MonoBehaviour {
 		public void LoadNextScene() {
-			ScriptSelector.selectedYarn = null;
-			SceneManager.LoadScene(ScriptSelector.returnSceneIndex);
+			//Settings.selectedYarn = null;
+			//SceneManager.LoadScene(Settings.returnSceneIndex);
+			Settings.onFinish();
 		}
 	}
 }

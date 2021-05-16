@@ -16,7 +16,7 @@ namespace Dialogue.Testing {
 		private void Start() {
 			//Object[] yarns = Resources.LoadAll(ScriptSelector.YarnPath, typeof(YarnProgram));
 
-			foreach(var y in ScriptSelector.allYarns) {
+			foreach(var y in Settings.allYarns) {
 				GameObject newButton = Instantiate(buttonPrefab, buttonContainer) as GameObject;
 				newButton.GetComponent<ScriptButton>().Configure(y);
 			}

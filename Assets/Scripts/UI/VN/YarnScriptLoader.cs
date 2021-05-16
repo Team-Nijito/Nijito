@@ -14,7 +14,7 @@ namespace Dialogue.VN {
 		void Start() {
 			//ScriptSelector.FromName("TestScript"); // TODO Remove
 
-			YarnProgram script = ScriptSelector.selectedYarn; //?? defaultScript;
+			YarnProgram script = Settings.selectedYarn; //?? defaultScript;
 
 			if (script == null) {
 				onMissingScript.Invoke();
