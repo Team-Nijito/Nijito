@@ -5,5 +5,5 @@ Current video guides are in this [Youtube playlist](https://youtube.com/playlist
 
 Old version of the project is here: https://github.com/Esurielt/Nijito
 
-Current Unity version: [2020.1.17](https://unity3d.com/unity/whats-new/2020.1.17)
+Current Unity version: [2020.3.3](https://unity3d.com/unity/whats-new/2020.3.3)
 
