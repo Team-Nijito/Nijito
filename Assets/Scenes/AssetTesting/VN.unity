@@ -514,14 +514,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CutsceneDialogue
       objectReference: {fileID: 0}
-    - target: {fileID: 5422214249146647854, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5422214250266033279, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7726179263012975814, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
       propertyPath: m_RootOrder
       value: 2

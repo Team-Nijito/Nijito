@@ -27,8 +27,8 @@ public class Tween_VN : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Setup Dialogue box
-        /*
+		//Setup Dialogue box
+		/*
         namebar = GameObject.Find("namebar");
         autoskip = GameObject.Find("Auto&Skip");
         if (namebar == null || autoskip == null)
@@ -41,7 +41,9 @@ public class Tween_VN : MonoBehaviour
 
         Assert.IsNotNull(namebar);
         Assert.IsNotNull(autoskip);
-        
+
+		namebar.SetActive(false);
+		autoskip.SetActive(false);
         OpenDialogueBox();
 
         //Setup autoplay circle
@@ -81,7 +83,7 @@ public class Tween_VN : MonoBehaviour
     public void OpenDialogueBox() 
     {
         SetDialogueUtilBar(false);
-        //check if dialoguebox is valid.
+		//check if dialoguebox is valid.
         if (dialoguebox != null && dialoguebox.GetComponent<Image>())
         {
             dialoguebox.localScale = new Vector3(0, 0, 0);
@@ -113,6 +115,7 @@ public class Tween_VN : MonoBehaviour
 
     void OpenNameBar() {
         RectTransform maskrect = namebar.transform.Find("namebar mask").GetComponent<RectTransform>();
+		Debug.Log(maskrect.sizeDelta);
         Vector2 OriginalSize = maskrect.sizeDelta;
         maskrect.offsetMax = new Vector2(0,0);
         maskrect.offsetMin = new Vector2(-0,-0);
