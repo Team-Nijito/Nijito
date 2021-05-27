@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 19abb40c04b7c2448867395093ef2536, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3113155cc8462744f9488eb315bb8da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rendererParent: {fileID: 4434343125935111145}
+  imageRenderer: {fileID: 4203847163069240265}
   initialFacing: 1
   maxSpeed: 1.18
   minSpeed: 0.01
@@ -279,8 +279,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   stoppingThreshold: 0.001
   width: 0.199
-  faceRenderer: {fileID: 0}
-  emotes: []
   animator: {fileID: 1819797564428479593}
   initialAnim: None
   fadeInAnim: _FadeIn
@@ -290,7 +288,6 @@ MonoBehaviour:
   quickAnimationSpeed: 1.5
   slowAnimationSpeed: 0.5
   nowAnimationSpeed: 1000
-  textures: []
 --- !u!95 &1819797564428479593
 Animator:
   serializedVersion: 3

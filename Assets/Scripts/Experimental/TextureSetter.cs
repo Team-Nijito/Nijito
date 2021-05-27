@@ -12,18 +12,22 @@ namespace Dialogue.VN {
 
 		private List<RenderTexture> textures;
 
-		void Start() {
-			if (imgRenderer != null) {
-				imgRenderer.material.mainTexture = renderSource.PerformRender();
-			}
-			if (rawImgRenderer != null) {
-				rawImgRenderer.material.mainTexture = renderSource.PerformRender();
+		private bool firstRun = true;
+		private TextureRenderer.Handle trh;
+
+		void OnEnable() {
+			if(firstRun) {
+				trh = renderSource.NewTexture("Ami", 100, 100);
+				imgRenderer.material = new Material(imgRenderer.material);
+				imgRenderer.material.mainTexture = trh.tex;
+
+				firstRun = false;
 			}
 
-			textures = new List<RenderTexture>();
-			for(int i = 0; i < 10; i++) {
-				textures.Add(renderSource.PerformRender());
-			}
+			//renderSource.RedrawTo(imgRenderer.material.mainTexture as RenderTexture);
+			trh.Redraw();
+
+
 		}
 
 	}

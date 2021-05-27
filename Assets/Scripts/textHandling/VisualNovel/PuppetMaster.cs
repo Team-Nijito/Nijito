@@ -18,11 +18,12 @@ namespace Dialogue.VN
 		public const string PuppetPrefabPath = "Puppets";
 
 		//public GameObject puppetPrefab;
-		public GameObject defaultPuppetPrefab;
-		public StagePoint puppetSpawnPoint;
-		public bool deleteChildrenOnStart = true;
+		[SerializeField] private GameObject puppetPrefab;
+		[SerializeField] private StagePoint puppetSpawnPoint;
+		[SerializeField] private TextureRenderer puppetRenderer;
+		[SerializeField] private bool deleteChildrenOnStart = true;
 
-		private GameObject[] puppetPrefabs;
+		//private GameObject[] puppetPrefabs;
 		private Dictionary<string, Puppet> activePuppets;
 
 		private void Awake()
@@ -30,10 +31,13 @@ namespace Dialogue.VN
 			activePuppets = new Dictionary<string, Puppet>();
 
             Assert.IsNotNull(
-                defaultPuppetPrefab.GetComponent<Puppet>(),
-                "Puppet prefab (" + defaultPuppetPrefab.name + ") must have the Dialogue.VN.Puppet component attached to it!"
+                puppetPrefab.GetComponent<Puppet>(),
+                "Puppet prefab (" + puppetPrefab.name + ") must have the Dialogue.VN.Puppet component attached to it!"
             );
 
+			Assert.IsNotNull(puppetRenderer);
+
+			/*
 			puppetPrefabs = Resources.LoadAll<GameObject>(PuppetPrefabPath);
             foreach (GameObject prefab in puppetPrefabs) {
 				Assert.IsNotNull(
@@ -41,6 +45,7 @@ namespace Dialogue.VN
 					"Puppet prefab (" + prefab.name + ") must have the Dialogue.VN.Puppet component attached to it!"
 				);
 			}
+			*/
 		}
 
 		private void Start() {
@@ -76,18 +81,21 @@ namespace Dialogue.VN
 
 		private Puppet MakePuppet(string characterName)
 		{
+			/*
 			GameObject prefab = puppetPrefabs.FirstOrDefault(
 				p => characterName.Equals(p.name, System.StringComparison.OrdinalIgnoreCase)
 			);
 			if(prefab == null) {
 				Debug.LogWarning("Could not find character: " + characterName);
-				prefab = defaultPuppetPrefab;
+				prefab = puppetPrefab;
             }
+			*/
 
-			GameObject newPuppetObj = Instantiate( prefab, transform );
+			GameObject newPuppetObj = Instantiate( puppetPrefab, transform );
 			newPuppetObj.name = characterName;
 
 			Puppet newPuppet = newPuppetObj.GetComponent<Puppet>();
+			newPuppet.RendererHandle = puppetRenderer.NewTexture(characterName, (int)newPuppet.RendererWidth, (int)newPuppet.RendererHeight);
 			newPuppet.Warp(puppetSpawnPoint);
 
 			return newPuppet;

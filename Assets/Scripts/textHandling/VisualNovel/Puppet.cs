@@ -91,8 +91,8 @@ namespace Dialogue.VN {
 			}
 		}
 
-		//public Image imageRenderer;
-		public GameObject rendererParent;
+		public Image imageRenderer;
+		//public GameObject rendererParent;
 		//public Image 
 		public Facing initialFacing = Facing.Left;
 
@@ -119,10 +119,12 @@ namespace Dialogue.VN {
 		[Range(0f, 1f)]
 		public float width = 0.1f;
 
+		/*
 		[Header("Emotes")]
 		public Image faceRenderer;
 		[Tooltip("The first face is default, and will be used as a fallback.")]
 		public Emote[] emotes;
+		*/
 
 		[Header("Animations")]
 		public Animator animator;
@@ -139,7 +141,31 @@ namespace Dialogue.VN {
 
 
 		// TODO This should be deleted and we should use characters instead.
-		public Texture[] textures;
+		//public Texture[] textures;
+		private TextureRenderer.Handle _rh;
+		public TextureRenderer.Handle RendererHandle {
+			get {
+				return _rh;
+			}
+			set {
+				_rh = value;
+				_rh.Redraw();
+				imageRenderer.material = new Material(imageRenderer.material); // Otherwise it'll modify old, shared material
+				imageRenderer.material.mainTexture = _rh.tex;
+			}
+		}
+
+		public float RendererWidth {
+			get {
+				return imageRenderer.rectTransform.rect.width;
+			}
+		}
+
+		public float RendererHeight {
+			get {
+				return imageRenderer.rectTransform.rect.height;
+			}
+		}
 
 		private RectTransform rTransform;
 
@@ -224,6 +250,7 @@ namespace Dialogue.VN {
 
 			Emote target;
 
+			/*
 			if (emoteName.Equals("None", StringComparison.OrdinalIgnoreCase)) {
 				target = emotes[0];
 			}
@@ -237,6 +264,9 @@ namespace Dialogue.VN {
 			}
 
 			faceRenderer.sprite = target.image;
+			*/
+			RendererHandle.Redraw();
+			Debug.LogWarning("Not implemented yet");
 		}
 
 		public void SetFacing(Facing newFacing) {
@@ -306,9 +336,11 @@ namespace Dialogue.VN {
 			);
 			Assert.IsNotNull(animator, "Puppet needs an animator");
 
+			/*
 			if(faceRenderer == null) {
 				Debug.LogWarning(gameObject.name + " is missing a face!\n...must be hard for them... :(");
 			}
+			*/
 		}
 
 		private void Update()
