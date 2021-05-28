@@ -1,10 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Assertions;
-using System;
+using UnityEngine.UI;
 
 namespace Dialogue.VN {
 	public class Puppet : MonoBehaviour
@@ -68,32 +67,7 @@ namespace Dialogue.VN {
 			}
 		}
 
-		[System.Serializable]
-		public struct Emote : IEquatable<Emote> {
-			public Sprite image;
-			public string name;
-
-			public override bool Equals(object obj) {
-				return obj is Emote emote && Equals(emote);
-			}
-
-			public bool Equals(Emote other) {
-				return EqualityComparer<Sprite>.Default.Equals(image, other.image) &&
-					   name == other.name;
-			}
-
-			public static bool operator ==(Emote left, Emote right) {
-				return left.Equals(right);
-			}
-
-			public static bool operator !=(Emote left, Emote right) {
-				return !(left == right);
-			}
-		}
-
 		public Image imageRenderer;
-		//public GameObject rendererParent;
-		//public Image 
 		public Facing initialFacing = Facing.Left;
 
 		[Header("Movement")]
@@ -118,13 +92,6 @@ namespace Dialogue.VN {
 		[Tooltip("Range used for pushing and pulling.")]
 		[Range(0f, 1f)]
 		public float width = 0.1f;
-
-		/*
-		[Header("Emotes")]
-		public Image faceRenderer;
-		[Tooltip("The first face is default, and will be used as a fallback.")]
-		public Emote[] emotes;
-		*/
 
 		[Header("Animations")]
 		public Animator animator;
@@ -247,28 +214,7 @@ namespace Dialogue.VN {
         }
 
 		public void SetEmote(string emoteName) {
-
 			RendererHandle.SetEmote(emoteName);
-
-			/*
-			Emote target;
-
-			if (emoteName.Equals("None", StringComparison.OrdinalIgnoreCase)) {
-				target = emotes[0];
-			}
-			else {
-				target = emotes.FirstOrDefault((e) => e.name.Equals(emoteName, StringComparison.OrdinalIgnoreCase));
-
-				if (target == default(Emote)) {
-					Debug.LogWarning(name + " desn't have an emote called " + emoteName + "; falling back to default");
-					target = emotes[0];
-				}
-			}
-
-			faceRenderer.sprite = target.image;
-			*/
-			//RendererHandle.Redraw();
-			//Debug.LogWarning("Not implemented yet");
 		}
 
 		public void SetFacing(Facing newFacing) {

@@ -279,7 +279,6 @@ namespace Dialogue.VN
 		///     <<emote Ibuki None>> 
 		/// Return Ibuki to her default emotion.
 		/// </example>
-		/// \warning Not implemented yet.
 		public void Emote(string[] args)
 		{
 			#region Argument handling
