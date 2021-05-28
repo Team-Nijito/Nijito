@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 5818518254073845015}
   - component: {fileID: 3469973993833035310}
   m_Layer: 8
-  m_Name: PuppetCanvas
+  m_Name: SlideCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 1517863751974672303}
   - component: {fileID: 2185157460755551672}
   m_Layer: 0
-  m_Name: CharacterRenderers
+  m_Name: SlideRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -837,7 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca616429cee463f43a5913cc82afed41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puppetPrefabPath: PuppetRenderers
+  puppetPrefabPath: Slides
   cam: {fileID: 7474564118996039192}
   renderFormat: 0
   slideParent: {fileID: 7126904318022602982}
@@ -5340,7 +5340,7 @@ GameObject:
   - component: {fileID: 7474564118996039192}
   - component: {fileID: 6226259565909550548}
   m_Layer: 0
-  m_Name: RenderTexCam
+  m_Name: SlideCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

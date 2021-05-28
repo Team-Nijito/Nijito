@@ -20,7 +20,7 @@ namespace Dialogue.VN
 		//public GameObject puppetPrefab;
 		[SerializeField] private GameObject puppetPrefab;
 		[SerializeField] private StagePoint puppetSpawnPoint;
-		[SerializeField] private TextureRenderer puppetRenderer;
+		[SerializeField] private SlideRenderer puppetRenderer;
 		[SerializeField] private bool deleteChildrenOnStart = true;
 
 		//private GameObject[] puppetPrefabs;

@@ -142,8 +142,8 @@ namespace Dialogue.VN {
 
 		// TODO This should be deleted and we should use characters instead.
 		//public Texture[] textures;
-		private TextureRenderer.Handle _rh;
-		public TextureRenderer.Handle RendererHandle {
+		private SlideRenderer.Handle _rh;
+		public SlideRenderer.Handle RendererHandle {
 			get {
 				return _rh;
 			}
@@ -248,9 +248,11 @@ namespace Dialogue.VN {
 
 		public void SetEmote(string emoteName) {
 
-			Emote target;
+			RendererHandle.SetEmote(emoteName);
 
 			/*
+			Emote target;
+
 			if (emoteName.Equals("None", StringComparison.OrdinalIgnoreCase)) {
 				target = emotes[0];
 			}
@@ -265,8 +267,8 @@ namespace Dialogue.VN {
 
 			faceRenderer.sprite = target.image;
 			*/
-			RendererHandle.Redraw();
-			Debug.LogWarning("Not implemented yet");
+			//RendererHandle.Redraw();
+			//Debug.LogWarning("Not implemented yet");
 		}
 
 		public void SetFacing(Facing newFacing) {

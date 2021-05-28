@@ -7,13 +7,13 @@ namespace Dialogue.VN {
 	public class TextureSetter : MonoBehaviour {
 		[SerializeField] private Image imgRenderer;
 		[SerializeField] private RawImage rawImgRenderer;
-		[SerializeField] private TextureRenderer renderSource;
+		[SerializeField] private SlideRenderer renderSource;
 		//public RenderTexture texture;
 
 		private List<RenderTexture> textures;
 
 		private bool firstRun = true;
-		private TextureRenderer.Handle trh;
+		private SlideRenderer.Handle trh;
 
 		void OnEnable() {
 			if(firstRun) {
