@@ -29,8 +29,10 @@ public class SafeAreaScaler : MonoBehaviour
         else return new Rect(0, 0, Screen.width, Screen.height);
 
 #endif
-        return Screen.safeArea;
-    }
+#pragma warning disable CS0162 // Unreachable code detected
+		return Screen.safeArea;
+#pragma warning restore CS0162 // Unreachable code detected
+	}
 
     void Awake()
     {

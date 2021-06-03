@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dialogue.Rendering;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -96,23 +97,20 @@ namespace Dialogue.VN {
 
 		[Header("Animations")]
 		[SerializeField] private Animator animator;
-		[SerializeField] private string initialAnim = "None";
 		[SerializeField] private string fadeInAnim = "FadeIn";
 		[SerializeField] private string fadeOutAnim = "FadeOut";
 
 
-		// TODO This should be deleted and we should use characters instead.
-		//public Texture[] textures;
-		private SlideRenderer.Handle _rh;
-		public SlideRenderer.Handle RendererHandle {
+		private Slide _activeSlide;
+		public Slide ActiveSlide {
 			get {
-				return _rh;
+				return _activeSlide;
 			}
 			set {
-				_rh = value;
-				_rh.Redraw();
+				_activeSlide = value;
+				_activeSlide.Redraw();
 				imageRenderer.material = new Material(imageRenderer.material); // Otherwise it'll modify old, shared material
-				imageRenderer.material.mainTexture = _rh.tex;
+				imageRenderer.material.mainTexture = _activeSlide.tex;
 			}
 		}
 
@@ -198,7 +196,7 @@ namespace Dialogue.VN {
         }
 
 		public void SetEmote(string emoteName) {
-			RendererHandle.SetEmote(emoteName);
+			ActiveSlide.SetEmote(emoteName);
 		}
 
 		public void SetFacing(Facing newFacing) {

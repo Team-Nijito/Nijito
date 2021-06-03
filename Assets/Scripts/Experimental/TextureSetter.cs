@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Dialogue.Rendering;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,11 +14,11 @@ namespace Dialogue.VN {
 		private List<RenderTexture> textures;
 
 		private bool firstRun = true;
-		private SlideRenderer.Handle trh;
+		private Slide trh;
 
 		void OnEnable() {
 			if(firstRun) {
-				trh = renderSource.NewTexture("Ami", 100, 100);
+				trh = renderSource.NewSlide("Ami", 100, 100);
 				imgRenderer.material = new Material(imgRenderer.material);
 				imgRenderer.material.mainTexture = trh.tex;
 

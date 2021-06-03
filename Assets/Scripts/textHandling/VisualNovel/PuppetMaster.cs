@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using Dialogue.Rendering;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Dialogue.VN
-{
+namespace Dialogue.VN {
 
 	/// <summary>
 	/// This is in charge of creating and supplying puppets for the command system.
@@ -95,7 +95,7 @@ namespace Dialogue.VN
 			newPuppetObj.name = characterName;
 
 			Puppet newPuppet = newPuppetObj.GetComponent<Puppet>();
-			newPuppet.RendererHandle = puppetRenderer.NewTexture(characterName, (int)newPuppet.RendererWidth, (int)newPuppet.RendererHeight);
+			newPuppet.ActiveSlide = puppetRenderer.NewSlide(characterName, (int)newPuppet.RendererWidth, (int)newPuppet.RendererHeight);
 			newPuppet.Warp(puppetSpawnPoint);
 
 			return newPuppet;
