@@ -87,7 +87,6 @@ namespace Dialogue.VN
 		///     <<animate-stage None>>
 		/// Stop the current stage animation, if any.
 		/// </example>
-		/// \warning Not implemented yet.
 		public void AnimateStage(string[] args, Action onComplete) {
 
 			#region Argument handling

@@ -1,5 +1,8 @@
 var dir_6f2032baf52b74ebf68bf4f448ae15fb =
 [
+    [ "AnimationSettings.cs", "_animation_settings_8cs.html", [
+      [ "AnimationSettings", "class_dialogue_1_1_v_n_1_1_animation_settings.html", "class_dialogue_1_1_v_n_1_1_animation_settings" ]
+    ] ],
     [ "CharacterCommands.cs", "_character_commands_8cs.html", [
       [ "CharacterCommands", "class_dialogue_1_1_v_n_1_1_character_commands.html", "class_dialogue_1_1_v_n_1_1_character_commands" ]
     ] ],

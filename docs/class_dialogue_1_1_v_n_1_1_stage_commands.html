@@ -101,10 +101,10 @@ Inheritance diagram for Dialogue.VN.StageCommands:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8ff7caa15e0a21834fc6b5c33767aa4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a8ff7caa15e0a21834fc6b5c33767aa4c">AnimateStage</a> (string[] args)</td></tr>
-<tr class="memdesc:a8ff7caa15e0a21834fc6b5c33767aa4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;animate-stage ANIMATION [and wait]&gt;&gt;<br  />
- <a href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a8ff7caa15e0a21834fc6b5c33767aa4c">More...</a><br /></td></tr>
-<tr class="separator:a8ff7caa15e0a21834fc6b5c33767aa4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd87c6bb27222362bce1dd1c75888e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#abd87c6bb27222362bce1dd1c75888e36">AnimateStage</a> (string[] args, Action onComplete)</td></tr>
+<tr class="memdesc:abd87c6bb27222362bce1dd1c75888e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;animate-stage ANIMATION [and wait]&gt;&gt;<br  />
+ <a href="class_dialogue_1_1_v_n_1_1_stage_commands.html#abd87c6bb27222362bce1dd1c75888e36">More...</a><br /></td></tr>
+<tr class="separator:abd87c6bb27222362bce1dd1c75888e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a374b82925aa19006940d3eee9f053171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a374b82925aa19006940d3eee9f053171">Background</a> (string[] args)</td></tr>
 <tr class="memdesc:a374b82925aa19006940d3eee9f053171"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;background IMAGE [now|quickly|slowly] [and wait]&gt;&gt;<br  />
  <a href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a374b82925aa19006940d3eee9f053171">More...</a><br /></td></tr>
@@ -150,8 +150,8 @@ Public Member Functions</h2></td></tr>
 <li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304">wait</a> and <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">itembox</a>.</li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8ff7caa15e0a21834fc6b5c33767aa4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ff7caa15e0a21834fc6b5c33767aa4c">&#9670;&nbsp;</a></span>AnimateStage()</h2>
+<a id="abd87c6bb27222362bce1dd1c75888e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd87c6bb27222362bce1dd1c75888e36">&#9670;&nbsp;</a></span>AnimateStage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -160,8 +160,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void Dialogue.VN.StageCommands.AnimateStage </td>
           <td>(</td>
           <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>args</em></td><td>)</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Action&#160;</td>
+          <td class="paramname"><em>onComplete</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -170,12 +180,11 @@ Public Member Functions</h2></td></tr>
 </p>
 <p>Plays ANIMATION, which is an animation which has been set up on the stage in Unity.</p>
 <p>If <b>and wait</b> is given when playing a looping animation, then dialogue pauses until the animation plays once.</p>
-<p>Only one animation can play at a time, and specifying <b>None</b> (or an invalid animation) will cause the current animation to stop.</p>
+<p>Only one animation can play at a time, and specifying <b>None</b> will cause the current animation to stop. If the animation doesn't exist, it will be ignored.</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;animate-stage Earthquake and wait&gt;&gt;
 </pre><p> Play the "Earthquake" animation and wait for it to finish. </p><pre class="fragment">&lt;&lt;animate-stage None&gt;&gt;
 </pre><p> Stop the current stage animation, if any. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
 
 </div>
 </div>

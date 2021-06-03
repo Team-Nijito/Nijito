@@ -50,7 +50,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_character_commands_8cs.html"
+"_animation_settings_8cs.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

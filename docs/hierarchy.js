@@ -11,5 +11,8 @@ var hierarchy =
       [ "Dialogue.VN.StageCommands", "class_dialogue_1_1_v_n_1_1_stage_commands.html", null ],
       [ "Dialogue.VN.StagePoint", "class_dialogue_1_1_v_n_1_1_stage_point.html", null ]
     ] ],
-    [ "Dialogue.VN.Puppet.MoveBatch", "struct_dialogue_1_1_v_n_1_1_puppet_1_1_move_batch.html", null ]
+    [ "Dialogue.VN.Puppet.MoveBatch", "struct_dialogue_1_1_v_n_1_1_puppet_1_1_move_batch.html", null ],
+    [ "ScriptableObject", null, [
+      [ "Dialogue.VN.AnimationSettings", "class_dialogue_1_1_v_n_1_1_animation_settings.html", null ]
+    ] ]
 ];

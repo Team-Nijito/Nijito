@@ -1,5 +1,6 @@
 var namespace_dialogue_1_1_v_n =
 [
+    [ "AnimationSettings", "class_dialogue_1_1_v_n_1_1_animation_settings.html", "class_dialogue_1_1_v_n_1_1_animation_settings" ],
     [ "CharacterCommands", "class_dialogue_1_1_v_n_1_1_character_commands.html", "class_dialogue_1_1_v_n_1_1_character_commands" ],
     [ "CommandProcessing", "class_dialogue_1_1_v_n_1_1_command_processing.html", "class_dialogue_1_1_v_n_1_1_command_processing" ],
     [ "Puppet", "class_dialogue_1_1_v_n_1_1_puppet.html", "class_dialogue_1_1_v_n_1_1_puppet" ],

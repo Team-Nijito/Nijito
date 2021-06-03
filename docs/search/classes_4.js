@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['stagecommands_120',['StageCommands',['../class_dialogue_1_1_v_n_1_1_stage_commands.html',1,'Dialogue::VN']]],
-  ['stagepoint_121',['StagePoint',['../class_dialogue_1_1_v_n_1_1_stage_point.html',1,'Dialogue::VN']]]
+  ['puppet_104',['Puppet',['../class_dialogue_1_1_v_n_1_1_puppet.html',1,'Dialogue::VN']]],
+  ['puppetmaster_105',['PuppetMaster',['../class_dialogue_1_1_v_n_1_1_puppet_master.html',1,'Dialogue::VN']]]
 ];
