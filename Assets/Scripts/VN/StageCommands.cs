@@ -33,17 +33,6 @@ namespace Dialogue.VN
 	/// finishes being carried out. This does nothing if **now** is
 	/// also used. Also be careful of combining this with **slowly**
 	/// too often; that might make things draggy.
-	///
-	/// ## Changelog
-	///  * 9/13/2020: Changed fade to
-	///    [stage-fade](@ref Dialogue.VN.StageCommands.StageFade).
-	///    Added quickly/slowly options.
-	///    Moved now/quickly/slowly and wait explanations to the class header.
-	///
-	///  * 9/12/2020: Added
-	///    [wait](@ref Dialogue.VN.StageCommands.Wait) and 
-	///    [itembox](@ref Dialogue.VN.StageCommands.ItemBox).
-	///  
 	/// </summary>
 	public class StageCommands : MonoBehaviour
 	{

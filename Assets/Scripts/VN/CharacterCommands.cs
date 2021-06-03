@@ -51,37 +51,6 @@ namespace Dialogue.VN
 	/// finishes being carried out. This does nothing if **now** is
 	/// also used. Also be careful of combining this with **slowly**
 	/// too often; that might make things draggy.
-	///
-	/// ## Changelog
-	///  * 1/14/2021:
-	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate) is now case-sensitive.
-	///    This simplifies the code and simplifies the process of making animations.
-	/// 
-	///  * 1/7/2021:
-	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate) and
-	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade) now have wait.
-	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade) out now correctly removes puppets.
-	///    Updated example for [fade](@ref Dialogue.VN.CharacterCommands.Fade).
-	///  
-	///  * 1/7/2021:
-	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate) now has speed controls.
-	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade) has been partially implemented.
-	///  
-	///  * 1/6/2021: Implemented 
-	///    [animate](@ref Dialogue.VN.CharacterCommands.Animate), though still needs 'wait.'
-	/// 
-	///  * 1/3/2021:
-	///    Implemented stacking, pushing, and pulling for
-	///    [move](@ref Dialogue.VN.CharacterCommands.Move).
-	/// 
-	///  * 9/13/2020: Added
-	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade).
-	///    Added quickly/slowly options.
-	///    Moved now/quickly/slowly and wait explanations to the class header.
-	/// 
-	///  * 9/12/2020: Added
-	///    [addon](@ref Dialogue.VN.CharacterCommands.Addon).
-	///  
 	/// </summary>
 	public class CharacterCommands : MonoBehaviour
 	{
