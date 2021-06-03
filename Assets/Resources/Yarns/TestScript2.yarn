@@ -6,9 +6,11 @@ title: Start
 <<fade in Ami left slowly>>
 Default
 
+<<animate-stage Earthquake and wait>>
 <<emote Ami Smug>>
 Smug
 
+<<animate-stage None>>
 <<emote Ami None>>
 None
 

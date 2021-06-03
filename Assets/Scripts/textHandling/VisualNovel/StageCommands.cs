@@ -49,16 +49,19 @@ namespace Dialogue.VN
 	{
 		[Header("Setup")]
 
-		[SerializeField]
-		private DialogueRunner dialogueRunner;
+		[SerializeField] private DialogueRunner dialogueRunner;
 
-		[SerializeField]
-		private Animator animator;
+		[SerializeField] private Animator animator;
+		[SerializeField] private AnimationSettings animSettings;
 
 
 		void Awake()
 		{
 			Assert.IsNotNull(dialogueRunner);
+			Assert.IsNotNull(animator);
+			Assert.IsNotNull(animSettings);
+
+			dialogueRunner.AddCommandHandler("animate-stage", AnimateStage);
 		}
 
 		/// <summary>
@@ -71,8 +74,8 @@ namespace Dialogue.VN
 		/// then dialogue pauses until the animation plays once.
 		///
 		/// Only one animation can play at a time, and specifying
-		/// **None** (or an invalid animation) will cause the current
-		/// animation to stop.
+		/// **None** will cause the current animation to stop.
+		/// If the animation doesn't exist, it will be ignored.
 		///
 		/// </summary> <example>
 		///
@@ -86,7 +89,6 @@ namespace Dialogue.VN
 		/// </example>
 		/// \warning Not implemented yet.
 		public void AnimateStage(string[] args, Action onComplete) {
-			Debug.LogWarning("Not implemented yet: animate-stage");
 
 			#region Argument handling
 			Assert.IsTrue(args.Length >= 1);
@@ -101,13 +103,7 @@ namespace Dialogue.VN
 			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
 			#endregion
 
-			if (wait) {
-				//character.PlayAnim(animationName, speed, onComplete);
-			}
-			else {
-				//character.PlayAnim(animationName, speed);
-				onComplete();
-			}
+			StartCoroutine(animSettings.PlayAnim(animator, animationName, speed, wait, onComplete));
 
 		}
 

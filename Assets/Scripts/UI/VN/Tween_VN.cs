@@ -115,7 +115,6 @@ public class Tween_VN : MonoBehaviour
 
     void OpenNameBar() {
         RectTransform maskrect = namebar.transform.Find("namebar mask").GetComponent<RectTransform>();
-		Debug.Log(maskrect.sizeDelta);
         Vector2 OriginalSize = maskrect.sizeDelta;
         maskrect.offsetMax = new Vector2(0,0);
         maskrect.offsetMin = new Vector2(-0,-0);

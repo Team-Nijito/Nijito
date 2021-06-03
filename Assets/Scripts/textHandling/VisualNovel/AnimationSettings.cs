@@ -23,6 +23,8 @@ namespace Dialogue.VN {
 		/// <summary>
 		/// Attempts to play an animation. There is very little checking in place,
 		/// so a bad animation name could yield garbage.
+		///
+		/// This should always be used with StartCoroutine.
 		/// </summary>
 		/// <param name="animator"></param>
 		/// <param name="name"></param>

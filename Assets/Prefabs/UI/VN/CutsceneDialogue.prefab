@@ -1201,6 +1201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 5419077282072163331}
+  animator: {fileID: 1716706877065965400}
+  animSettings: {fileID: 11400000, guid: 4c6b3c33d5b50b74db148a97b1092de6, type: 2}
 --- !u!114 &3926238538229424767
 MonoBehaviour:
   m_ObjectHideFlags: 0
