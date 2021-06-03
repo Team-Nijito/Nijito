@@ -400,21 +400,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2185157460755551672, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
-      propertyPath: widthScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2185157460755551672, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
-      propertyPath: heightScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2387446241812477856, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
       propertyPath: m_Name
       value: CutsceneDialogue
-      objectReference: {fileID: 0}
-    - target: {fileID: 4762804090755993049, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
-      propertyPath: m_PlaneDistance
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7726179263012975814, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
       propertyPath: m_RootOrder
@@ -459,10 +447,6 @@ PrefabInstance:
     - target: {fileID: 7726179263012975814, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9056190260823499827, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb0a392842b2b524db4389010f65c8c0, type: 3}

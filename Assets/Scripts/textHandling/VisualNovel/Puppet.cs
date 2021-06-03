@@ -67,44 +67,38 @@ namespace Dialogue.VN {
 			}
 		}
 
-		public Image imageRenderer;
-		public Facing initialFacing = Facing.Left;
+		[SerializeField] private AnimationSettings animSettings;
+		[SerializeField] private Image imageRenderer;
+		[SerializeField] private Facing initialFacing = Facing.Left;
 
 		[Header("Movement")]
-		[Range(0, 2)] public float maxSpeed = 0.6f;
-		[Range(0, 2)] public float minSpeed = 0.05f;
+		[Range(0, 2)] [SerializeField] private float maxSpeed = 0.6f;
+		[Range(0, 2)] [SerializeField] private float minSpeed = 0.05f;
 
 		[Space(10)]
 		
-		[Range(0, 2)] public float accelerationDistance = 0.2f;
+		[Range(0, 2)] [SerializeField] private float accelerationDistance = 0.2f;
 		[Tooltip("Make sure this starts at 0 (slowest) and ends at 1 (fastest)!")]
-		public AnimationCurve accelerationCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+		[SerializeField] private AnimationCurve accelerationCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
 		[Space(10)]
 
-		[Range(0, 2)] public float decelerationDistance = 0.2f;
+		[Range(0, 2)] [SerializeField] private float decelerationDistance = 0.2f;
 		[Tooltip("Make sure this starts at 0 (fastest) and ends at 1 (slowest)!")]
-		public AnimationCurve decelerationCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+		[SerializeField] private AnimationCurve decelerationCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
 		[Space(10)]
 
-		public float stoppingThreshold = 0.001f;
+		[SerializeField] private float stoppingThreshold = 0.001f;
 		[Tooltip("Range used for pushing and pulling.")]
 		[Range(0f, 1f)]
-		public float width = 0.1f;
+		[SerializeField] private float width = 0.1f;
 
 		[Header("Animations")]
-		public Animator animator;
-		public string initialAnim = "None";
-		public string fadeInAnim = "FadeIn";
-		public string fadeOutAnim = "FadeOut";
-
-		[Space(10)]
-		public string speedControl = "speed";
-		public float normalAnimationSpeed = 1f;
-		public float quickAnimationSpeed = 2f;
-		public float slowAnimationSpeed = 0.5f;
-		public float nowAnimationSpeed = 1000f;
+		[SerializeField] private Animator animator;
+		[SerializeField] private string initialAnim = "None";
+		[SerializeField] private string fadeInAnim = "FadeIn";
+		[SerializeField] private string fadeOutAnim = "FadeOut";
 
 
 		// TODO This should be deleted and we should use characters instead.
@@ -164,16 +158,6 @@ namespace Dialogue.VN {
 			get => rTransform.anchorMin;
 		}
 
-		private float SpeedToScale(Speed speed) {
-			switch (speed) {
-				default:           goto case Speed.Normal;
-				case Speed.Normal: return normalAnimationSpeed;
-				case Speed.Quick:  return quickAnimationSpeed;
-				case Speed.Slow:   return slowAnimationSpeed;
-				case Speed.Now:    return nowAnimationSpeed;
-			}
-		}
-
 		/// <summary>
 		/// Sets a new destination where we want to slide to.
 		/// </summary>
@@ -229,43 +213,16 @@ namespace Dialogue.VN {
 		}
 
 
-		public void PlayAnim(string name, Speed speed = Speed.Normal, Action onComplete = null) {
-
-			/*
-			string stateName = string.IsNullOrEmpty(name)
-				? initialAnim
-				: animationNames.FirstOrDefault(n => name.Equals(n, StringComparison.OrdinalIgnoreCase));
-
-			if (stateName == default(string)) {
-				Debug.LogWarning("Could not find animation named " + name);
-				stateName = initialAnim;
-			}
-			*/
-
-			animator.SetFloat(speedControl, SpeedToScale(speed));
-			animator.Play(name);
-
-			if (onComplete != null) {
-				StartCoroutine(WaitForAnim(onComplete));
-			}
+		public void PlayAnim(string name, Speed speed = Speed.Normal, bool wait = false, Action onComplete = null) {
+			StartCoroutine(animSettings.PlayAnim(animator, name, speed, wait, onComplete));
 		}
 
-		public void FadeIn(Speed speed, Action onComplete = null) {
-			PlayAnim(fadeInAnim, speed, onComplete);
+		public void FadeIn(Speed speed, bool wait = false, Action onComplete = null) {
+			PlayAnim(fadeInAnim, speed, wait, onComplete);
 		}
 
-		public void FadeOut(Speed speed, Action onComplete = null) {
-			PlayAnim(fadeOutAnim, speed, onComplete + (() => DestinationPoint = null));
-		}
-
-		private IEnumerator WaitForAnim(System.Action onComplete) {
-			// This works even for loops; the time counts on from 1 even after first loop
-
-			yield return new WaitForEndOfFrame(); // Wait for the animation to start playing
-			yield return new WaitUntil(() =>
-				animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1
-			);
-			onComplete();
+		public void FadeOut(Speed speed, bool wait = false, Action onComplete = null) {
+			PlayAnim(fadeOutAnim, speed, wait, onComplete + (() => DestinationPoint = null));
 		}
 
 		private void SetPosition(float newHorizontalPos)
@@ -283,6 +240,7 @@ namespace Dialogue.VN {
 				"Puppets should be part of the UI, not in the scene itself!"
 			);
 			Assert.IsNotNull(animator, "Puppet needs an animator");
+			Assert.IsNotNull(animSettings, "Puppet needs animation settings");
 
 			/*
 			if(faceRenderer == null) {
@@ -314,7 +272,7 @@ namespace Dialogue.VN {
 						destinationPosition,
 						CalculateSpeed(
 							PreviousPosition.x, destinationPosition, CurrentPosition.x,
-							maxSpeed * SpeedToScale(moveSpeed), minSpeed,
+							maxSpeed * animSettings.SpeedToScale(moveSpeed), minSpeed,
 							accelerationDistance, accelerationCurve,
 							decelerationDistance, decelerationCurve
 						) * Time.deltaTime

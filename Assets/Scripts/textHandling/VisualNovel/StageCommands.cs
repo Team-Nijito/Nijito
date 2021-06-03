@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -51,6 +52,9 @@ namespace Dialogue.VN
 		[SerializeField]
 		private DialogueRunner dialogueRunner;
 
+		[SerializeField]
+		private Animator animator;
+
 
 		void Awake()
 		{
@@ -81,10 +85,32 @@ namespace Dialogue.VN
 		/// Stop the current stage animation, if any.
 		/// </example>
 		/// \warning Not implemented yet.
-		public void AnimateStage(string[] args)
-		{
+		public void AnimateStage(string[] args, Action onComplete) {
 			Debug.LogWarning("Not implemented yet: animate-stage");
+
+			#region Argument handling
+			Assert.IsTrue(args.Length >= 1);
+			string animationName = args[0];
+
+			int i = 1; // Index we were last using
+
+			Speed speed = default(Speed);
+			bool wait = false;
+
+			CommandProcessing.ReadSpeedArgument(args, ref i, ref speed);
+			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
+			#endregion
+
+			if (wait) {
+				//character.PlayAnim(animationName, speed, onComplete);
+			}
+			else {
+				//character.PlayAnim(animationName, speed);
+				onComplete();
+			}
+
 		}
+
 
 		/// <summary>
 		/// &lt;&lt;background IMAGE [now|quickly|slowly] [and wait]&gt;&gt;\n 

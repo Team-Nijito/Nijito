@@ -32,13 +32,18 @@ namespace Dialogue.VN {
 
 		private void Awake() {
 			emotes = new Dictionary<string, GameObject>();
-			foreach(Transform child in emoteParent) {
-				emotes[child.name] = child.gameObject;
+			if (emoteParent != null) {
+				foreach (Transform child in emoteParent) {
+					emotes[child.name] = child.gameObject;
 
-				// Just in case setup got something wrong... yeah we'll turn things off
-				if(child.gameObject != defaultEmote) {
-					child.gameObject.SetActive(false);
+					// Just in case setup got something wrong... yeah we'll turn things off
+					if (child.gameObject != defaultEmote) {
+						child.gameObject.SetActive(false);
+					}
 				}
+			}
+			else {
+				Debug.LogWarning(gameObject.name + " does not have any emotes!");
 			}
 		}
 

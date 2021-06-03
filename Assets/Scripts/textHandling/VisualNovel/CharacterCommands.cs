@@ -238,13 +238,7 @@ namespace Dialogue.VN
 			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
 			#endregion
 
-			if (wait) {
-				character.PlayAnim(animationName, speed, onComplete);
-			}
-			else {
-				character.PlayAnim(animationName, speed);
-				onComplete();
-			}
+			character.PlayAnim(animationName, speed, wait, onComplete);
 
 		}
 
@@ -344,25 +338,16 @@ namespace Dialogue.VN
 			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
 			#endregion
 
-			if (!wait) {
-				// If we're not waiting, let 'em know.
-				// Then we can just null this out and hide the body.
-				onComplete();
-				onComplete = null;
-			}
-
-			//character.PlayAnim(animationName, speed);
-
 			//Debug.Log(fadeMode);
 
 			switch(fadeMode.ToLower()) {
 				case "in":
 					character.Warp(fadeDest);
-					character.FadeIn(speed, onComplete);
+					character.FadeIn(speed, wait, onComplete);
 					break;
 
 				case "out":
-					character.FadeOut(speed, onComplete);
+					character.FadeOut(speed, wait, onComplete);
 					break;
 
 				default:

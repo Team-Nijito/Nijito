@@ -205,6 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2256908024926116011}
   - component: {fileID: 6804656848912235915}
+  - component: {fileID: 3628384880656966446}
   m_Layer: 5
   m_Name: Yuto
   m_TagString: Untagged
@@ -241,3 +242,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101003519434813453}
   m_CullTransparentMesh: 0
+--- !u!114 &3628384880656966446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101003519434813453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2932ce0d84064f1498730b3eae2b35b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emoteParent: {fileID: 0}
+  defaultEmote: {fileID: 0}
