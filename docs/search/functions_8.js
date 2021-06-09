@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['outfit_142',['Outfit',['../class_dialogue_1_1_v_n_1_1_character_commands.html#a75b60c416bd874d61491de6ff209fb1b',1,'Dialogue::VN::CharacterCommands']]],
-  ['outfitall_143',['OutfitAll',['../class_dialogue_1_1_v_n_1_1_character_commands.html#a25584842ac571b2f5d2e15b441bc1687',1,'Dialogue::VN::CharacterCommands']]]
+  ['loadnextscene_221',['LoadNextScene',['../class_dialogue_1_1_script_concluder.html#a059a0be8b5215e9a370763a25d4dfcf9',1,'Dialogue::ScriptConcluder']]],
+  ['loadscript_222',['LoadScript',['../class_dialogue_1_1_testing_1_1_script_button.html#a87d6f5f864b6b2b496c2907ac7a65a44',1,'Dialogue::Testing::ScriptButton']]]
 ];

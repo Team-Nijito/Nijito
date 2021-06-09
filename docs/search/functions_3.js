@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['emote_127',['Emote',['../class_dialogue_1_1_v_n_1_1_character_commands.html#ad37d3266e3eee104932103f4310acdc6',1,'Dialogue::VN::CharacterCommands']]],
-  ['equals_128',['Equals',['../struct_dialogue_1_1_v_n_1_1_puppet_1_1_move_batch.html#a943cac7757f2426f11c0cd51094f2b3a',1,'Dialogue::VN::Puppet::MoveBatch']]]
+  ['dialoguecomplete_207',['DialogueComplete',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ab77ef45c0baa50cf027170b3204ef1a3',1,'Dialogue::NijitoDialogueUI']]],
+  ['dialoguestarted_208',['DialogueStarted',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ac7406f7b5f7ea6a3d8177dc3ace1c1fc',1,'Dialogue::NijitoDialogueUI']]]
 ];

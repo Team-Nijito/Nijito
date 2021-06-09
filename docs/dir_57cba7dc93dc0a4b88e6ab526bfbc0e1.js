@@ -1,7 +1,10 @@
-var dir_6f2032baf52b74ebf68bf4f448ae15fb =
+var dir_57cba7dc93dc0a4b88e6ab526bfbc0e1 =
 [
     [ "AnimationSettings.cs", "_animation_settings_8cs.html", [
       [ "AnimationSettings", "class_dialogue_1_1_v_n_1_1_animation_settings.html", "class_dialogue_1_1_v_n_1_1_animation_settings" ]
+    ] ],
+    [ "BackgroundController.cs", "_background_controller_8cs.html", [
+      [ "BackgroundController", "class_dialogue_1_1_v_n_1_1_background_controller.html", "class_dialogue_1_1_v_n_1_1_background_controller" ]
     ] ],
     [ "CharacterCommands.cs", "_character_commands_8cs.html", [
       [ "CharacterCommands", "class_dialogue_1_1_v_n_1_1_character_commands.html", "class_dialogue_1_1_v_n_1_1_character_commands" ]

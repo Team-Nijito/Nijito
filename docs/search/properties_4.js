@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['targets_198',['targets',['../struct_dialogue_1_1_v_n_1_1_puppet_1_1_move_batch.html#a97ce66c2d00c187d1c1170ef3477ef6d',1,'Dialogue::VN::Puppet::MoveBatch']]]
+  ['onfinish_297',['onFinish',['../class_dialogue_1_1_settings.html#a0115524e7a4a819bf2a96f543e91c812',1,'Dialogue::Settings']]]
 ];

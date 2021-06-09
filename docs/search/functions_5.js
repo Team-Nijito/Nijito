@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['gethashcode_134',['GetHashCode',['../struct_dialogue_1_1_v_n_1_1_puppet_1_1_move_batch.html#a7b504f1422dc9bee0cbb49c510c2e7a1',1,'Dialogue::VN::Puppet::MoveBatch']]],
-  ['getposition_135',['GetPosition',['../class_dialogue_1_1_v_n_1_1_stage_point.html#af9e230e8e485ed646df2db94f58ef3c6',1,'Dialogue::VN::StagePoint']]],
-  ['getpuppet_136',['GetPuppet',['../class_dialogue_1_1_v_n_1_1_puppet_master.html#ad793847366cb63297a3c51dd5604bb09',1,'Dialogue::VN::PuppetMaster']]]
+  ['fade_211',['Fade',['../class_dialogue_1_1_v_n_1_1_character_commands.html#ab12f9a83c8b4770a73f3f30563f564f2',1,'Dialogue::VN::CharacterCommands']]],
+  ['fadein_212',['FadeIn',['../class_dialogue_1_1_v_n_1_1_puppet.html#a05cde861728190f61bf303d394305a95',1,'Dialogue::VN::Puppet']]],
+  ['fadeout_213',['FadeOut',['../class_dialogue_1_1_v_n_1_1_puppet.html#a372489a654d93edd0415705923a70047',1,'Dialogue::VN::Puppet']]],
+  ['focus_214',['Focus',['../class_dialogue_1_1_v_n_1_1_character_commands.html#a96050efd6565411545061d4d9438074a',1,'Dialogue::VN::CharacterCommands']]],
+  ['focusself_215',['FocusSelf',['../class_dialogue_1_1_v_n_1_1_puppet.html#a2435d771eb0dc6a396a35928439b4d16',1,'Dialogue::VN::Puppet']]],
+  ['fromname_216',['FromName',['../class_dialogue_1_1_settings.html#afaa0dd7ac864fffe2f09c2acfa4c9687',1,'Dialogue::Settings']]]
 ];

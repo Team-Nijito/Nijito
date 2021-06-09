@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('class_dialogue_1_1_v_n_1_1_command_pro
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af5238484094a26fd9d3b7b1e056b0e67"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_command_processing.html#af5238484094a26fd9d3b7b1e056b0e67">ReadStringArgument</a> (string[] args, ref int i)</td></tr>
+<tr class="memdesc:af5238484094a26fd9d3b7b1e056b0e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to fetch a string value from the array of arguments.  <a href="class_dialogue_1_1_v_n_1_1_command_processing.html#af5238484094a26fd9d3b7b1e056b0e67">More...</a><br /></td></tr>
+<tr class="separator:af5238484094a26fd9d3b7b1e056b0e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add3e09ee71b3497dfa7f34a960064616"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_command_processing.html#add3e09ee71b3497dfa7f34a960064616">ReadSpeedArgument</a> (string[] args, ref int i, ref <a class="el" href="namespace_dialogue_1_1_v_n.html#a54fd588c61cf371983b7c0c5046c3f34">Speed</a> result)</td></tr>
 <tr class="memdesc:add3e09ee71b3497dfa7f34a960064616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to fetch a speed value from the array of arguments.  <a href="class_dialogue_1_1_v_n_1_1_command_processing.html#add3e09ee71b3497dfa7f34a960064616">More...</a><br /></td></tr>
 <tr class="separator:add3e09ee71b3497dfa7f34a960064616"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,6 +162,53 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af5238484094a26fd9d3b7b1e056b0e67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5238484094a26fd9d3b7b1e056b0e67">&#9670;&nbsp;</a></span>ReadStringArgument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string Dialogue.VN.CommandProcessing.ReadStringArgument </td>
+          <td>(</td>
+          <td class="paramtype">string[]&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref int&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attempts to fetch a string value from the array of arguments. </p>
+<p>This value can be enclosed in double quotes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>Array of arguments passed into function.</td></tr>
+    <tr><td class="paramname">i</td><td>Index into argument array. May be out of bounds. If a valid string is found, this gets incremented based on number of args consumed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string without double quotes. If no string is found, null is returned instead. </dd></dl>
+
+</div>
+</div>
 <a id="a8ef34d73b32821a4bc7add2601501b4a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8ef34d73b32821a4bc7add2601501b4a">&#9670;&nbsp;</a></span>ReadWaitArgument()</h2>
 
@@ -214,7 +264,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/mnt/d/GameProjects/Unity/Nijito/Assets/Scripts/TextHandling/VisualNovel/<a class="el" href="_command_processing_8cs.html">CommandProcessing.cs</a></li>
+<li>/mnt/d/GameProjects/Unity/Nijito/Assets/Scripts/VN/<a class="el" href="_command_processing_8cs.html">CommandProcessing.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

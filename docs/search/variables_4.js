@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['textspeed_178',['textSpeed',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a8b40e1bc19c88aae1e066e137598e6e5',1,'Dialogue::NijitoDialogueUI']]]
+  ['puppetprefabpath_275',['PuppetPrefabPath',['../class_dialogue_1_1_v_n_1_1_puppet_master.html#ac19113cceae6927dbe6c4514fe8a5240',1,'Dialogue::VN::PuppetMaster']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['dialoguecomplete_125',['DialogueComplete',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ab77ef45c0baa50cf027170b3204ef1a3',1,'Dialogue::NijitoDialogueUI']]],
-  ['dialoguestarted_126',['DialogueStarted',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ac7406f7b5f7ea6a3d8177dc3ace1c1fc',1,'Dialogue::NijitoDialogueUI']]]
+  ['closedialoguebox_205',['CloseDialogueBox',['../class_tween___v_n.html#aac3e7d92176696cdfcbe0fac6d4caac9',1,'Tween_VN']]],
+  ['configure_206',['Configure',['../class_dialogue_1_1_rendering_1_1_slide.html#abf6d41c4214f8f8da0db421731173d7c',1,'Dialogue.Rendering.Slide.Configure()'],['../class_dialogue_1_1_testing_1_1_script_button.html#aeaa7db93de456544b30dec10782ce170',1,'Dialogue.Testing.ScriptButton.Configure()']]]
 ];

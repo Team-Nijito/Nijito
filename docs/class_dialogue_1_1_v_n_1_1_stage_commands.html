@@ -105,10 +105,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abd87c6bb27222362bce1dd1c75888e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;animate-stage ANIMATION [and wait]&gt;&gt;<br  />
  <a href="class_dialogue_1_1_v_n_1_1_stage_commands.html#abd87c6bb27222362bce1dd1c75888e36">More...</a><br /></td></tr>
 <tr class="separator:abd87c6bb27222362bce1dd1c75888e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a374b82925aa19006940d3eee9f053171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a374b82925aa19006940d3eee9f053171">Background</a> (string[] args)</td></tr>
-<tr class="memdesc:a374b82925aa19006940d3eee9f053171"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;background IMAGE [now|quickly|slowly] [and wait]&gt;&gt;<br  />
- <a href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a374b82925aa19006940d3eee9f053171">More...</a><br /></td></tr>
-<tr class="separator:a374b82925aa19006940d3eee9f053171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9d91b2debedecc9f6a89054da242dbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#ae9d91b2debedecc9f6a89054da242dbf">Background</a> (string[] args, Action onComplete)</td></tr>
+<tr class="memdesc:ae9d91b2debedecc9f6a89054da242dbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;background IMAGE [now|quickly|slowly] [and wait]&gt;&gt;<br  />
+ <a href="class_dialogue_1_1_v_n_1_1_stage_commands.html#ae9d91b2debedecc9f6a89054da242dbf">More...</a><br /></td></tr>
+<tr class="separator:ae9d91b2debedecc9f6a89054da242dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12d61cadf8539b751e781bd23984da41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">ItemBox</a> (string[] args)</td></tr>
 <tr class="memdesc:a12d61cadf8539b751e781bd23984da41"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;itembox ITEM&gt;&gt;<br  />
  &lt;&lt;itembox hide [ITEM]&gt;&gt;<br  />
@@ -144,11 +144,6 @@ Public Member Functions</h2></td></tr>
 <li><b>slowly</b>: Drags things out.</li>
 </ul>
 <p>For commands with <b>wait</b> or <b>and wait</b> options, those will cause the dialogue system to pause until the command finishes being carried out. This does nothing if <b>now</b> is also used. Also be careful of combining this with <b>slowly</b> too often; that might make things draggy.</p>
-<h2>Changelog</h2>
-<ul>
-<li>9/13/2020: Changed fade to <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a79bb1ee082a536efac9097b3fd1ee18b">stage-fade</a>. Added quickly/slowly options. Moved now/quickly/slowly and wait explanations to the class header.</li>
-<li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304">wait</a> and <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">itembox</a>.</li>
-</ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="abd87c6bb27222362bce1dd1c75888e36"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abd87c6bb27222362bce1dd1c75888e36">&#9670;&nbsp;</a></span>AnimateStage()</h2>
@@ -188,8 +183,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a374b82925aa19006940d3eee9f053171"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a374b82925aa19006940d3eee9f053171">&#9670;&nbsp;</a></span>Background()</h2>
+<a id="ae9d91b2debedecc9f6a89054da242dbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9d91b2debedecc9f6a89054da242dbf">&#9670;&nbsp;</a></span>Background()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,8 +193,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void Dialogue.VN.StageCommands.Background </td>
           <td>(</td>
           <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>args</em></td><td>)</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Action&#160;</td>
+          <td class="paramname"><em>onComplete</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -212,7 +217,6 @@ Public Member Functions</h2></td></tr>
 <pre class="fragment">&lt;&lt;background "Some Awesome Stage" now&gt;&gt;
 </pre><p> Show "Some Awesome Stage" immediately. </p><pre class="fragment">&lt;&lt;background Home and wait&gt;&gt;
 </pre><p> Show "Home," and wait until we finish fading into it. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
 
 </div>
 </div>
@@ -372,7 +376,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/mnt/d/GameProjects/Unity/Nijito/Assets/Scripts/TextHandling/VisualNovel/<a class="el" href="_stage_commands_8cs.html">StageCommands.cs</a></li>
+<li>/mnt/d/GameProjects/Unity/Nijito/Assets/Scripts/VN/<a class="el" href="_stage_commands_8cs.html">StageCommands.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
