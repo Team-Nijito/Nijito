@@ -17,6 +17,7 @@ namespace Dialogue.Rendering {
 		[SerializeField] private Camera cam;
 		[SerializeField] private RenderTextureFormat renderFormat = RenderTextureFormat.ARGB32;
 		[SerializeField] private Transform slideParent;
+		[SerializeField] private GameObject placeholderSlide;
 
 		/// <summary>
 		/// Redraws the given slide. This controls everything
@@ -45,6 +46,10 @@ namespace Dialogue.Rendering {
 			RenderTexture newTex = new RenderTexture(width, height, 0, renderFormat);
 
 			GameObject prefab = Resources.Load(slidePrefabPath + "/" + name) as GameObject;
+			if(prefab == null) {
+				Debug.LogWarning("You expected " + name + ", but it was me, Dio!");
+				prefab = placeholderSlide;
+			}
 			GameObject slideObj = Instantiate(prefab, slideParent);
 			slideObj.SetActive(false);
 

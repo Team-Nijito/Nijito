@@ -39,6 +39,7 @@ namespace Dialogue.VN
 		[Header("Setup")]
 
 		[SerializeField] private DialogueRunner dialogueRunner;
+		[SerializeField] private BackgroundController bgController;
 
 		[SerializeField] private Animator animator;
 		[SerializeField] private AnimationSettings animSettings;
@@ -46,11 +47,15 @@ namespace Dialogue.VN
 
 		void Awake()
 		{
+			dialogueRunner.AddCommandHandler("animate-stage", AnimateStage);
+			dialogueRunner.AddCommandHandler("background", Background);
+
+			// Do checks second; we want the system to generally work even if some stuff is missing.
+			// However, nothing should be missing when we get to production.
 			Assert.IsNotNull(dialogueRunner);
+			Assert.IsNotNull(bgController);
 			Assert.IsNotNull(animator);
 			Assert.IsNotNull(animSettings);
-
-			dialogueRunner.AddCommandHandler("animate-stage", AnimateStage);
 		}
 
 		/// <summary>
@@ -115,10 +120,24 @@ namespace Dialogue.VN
 		///     <<background Home and wait>>
 		/// Show "Home," and wait until we finish fading into it.
 		/// </example>
-		/// \warning Not implemented yet.
-		public void Background(string[] args)
+		/// \warning Doesn't support names in quotes yet
+		public void Background(string[] args, Action onComplete)
 		{
-			Debug.LogWarning("Not implemented yet: background");
+			#region Argument handling
+			Assert.IsTrue(args.Length >= 1);
+			string bgName = args[0];
+
+			int i = 1; // Index we were last using
+
+			Speed speed = default(Speed);
+			bool wait = false;
+
+			CommandProcessing.ReadSpeedArgument(args, ref i, ref speed);
+			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
+			#endregion
+
+			//StartCoroutine(animSettings.PlayAnim(animator, animationName, speed, wait, onComplete));
+			bgController.Switch(bgName, speed, wait, onComplete);
 		}
 
 		/// <summary>

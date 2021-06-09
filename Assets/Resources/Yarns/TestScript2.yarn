@@ -14,15 +14,18 @@ Smug
 <<emote Ami None>>
 None
 
+<<background YutoWhaleGrey>>
 <<emote Ami Smirk>>
 Smirk
 
+<<background YutoWhale now>>
 <<emote Ami Invalid>>
 Something invalid (this should just get us default)
 
 <<emote Ami SmileA>>
 SmileA
 
+<<background YutoWhaleGrey slowly and wait>>
 <<emote Ami SmileB>>
 SmileB
 
