@@ -14,7 +14,7 @@ Smug
 <<emote Ami None>>
 None
 
-<<background YutoWhaleGrey>>
+<<background "YutoWhale Grey">>
 <<emote Ami Smirk>>
 Smirk
 
@@ -25,7 +25,7 @@ Something invalid (this should just get us default)
 <<emote Ami SmileA>>
 SmileA
 
-<<background YutoWhaleGrey slowly and wait>>
+<<background "YutoWhale Grey" slowly and wait>>
 <<emote Ami SmileB>>
 SmileB
 

@@ -120,23 +120,20 @@ namespace Dialogue.VN
 		///     <<background Home and wait>>
 		/// Show "Home," and wait until we finish fading into it.
 		/// </example>
-		/// \warning Doesn't support names in quotes yet
 		public void Background(string[] args, Action onComplete)
 		{
 			#region Argument handling
-			Assert.IsTrue(args.Length >= 1);
-			string bgName = args[0];
+			int i = 0;
 
-			int i = 1; // Index we were last using
+			string bgName = CommandProcessing.ReadStringArgument(args, ref i);
+			Assert.IsNotNull(bgName);
 
 			Speed speed = default(Speed);
 			bool wait = false;
-
 			CommandProcessing.ReadSpeedArgument(args, ref i, ref speed);
 			CommandProcessing.ReadWaitArgument(args, ref i, ref wait);
 			#endregion
 
-			//StartCoroutine(animSettings.PlayAnim(animator, animationName, speed, wait, onComplete));
 			bgController.Switch(bgName, speed, wait, onComplete);
 		}
 
