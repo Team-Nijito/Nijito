@@ -21,8 +21,6 @@ Assets/**/*.png -text
 Assets/**/*.gif -text
 Assets/**/*.psd -text
 Assets/**/*.ai -text
-# If we tracked character art via git LFS, we'd run out of space lol
-Assets/**/Art/**/*.png filter= diff= merge= text
 #Audio
 *.mp3 -text
 *.wav -text
