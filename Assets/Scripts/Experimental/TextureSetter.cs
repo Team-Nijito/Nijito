@@ -1,8 +1,8 @@
-﻿using Dialogue.Rendering;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Nijito.Paperdoll;
 
 namespace Dialogue.VN {
 	public class TextureSetter : MonoBehaviour {

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AssetTesting/VN.unity
+    path: Assets/Scenes/AssetTesting/Cutscene-Testing.unity
     guid: 84065bcb0b5f03b46b35b1478ea2c51d
+  - enabled: 1
+    path: Assets/Scenes/AssetTesting/Cutscene-ExternalLoader.unity
+    guid: eedc3795a8383a24fbcb086aeb5428a1
   m_configObjects: {}
