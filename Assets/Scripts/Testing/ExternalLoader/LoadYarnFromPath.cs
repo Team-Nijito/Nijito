@@ -7,6 +7,7 @@ using UnityEngine.Assertions;
 using Yarn.Compiler;
 using UnityEngine.SceneManagement;
 using System.IO;
+using System.Globalization;
 
 namespace Dialogue.Testing {
 
@@ -24,11 +25,12 @@ namespace Dialogue.Testing {
 			}
 			else {
 				Yarn.Program compiledProgram;
-				IDictionary<string, StringInfo> stringTable;
-				string fileName = Path.GetFileNameWithoutExtension(pathSrc.text);
 
-				//Settings.selectedYarn = program;
+				IDictionary<string, Yarn.Compiler.StringInfo> stringTable;
+				string fileName = Path.GetFileNameWithoutExtension(pathSrc.text);
+				YarnTranslation[] localizations = new YarnTranslation[0];
 				Status compilationStatus;
+				string baseLanguageID = CultureInfo.CurrentCulture.Name;
 
 				try {
 					// Compile the source code into a compiled Yarn program (or
@@ -54,7 +56,45 @@ namespace Dialogue.Testing {
 					}
 
 					if (stringTable.Count > 0) {
-						Debug.LogWarning("Currently not handling string table at runtime");
+						using (var memoryStream = new MemoryStream())
+						using (var textWriter = new StreamWriter(memoryStream)) {
+							// Generate the localised .csv file
+
+							// Use the invariant culture when writing the CSV
+							var configuration = new CsvHelper.Configuration.Configuration(
+								System.Globalization.CultureInfo.InvariantCulture
+							);
+
+							var csv = new CsvHelper.CsvWriter(
+								textWriter, // write into this stream
+								configuration // use this configuration
+								);
+
+							var lines = stringTable.Select(x => new {
+								id = x.Key,
+								text = x.Value.text,
+								file = x.Value.fileName,
+								node = x.Value.nodeName,
+								lineNumber = x.Value.lineNumber
+							});
+
+							csv.WriteRecords(lines);
+
+							textWriter.Flush();
+
+							memoryStream.Position = 0;
+
+							using (var reader = new StreamReader(memoryStream)) {
+								var textAsset = new TextAsset(reader.ReadToEnd());
+								textAsset.name = $"{fileName} ({baseLanguageID})";
+
+								programContainer.baseLocalisationStringTable = textAsset;
+								programContainer.localizations = localizations;
+							}
+
+							//stringIDs = lines.Select(l => l.id).ToArray();
+
+						}
 					}
 					Debug.Log(programContainer.GetProgram().CalculateSize());
 
