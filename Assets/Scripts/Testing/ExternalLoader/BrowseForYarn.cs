@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using SFB;
+using SimpleFileBrowser;
 
 namespace Dialogue.Testing {
 	[System.Serializable]
@@ -11,14 +11,16 @@ namespace Dialogue.Testing {
 
 	public class BrowseForYarn : MonoBehaviour {
 		[SerializeField] private StringEvent onPick;
+		[SerializeField] private UnityEvent onCancel;
 
 		public void Activate() {
-			var extensions = new[] { new ExtensionFilter("Yarn Files", "yarn") };
-			var paths = StandaloneFileBrowser.OpenFilePanel("Open Yarn", "", extensions, false);
 
-			if (paths.Length > 0) {
-				onPick.Invoke(paths[0]);
-			}
+			FileBrowser.ShowLoadDialog(
+				onSuccess: paths => onPick.Invoke(paths[0]),
+				onCancel: () => onCancel.Invoke(),
+				pickMode: FileBrowser.PickMode.Files
+			);
+
 		}
 
 	}
