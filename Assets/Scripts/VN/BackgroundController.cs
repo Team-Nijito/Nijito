@@ -16,7 +16,7 @@ namespace Dialogue.VN {
 		[Header("Animations")]
 		[SerializeField] private Animator anim;
 		[SerializeField] private AnimationSettings animSettings;
-		[SerializeField] private string idleAnimName = "None";
+		//[SerializeField] private string idleAnimName = "None";
 		[SerializeField] private string transitionAnimName = "FadeToNew";
 
 		private void Awake() {

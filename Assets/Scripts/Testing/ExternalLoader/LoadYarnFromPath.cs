@@ -24,6 +24,14 @@ namespace Dialogue.Testing {
 				Debug.LogWarning("Must have a Yarn to load!");
 			}
 			else {
+				// TODO Shove this into the Settings class or something...
+				//      This is way too much (highly valuable code) to leave in this component.
+				//
+				// Oh on that note, this code came out of Yarn's private scripts. For some reason,
+				// they make the Compiler publicly accessable and then don't give you any way to
+				// convert compiled programs into YarnPrograms, which the runner clearly needs to
+				// function. I'm should make an issue on the Yarn Spinner repo about this...
+
 				Yarn.Program compiledProgram;
 
 				IDictionary<string, Yarn.Compiler.StringInfo> stringTable;
